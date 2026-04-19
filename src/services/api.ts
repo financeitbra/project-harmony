@@ -1,23 +1,5 @@
-// Centraliza chamadas ao backend externo (Node.js/Express no HostGator).
-// Configure VITE_BACKEND_URL no .env para apontar para produção.
-import axios from "axios";
-
-const BACKEND_URL =
-  (import.meta.env.VITE_BACKEND_URL as string | undefined) ||
-  "http://localhost:3000";
-
-if (import.meta.env.PROD && !import.meta.env.VITE_BACKEND_URL) {
-  console.warn(
-    "[api] VITE_BACKEND_URL não está configurada. Configure-a apontando para o backend Node.js na HostGator (ex.: https://api.financeit.com.br)."
-  );
-}
-
-export const api = axios.create({
-  baseURL: BACKEND_URL,
-  headers: { "Content-Type": "application/json" },
-});
-
-/* ───── Tipos alinhados ao backend (backend/src/routes/email.ts) ───── */
+// Envio de emails via Edge Function (Lovable Cloud) usando SMTP HostGator.
+import { supabase } from "@/integrations/supabase/client";
 
 export interface ContactEmailPayload {
   nome: string;
@@ -37,18 +19,23 @@ export interface AssessmentEmailPayload {
 
 export interface EmailResponse {
   status: "success" | "error";
-  id?: string;
   message?: string;
+}
+
+async function invokeSendEmail(body: Record<string, unknown>): Promise<EmailResponse> {
+  const { data, error } = await supabase.functions.invoke("send-email", { body });
+  if (error) {
+    return { status: "error", message: error.message };
+  }
+  return (data as EmailResponse) ?? { status: "success" };
 }
 
 export const emailService = {
   sendContact: (data: ContactEmailPayload) =>
-    api.post<EmailResponse>("/api/email/contact", data).then((r) => r.data),
+    invokeSendEmail({ type: "contact", ...data }),
 
   sendAssessment: (data: AssessmentEmailPayload) =>
-    api.post<EmailResponse>("/api/email/assessment", data).then((r) => r.data),
-
-  health: () => api.get<{ status: string }>("/health").then((r) => r.data),
+    invokeSendEmail({ type: "assessment", ...data }),
 };
 
 /* ───── Compat com chamadas antigas ───── */
@@ -82,5 +69,3 @@ export const sendDiagnosisEmail = (data: {
     resultado: `Pontuação: ${data.score}`,
     recomendacoes: data.recommendations.split("\n").filter(Boolean),
   });
-
-export { BACKEND_URL };
