@@ -6,6 +6,12 @@ const BACKEND_URL =
   (import.meta.env.VITE_BACKEND_URL as string | undefined) ||
   "http://localhost:3000";
 
+if (import.meta.env.PROD && !import.meta.env.VITE_BACKEND_URL) {
+  console.warn(
+    "[api] VITE_BACKEND_URL não está configurada. Configure-a apontando para o backend Node.js na HostGator (ex.: https://api.financeit.com.br)."
+  );
+}
+
 export const api = axios.create({
   baseURL: BACKEND_URL,
   headers: { "Content-Type": "application/json" },
