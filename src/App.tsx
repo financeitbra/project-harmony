@@ -44,6 +44,10 @@ const App = () => (
             <Route path="/prontidao-ia/avaliacao" element={<AvaliacaoIAPage />} />
             <Route path="/prontidao-ia/resultado" element={<AvaliacaoResultadoPage />} />
             <Route path="/prontidao-ia/diagnostico" element={<DiagnosticoIAPage />} />
+            {/* Aliases para variações de URL acessadas diretamente */}
+            <Route path="/avaliacao-ia" element={<AvaliacaoIAPage />} />
+            <Route path="/avaliacao-ia/resultado" element={<AvaliacaoResultadoPage />} />
+            <Route path="/diagnostico-ia" element={<DiagnosticoIAPage />} />
             <Route path="/inteligencia-negocios" element={<InteligenciaNegocioPage />} />
             <Route path="/avalara" element={<AvalaraPage />} />
             <Route path="/ppov" element={<PPOVPage />} />
