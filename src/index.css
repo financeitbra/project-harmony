@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+#lovable-badge {
+  display: none !important;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 25% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    --primary: 210 60% 18%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 210 15% 93%;
+    --secondary-foreground: 210 25% 20%;
+
+    --muted: 210 15% 93%;
+    --muted-foreground: 210 10% 45%;
+
+    --accent: 192 70% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 15% 88%;
+    --input: 210 15% 88%;
+    --ring: 192 70% 42%;
+
+    --radius: 0.5rem;
+
+    /* Brand palette */
+    --navy: 210 60% 18%;
+    --navy-light: 210 45% 25%;
+    --petrol: 195 55% 22%;
+    --cyan-tech: 192 70% 42%;
+    --cyan-glow: 192 80% 55%;
+    --teal: 170 40% 40%;
+    --graphite: 220 10% 25%;
+    --graphite-light: 220 8% 40%;
+    --neutral-100: 220 15% 96%;
+    --neutral-200: 220 12% 90%;
+    --neutral-300: 220 10% 80%;
+
+    /* Orange micro-accent — used sparingly */
+    --orange-accent: 24 85% 55%;
+    --orange-accent-subtle: 24 70% 60%;
+
+    /* Green accent — PPOV / financial health */
+    --green-accent: 152 55% 42%;
+    --green-accent-subtle: 152 45% 50%;
+
+    --sidebar-background: 210 60% 18%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 192 70% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 45% 25%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 210 40% 25%;
+    --sidebar-ring: 192 70% 42%;
+  }
+
+  .dark {
+    --background: 220 25% 8%;
+    --foreground: 210 15% 92%;
+
+    --card: 220 22% 12%;
+    --card-foreground: 210 15% 92%;
+
+    --popover: 220 22% 12%;
+    --popover-foreground: 210 15% 92%;
+
+    --primary: 192 70% 42%;
+    --primary-foreground: 220 25% 8%;
+
+    --secondary: 220 18% 18%;
+    --secondary-foreground: 210 15% 85%;
+
+    --muted: 220 18% 18%;
+    --muted-foreground: 210 10% 55%;
+
+    --accent: 192 70% 42%;
+    --accent-foreground: 220 25% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 18% 20%;
+    --input: 220 18% 20%;
+    --ring: 192 70% 42%;
+
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 210 15% 92%;
+    --sidebar-primary: 192 70% 42%;
+    --sidebar-primary-foreground: 220 25% 8%;
+    --sidebar-accent: 220 18% 18%;
+    --sidebar-accent-foreground: 210 15% 85%;
+    --sidebar-border: 220 18% 20%;
+    --sidebar-ring: 192 70% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--cyan-tech)), hsl(var(--teal)));
+  }
+
+  .bg-navy-gradient {
+    background: linear-gradient(135deg, hsl(var(--navy)), hsl(var(--petrol)));
+  }
+
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .section-padding {
+    @apply px-6 py-20 md:px-12 lg:px-20 lg:py-28;
+  }
+
+  .section-container {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-12;
+  }
+}
