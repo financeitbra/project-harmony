@@ -207,14 +207,19 @@ const FormularioContato = () => {
     setIsSubmitting(true);
 
     try {
+      const composedMessage = [
+        `Empresa: ${formData.empresa}`,
+        `Cargo: ${formData.cargo}`,
+        `Telefone: ${formData.telefone}`,
+        `Tema: ${formData.tema}`,
+        "",
+        formData.mensagem,
+      ].join("\n");
+
       await emailService.sendContact({
-        nome: formData.nome,
-        empresa: formData.empresa,
-        cargo: formData.cargo,
+        name: formData.nome,
         email: formData.email,
-        telefone: formData.telefone,
-        tema: formData.tema,
-        mensagem: formData.mensagem,
+        message: composedMessage,
       });
 
       setIsSuccess(true);

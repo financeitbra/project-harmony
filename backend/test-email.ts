@@ -2,21 +2,23 @@
  * Script de teste para validar envio de emails via Nodemailer + SMTP HostGator.
  *
  * Como executar (a partir da pasta backend/):
- *   npx ts-node test-email.ts
+ *   npm run test:email
+ *   ou: npx ts-node test-email.ts
  *
  * Pré-requisitos:
  *   - backend/.env configurado com SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS
  *   - dependências instaladas (npm install)
  */
 
-import * as dotenv from "dotenv";
-dotenv.config();
-
-import { transporter } from "./src/server";
+import path from "node:path";
+import dotenv from "dotenv";
+import { transporter } from "./src/config/email";
 import {
   sendContactEmail,
-  sendAssessmentEmail,
+  sendDiagnosisEmail,
 } from "./src/services/emailService";
+
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 const TEST_EMAIL =
   process.env.TEST_EMAIL ||
@@ -25,37 +27,49 @@ const TEST_EMAIL =
   "seu-email-de-teste@exemplo.com";
 
 async function testEmailConnection() {
-  console.log("🔍 Testando conexão SMTP...");
-  await transporter.verify();
-  console.log("✅ Conexão SMTP OK");
+  try {
+    console.log("🔍 Testando conexão SMTP...");
+    await transporter.verify();
+    console.log("✅ Conexão SMTP OK");
+  } catch (error) {
+    console.error("❌ Erro na conexão SMTP:", error);
+    throw error;
+  }
 }
 
 async function testContactEmail() {
-  console.log("📧 Testando envio de email de contato (7 campos)...");
-  const result = await sendContactEmail({
-    nome: "João Silva",
-    empresa: "Empresa Teste Ltda",
-    cargo: "Diretor de TI",
-    email: TEST_EMAIL,
-    telefone: "(11) 99999-9999",
-    tema: "Quero falar sobre dados, governança e IA",
-    mensagem: "Olá, gostaria de mais informações sobre seus serviços.",
-  });
-  console.log("✅ Email de contato enviado:", result.id);
+  try {
+    console.log("📧 Testando envio de email de contato...");
+    const result = await sendContactEmail(
+      "João Silva",
+      TEST_EMAIL,
+      "Olá, gostaria de mais informações sobre seus serviços."
+    );
+    console.log("✅ Email de contato enviado:", result.messageId);
+    console.log("   accepted:", result.accepted);
+    console.log("   rejected:", result.rejected);
+  } catch (error) {
+    console.error("❌ Erro ao enviar email de contato:", error);
+    throw error;
+  }
 }
 
-async function testAssessmentEmail() {
-  console.log("📊 Testando envio de diagnóstico...");
-  const result = await sendAssessmentEmail({
-    nome: "Maria Santos",
-    email: TEST_EMAIL,
-    resultado: "Score: 75/100 — Nível avançado",
-    recomendacoes: [
-      "Sua empresa está bem preparada para implementar IA.",
-      "Recomendamos começar com um projeto piloto.",
-    ],
-  });
-  console.log("✅ Email de diagnóstico enviado:", result.id);
+async function testDiagnosisEmail() {
+  try {
+    console.log("📊 Testando envio de diagnóstico...");
+    const result = await sendDiagnosisEmail(
+      "Maria Santos",
+      TEST_EMAIL,
+      75,
+      "Sua empresa está bem preparada para implementar IA.\nRecomendamos começar com um projeto piloto."
+    );
+    console.log("✅ Email de diagnóstico enviado:", result.messageId);
+    console.log("   accepted:", result.accepted);
+    console.log("   rejected:", result.rejected);
+  } catch (error) {
+    console.error("❌ Erro ao enviar diagnóstico:", error);
+    throw error;
+  }
 }
 
 async function runAllTests() {
@@ -66,7 +80,7 @@ async function runAllTests() {
   console.log("");
   await testContactEmail();
   console.log("");
-  await testAssessmentEmail();
+  await testDiagnosisEmail();
   console.log("\n✅ Testes concluídos!");
 }
 

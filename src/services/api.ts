@@ -12,20 +12,16 @@ export const api = axios.create({
 });
 
 export interface ContactEmailPayload {
-  nome: string;
-  empresa?: string;
-  cargo?: string;
+  name: string;
   email: string;
-  telefone?: string;
-  tema?: string;
-  mensagem: string;
+  message: string;
 }
 
 export interface DiagnosisEmailPayload {
-  nome?: string;
+  name: string;
   email: string;
-  resultado: string;
-  recomendacoes: string[];
+  score: number;
+  recommendations: string;
 }
 
 export const emailService = {
@@ -33,7 +29,7 @@ export const emailService = {
     api.post("/api/email/contact", data),
 
   sendDiagnosis: (data: DiagnosisEmailPayload) =>
-    api.post("/api/email/assessment", data),
+    api.post("/api/email/diagnosis", data),
 };
 
 // Compat com chamadas anteriores

@@ -7,7 +7,6 @@ interface ContactData {
   cargo?: string;
   email: string;
   telefone?: string;
-  tema?: string;
   mensagem: string;
 }
 
@@ -27,9 +26,7 @@ async function sendContactEmail(data: ContactData): Promise<{ id: string }> {
       ${data.cargo ? `<p><strong>Cargo:</strong> ${data.cargo}</p>` : ''}
       <p><strong>Email:</strong> ${data.email}</p>
       ${data.telefone ? `<p><strong>Telefone:</strong> ${data.telefone}</p>` : ''}
-      ${data.tema ? `<p><strong>Tema de interesse:</strong> ${data.tema}</p>` : ''}
-      <p><strong>Mensagem:</strong></p>
-      <p>${data.mensagem.replace(/\n/g, '<br>')}</p>
+      <p><strong>Mensagem:</strong> ${data.mensagem}</p>
     `;
 
     const mailOptions: SendMailOptions = {

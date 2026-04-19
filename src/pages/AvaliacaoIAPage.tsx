@@ -321,10 +321,10 @@ const AvaliacaoIAPage = () => {
       const recommendations = `Nível de maturidade: ${maturityLevel.replace("_", " ")}.\nScore: ${pct}/100.\n\nRecomendamos priorizar as dimensões com menor pontuação e estruturar um plano de evolução em dados, governança e casos de uso.`;
       try {
         await emailService.sendDiagnosis({
-          nome: trimmedEmail.split("@")[0],
+          name: trimmedEmail.split("@")[0],
           email: trimmedEmail,
-          resultado: `Score: ${pct}/100 — Nível ${maturityLevel.replace("_", " ")}`,
-          recomendacoes: [recommendations],
+          score: pct,
+          recommendations,
         });
         toast({ title: "Diagnóstico enviado", description: "Enviamos o resultado para o seu e-mail." });
       } catch (mailErr) {
