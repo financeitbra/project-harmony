@@ -45,7 +45,7 @@ const Header = () => {
       <div className="container flex h-16 items-center justify-between lg:h-20">
         {/* Logo */}
         <Link to="/" className="flex items-center" aria-label="FinanceIT - Inteligência de Negócio">
-          <img src={logoFinanceit} alt="FinanceIT - Inteligência de Negócio" className="h-10 w-auto lg:h-12" />
+          <img src={logoFinanceit} alt="FinanceIT - Inteligência de Negócio" className="h-12 w-auto lg:h-[58px]" />
         </Link>
 
         {/* Desktop nav */}
