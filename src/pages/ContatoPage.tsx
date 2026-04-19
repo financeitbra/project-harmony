@@ -217,9 +217,12 @@ const FormularioContato = () => {
       ].join("\n");
 
       await emailService.sendContact({
-        name: formData.nome,
+        nome: formData.nome,
         email: formData.email,
-        message: composedMessage,
+        empresa: formData.empresa,
+        cargo: formData.cargo,
+        telefone: formData.telefone,
+        mensagem: composedMessage,
       });
 
       setIsSuccess(true);
