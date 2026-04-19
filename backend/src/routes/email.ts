@@ -1,45 +1,57 @@
-import express, { Request, Response } from 'express';
-import { sendContactEmail, sendDiagnosisEmail } from '../services/emailService';
+import { Router, Request, Response } from 'express';
+import { sendContactEmail, sendAssessmentEmail } from '../services/emailService';
 
-const router = express.Router();
+const router = Router();
+
+interface ContactData {
+  nome: string;
+  empresa?: string;
+  cargo?: string;
+  email: string;
+  telefone?: string;
+  mensagem: string;
+}
+
+interface AssessmentData {
+  email: string;
+  resultado: any;
+  recomendacoes: any;
+  nome?: string;
+}
 
 router.post('/contact', async (req: Request, res: Response) => {
   try {
-    const { name, email, message } = req.body;
+    const { nome, empresa, cargo, email, telefone, mensagem }: ContactData = req.body;
 
-    if (!name || !email || !message) {
-      return res.status(400).json({ status: 'error', message: 'Nome, email e mensagem são obrigatórios.' });
+    if (!nome || !email || !mensagem) {
+      return res.status(400).json({ status: 'error', message: 'Campos obrigatórios: nome, email, mensagem' });
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ status: 'error', message: 'Formato de email inválido.' });
-    }
+    const contactData: ContactData = { nome, empresa, cargo, email, telefone, mensagem };
+    const id = await sendContactEmail(contactData);
 
-    await sendContactEmail(name, email, message);
-    res.status(200).json({ status: 'success', message: 'Email de contato enviado com sucesso.' });
-  } catch (error: any) {
-    res.status(500).json({ status: 'error', message: error.message || 'Erro ao enviar email.' });
+    res.json({ status: 'success', id });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Erro desconhecido';
+    res.status(500).json({ status: 'error', message });
   }
 });
 
-router.post('/diagnosis', async (req: Request, res: Response) => {
+router.post('/assessment', async (req: Request, res: Response) => {
   try {
-    const { name, email, score, recommendations } = req.body;
+    const { email, resultado, recomendacoes, nome }: AssessmentData = req.body;
 
-    if (!name || !email || score === undefined || !recommendations) {
-      return res.status(400).json({ status: 'error', message: 'Todos os campos são obrigatórios.' });
+    if (!email || !resultado || !recomendacoes) {
+      return res.status(400).json({ status: 'error', message: 'Campos obrigatórios: email, resultado, recomendacoes' });
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ status: 'error', message: 'Formato de email inválido.' });
-    }
+    const assessmentData: AssessmentData = { email, resultado, recomendacoes, nome };
+    const id = await sendAssessmentEmail(assessmentData);
 
-    await sendDiagnosisEmail(name, email, score, recommendations);
-    res.status(200).json({ status: 'success', message: 'Email de diagnóstico enviado com sucesso.' });
-  } catch (error: any) {
-    res.status(500).json({ status: 'error', message: error.message || 'Erro ao enviar email.' });
+    res.json({ status: 'success', id });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Erro desconhecido';
+    res.status(500).json({ status: 'error', message });
   }
 });
 

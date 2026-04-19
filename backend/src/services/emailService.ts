@@ -1,52 +1,75 @@
-import { transporter } from '../config/email';
+import { transporter } from '../server';
 import { SendMailOptions } from 'nodemailer';
 
-export async function sendContactEmail(name: string, email: string, message: string): Promise<string> {
-  const htmlTemplate = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-      <h2 style="color: #333;">Nova Mensagem de Contato</h2>
-      <p><strong>Nome:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Mensagem:</strong></p>
-      <p>${message.replace(/\n/g, '<br>')}</p>
-      <hr>
-      <p style="font-size: 12px; color: #666;">Este email foi enviado através do formulário de contato.</p>
-    </div>
-  `;
-
-  const mailOptions: SendMailOptions = {
-    from: process.env.SMTP_USER || 'noreply@financeit.com.br',
-    to: 'contato@financeit.com.br',
-    subject: 'Nova Mensagem de Contato - Financeit',
-    html: htmlTemplate,
-  };
-
-  const info = await transporter.sendMail(mailOptions);
-  return info.messageId;
+interface ContactData {
+  nome: string;
+  empresa?: string;
+  cargo?: string;
+  email: string;
+  telefone?: string;
+  mensagem: string;
 }
 
-export async function sendDiagnosisEmail(name: string, email: string, score: number, recommendations: string): Promise<string> {
-  const htmlTemplate = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-      <h2 style="color: #333;">Resultado do Diagnóstico de IA</h2>
-      <p>Olá ${name},</p>
-      <p>Obrigado por usar nosso serviço de diagnóstico de IA. Aqui estão seus resultados:</p>
-      <p><strong>Pontuação:</strong> ${score}</p>
+interface AssessmentData {
+  email: string;
+  resultado: string;
+  recomendacoes: string[];
+  nome?: string;
+}
+
+async function sendContactEmail(data: ContactData): Promise<{ id: string }> {
+  try {
+    const html = `
+      <h1>Contato Recebido</h1>
+      <p><strong>Nome:</strong> ${data.nome}</p>
+      ${data.empresa ? `<p><strong>Empresa:</strong> ${data.empresa}</p>` : ''}
+      ${data.cargo ? `<p><strong>Cargo:</strong> ${data.cargo}</p>` : ''}
+      <p><strong>Email:</strong> ${data.email}</p>
+      ${data.telefone ? `<p><strong>Telefone:</strong> ${data.telefone}</p>` : ''}
+      <p><strong>Mensagem:</strong> ${data.mensagem}</p>
+    `;
+
+    const mailOptions: SendMailOptions = {
+      from: process.env.SMTP_USER,
+      to: process.env.CONTACT_TO,
+      subject: 'Novo Contato Recebido',
+      html,
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    return { id: info.messageId };
+  } catch (error) {
+    console.error('Erro ao enviar email de contato:', error);
+    throw error;
+  }
+}
+
+async function sendAssessmentEmail(data: AssessmentData): Promise<{ id: string }> {
+  try {
+    const html = `
+      <h1>Resultado da Avaliação</h1>
+      ${data.nome ? `<p><strong>Nome:</strong> ${data.nome}</p>` : ''}
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p><strong>Resultado:</strong> ${data.resultado}</p>
       <p><strong>Recomendações:</strong></p>
-      <p>${recommendations.replace(/\n/g, '<br>')}</p>
-      <p>Se tiver dúvidas, entre em contato conosco.</p>
-      <hr>
-      <p style="font-size: 12px; color: #666;">Este é um email automático. Por favor, não responda.</p>
-    </div>
-  `;
+      <ul>
+        ${data.recomendacoes.map(rec => `<li>${rec}</li>`).join('')}
+      </ul>
+    `;
 
-  const mailOptions: SendMailOptions = {
-    from: process.env.SMTP_USER || 'noreply@financeit.com.br',
-    to: email,
-    subject: 'Seu Resultado de Diagnóstico - Financeit',
-    html: htmlTemplate,
-  };
+    const mailOptions: SendMailOptions = {
+      from: process.env.SMTP_USER,
+      to: data.email,
+      subject: 'Resultado da Sua Avaliação',
+      html,
+    };
 
-  const info = await transporter.sendMail(mailOptions);
-  return info.messageId;
+    const info = await transporter.sendMail(mailOptions);
+    return { id: info.messageId };
+  } catch (error) {
+    console.error('Erro ao enviar email de avaliação:', error);
+    throw error;
+  }
 }
+
+export { sendContactEmail, sendAssessmentEmail };
