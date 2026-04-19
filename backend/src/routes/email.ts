@@ -9,28 +9,38 @@ interface ContactData {
   cargo?: string;
   email: string;
   telefone?: string;
+  tema?: string;
   mensagem: string;
 }
 
 interface AssessmentData {
   email: string;
-  resultado: any;
-  recomendacoes: any;
+  resultado: string;
+  recomendacoes: string[];
   nome?: string;
 }
 
+router.get('/health', (_req: Request, res: Response) => {
+  res.json({ status: 'ok' });
+});
+
 router.post('/contact', async (req: Request, res: Response) => {
   try {
-    const { nome, empresa, cargo, email, telefone, mensagem }: ContactData = req.body;
+    const { nome, empresa, cargo, email, telefone, tema, mensagem }: ContactData = req.body;
 
     if (!nome || !email || !mensagem) {
       return res.status(400).json({ status: 'error', message: 'Campos obrigatórios: nome, email, mensagem' });
     }
 
-    const contactData: ContactData = { nome, empresa, cargo, email, telefone, mensagem };
-    const id = await sendContactEmail(contactData);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ status: 'error', message: 'E-mail inválido' });
+    }
 
-    res.json({ status: 'success', id });
+    const contactData: ContactData = { nome, empresa, cargo, email, telefone, tema, mensagem };
+    const result = await sendContactEmail(contactData);
+
+    res.json({ status: 'success', id: result.id });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Erro desconhecido';
     res.status(500).json({ status: 'error', message });
@@ -46,9 +56,9 @@ router.post('/assessment', async (req: Request, res: Response) => {
     }
 
     const assessmentData: AssessmentData = { email, resultado, recomendacoes, nome };
-    const id = await sendAssessmentEmail(assessmentData);
+    const result = await sendAssessmentEmail(assessmentData);
 
-    res.json({ status: 'success', id });
+    res.json({ status: 'success', id: result.id });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Erro desconhecido';
     res.status(500).json({ status: 'error', message });
