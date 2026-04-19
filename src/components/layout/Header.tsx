@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Target, Users, BarChart3, Network, Receipt, PieChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoFinanceit from "@/assets/logo-financeit.png";
 
 const navItems = [
   { label: "Quem Somos", path: "/quem-somos" },
@@ -43,8 +44,8 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/85 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between lg:h-20">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
-          <img src="/logo-financeit.png" alt="FinanceIT" className="h-[58.67px] w-auto" />
+        <Link to="/" className="flex items-center" aria-label="FinanceIT - Inteligência de Negócio">
+          <img src={logoFinanceit} alt="FinanceIT - Inteligência de Negócio" className="h-12 w-auto lg:h-[58px]" />
         </Link>
 
         {/* Desktop nav */}
