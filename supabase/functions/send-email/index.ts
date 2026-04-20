@@ -144,7 +144,8 @@ function barRow(label: string, value: number, color: string): string {
     </tr>`;
 }
 
-function wrapEmail(title: string, intro: string, bodyHtml: string): string {
+function wrapEmail(title: string, intro: string, bodyHtml: string, options: { showCta?: boolean } = {}): string {
+  const showCta = options.showCta !== false;
   return `<!doctype html>
 <html lang="pt-BR">
   <head>
@@ -168,7 +169,7 @@ function wrapEmail(title: string, intro: string, bodyHtml: string): string {
                 ${bodyHtml}
               </td>
             </tr>
-            <tr>
+            ${showCta ? `<tr>
               <td style="padding:0 28px 28px;">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BRAND.softBlue};border:1px solid ${BRAND.border};border-radius:14px;">
                   <tr>
@@ -184,7 +185,7 @@ function wrapEmail(title: string, intro: string, bodyHtml: string): string {
                   </tr>
                 </table>
               </td>
-            </tr>
+            </tr>` : ""}
             <tr>
               <td style="padding:20px 28px;background:${BRAND.dark};border-bottom-left-radius:18px;border-bottom-right-radius:18px;">
                 <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:20px;color:#CBD5E1;">
@@ -240,6 +241,7 @@ function buildContactHtml(data: ContactPayload): string {
     `Novo contato — ${data.nome}`,
     `Novo contato recebido de ${data.nome}`,
     body,
+    { showCta: false },
   );
 }
 
