@@ -2,7 +2,8 @@ import { MessageCircle } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 
 const WHATSAPP_NUMBER = "5511914696503";
-const DEFAULT_MESSAGE = "Que bom que nos chamou! Brevemente entraremos em contato.";
+const DEFAULT_MESSAGE =
+  "Que bom que nos chamou! Deixe aqui um breve descritivo sobre o assunto que quer falar e brevemente entraremos em contato.";
 
 const copyToClipboard = async (value: string) => {
   if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
