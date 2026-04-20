@@ -2,9 +2,29 @@ import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
-import { supabase } from "./integrations/supabase/client";
 
 const VITE_PRELOAD_RETRY_KEY = "financeit_vite_preload_retry";
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+async function initAuthUrlCleanup() {
+  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+    console.warn("Auth cleanup skipped: missing public backend configuration.");
+    return;
+  }
+
+  try {
+    const { supabase } = await import("./integrations/supabase/client");
+
+    supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED" || event === "INITIAL_SESSION") {
+        stripAuthArtifactsFromUrl();
+      }
+    });
+  } catch (error) {
+    console.error("Auth initialization failed:", error);
+  }
+}
 
 // Remove tokens (#access_token=..., #error=..., ?code=...) que ficam expostos
 // na URL após redirects de OAuth/magic-link. Mantém path/query/hash legítimos intactos.
@@ -42,13 +62,7 @@ if (typeof window !== "undefined") {
 
   // Limpeza imediata (caso o Supabase já tenha processado)
   stripAuthArtifactsFromUrl();
-
-  // Limpeza após o Supabase processar o hash e estabelecer a sessão
-  supabase.auth.onAuthStateChange((event) => {
-    if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED" || event === "INITIAL_SESSION") {
-      stripAuthArtifactsFromUrl();
-    }
-  });
+  void initAuthUrlCleanup();
 
   // Fallback: tenta limpar nos próximos ticks caso o detectSessionInUrl rode depois
   setTimeout(stripAuthArtifactsFromUrl, 0);
