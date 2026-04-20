@@ -38,7 +38,7 @@ const CookieBanner = () => {
             Sua privacidade é importante
           </h3>
           <p className="mt-1 text-xs leading-relaxed text-muted-foreground md:text-sm">
-            Usamos cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo, em conformidade com a LGPD. Você pode aceitar ou recusar a qualquer momento.{" "}
+            Utilizamos apenas armazenamento local essencial para registrar a sua preferência de consentimento e garantir o funcionamento adequado do site, em conformidade com a LGPD. Não usamos cookies de rastreamento, analytics ou publicidade. Você pode alterar sua escolha a qualquer momento.{" "}
             <Link to="/politica-privacidade" className="font-medium text-accent underline-offset-2 hover:underline">
               Saiba mais
             </Link>
