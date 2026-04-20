@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import HeroSection from "@/components/sections/HeroSection";
 import AIReadinessSection from "@/components/sections/AIReadinessSection";
 import SolutionsSection from "@/components/sections/SolutionsSection";
@@ -13,6 +14,12 @@ import CTASection from "@/components/sections/CTASection";
 const Index = () => {
   return (
     <>
+      <SEO
+        title="Financeit — Inteligência de Negócio, Dados e IA"
+        description="A Financeit conecta inteligência de negócio, dados, governança, tecnologia e IA para transformar a performance da sua empresa com clareza e capacidade real de entrega."
+        keywords="inteligência de negócio, dados, governança, IA, prontidão IA, Qlik, Denodo, Avalara"
+      />
+
       <HeroSection />
       <AIReadinessSection />
       <SolutionsSection />
