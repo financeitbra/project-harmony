@@ -1,10 +1,89 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import SEO from "@/components/SEO";
+
+type PageMeta = { title: string; description: string; keywords?: string };
+
+const PAGE_META: Record<string, PageMeta> = {
+  "/quem-somos": {
+    title: "Quem Somos — Financeit",
+    description: "Conheça a Financeit: time sênior em inteligência de negócio, dados, governança e IA, com entregas reais para empresas que querem performance.",
+    keywords: "Financeit, sobre, consultoria, time, propósito",
+  },
+  "/solucoes": {
+    title: "Soluções — Inteligência, Dados e Execução",
+    description: "Soluções Financeit: inteligência de negócio, dados e governança, integração, execução escalável e talentos estratégicos para o seu time.",
+    keywords: "soluções, BI, dados, governança, execução, squads",
+  },
+  "/inteligencia-negocios": {
+    title: "Inteligência de Negócio — Financeit",
+    description: "Transforme dados em decisões com a abordagem Financeit de inteligência de negócio: indicadores, dashboards e governança aplicadas ao seu contexto.",
+    keywords: "BI, business intelligence, KPIs, dashboards, decisões",
+  },
+  "/prontidao-ia": {
+    title: "Prontidão para IA — Diagnóstico e Roadmap",
+    description: "Avalie a prontidão da sua empresa para IA. Diagnóstico em 5 dimensões e roadmap prático para sair do piloto e escalar com governança.",
+    keywords: "prontidão IA, diagnóstico IA, governança IA, roadmap IA",
+  },
+  "/prontidao-ia/avaliacao": {
+    title: "Avaliação de Prontidão para IA — Financeit",
+    description: "Responda a avaliação Financeit de prontidão para IA e receba um diagnóstico estruturado por dimensão com recomendações práticas.",
+    keywords: "avaliação IA, maturidade IA, assessment IA",
+  },
+  "/avalie-prontidao-ia": {
+    title: "Avalie a Prontidão da sua Empresa para IA",
+    description: "Entenda os fundamentos de prontidão para IA e faça a avaliação Financeit em poucos minutos.",
+  },
+  "/estruturacao-dados": {
+    title: "Estruturação de Dados — Financeit",
+    description: "Construímos a base de dados que sua empresa precisa: arquitetura, modelagem, qualidade e governança para sustentar BI e IA.",
+    keywords: "estruturação de dados, arquitetura, modelagem, qualidade",
+  },
+  "/avalara": {
+    title: "Avalara — Automação Tributária com a Financeit",
+    description: "Implementação e suporte Avalara pela Financeit: automação tributária com governança, integração e foco em resultado.",
+    keywords: "Avalara, automação tributária, fiscal, compliance",
+  },
+  "/qlik": {
+    title: "Qlik — Analytics e Integração de Dados",
+    description: "Soluções Qlik com a Financeit: analytics, integração de dados e Qlik Cloud para acelerar decisões orientadas por dados.",
+    keywords: "Qlik, Qlik Sense, Qlik Cloud, analytics",
+  },
+  "/denodo": {
+    title: "Denodo — Virtualização de Dados",
+    description: "Denodo com a Financeit: data fabric e virtualização de dados para acessar e governar informações distribuídas em tempo real.",
+    keywords: "Denodo, virtualização de dados, data fabric",
+  },
+  "/ppov": {
+    title: "PPOV — Prova de Valor com a Financeit",
+    description: "Prova de valor (PPOV) Financeit: validação prática de tecnologia e caso de uso antes do investimento em escala.",
+    keywords: "PPOV, prova de valor, POC, validação",
+  },
+  "/hunting-info": {
+    title: "Hunting de Talentos — Financeit",
+    description: "Hunting estratégico de profissionais sêniores em dados, BI, IA e tecnologia, com método e velocidade.",
+    keywords: "hunting, recrutamento, talentos, dados, IA",
+  },
+  "/alocacao-info": {
+    title: "Alocação de Talentos — Financeit",
+    description: "Alocação de squads e profissionais especializados para acelerar entregas em dados, BI e IA.",
+    keywords: "alocação, squads, outsourcing, body shop",
+  },
+  "/contato": {
+    title: "Contato — Fale com a Financeit",
+    description: "Fale com a Financeit. Conte seu desafio em inteligência de negócio, dados, governança ou IA e construímos a melhor abordagem.",
+    keywords: "contato, fale conosco, Financeit",
+  },
+};
 
 const PublicLayout = () => {
+  const { pathname } = useLocation();
+  const meta = PAGE_META[pathname];
+
   return (
     <div className="flex min-h-screen flex-col">
+      {meta && <SEO title={meta.title} description={meta.description} keywords={meta.keywords} />}
       <Header />
       <main className="flex-1 pt-16 lg:pt-20">
         <Outlet />
