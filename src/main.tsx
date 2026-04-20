@@ -4,6 +4,8 @@ import App from "./App.tsx";
 import "./index.css";
 import { supabase } from "./integrations/supabase/client";
 
+const VITE_PRELOAD_RETRY_KEY = "financeit_vite_preload_retry";
+
 // Remove tokens (#access_token=..., #error=..., ?code=...) que ficam expostos
 // na URL após redirects de OAuth/magic-link. Mantém path/query/hash legítimos intactos.
 function stripAuthArtifactsFromUrl() {
@@ -26,6 +28,18 @@ function stripAuthArtifactsFromUrl() {
 }
 
 if (typeof window !== "undefined") {
+  window.addEventListener("vite:preloadError", () => {
+    const hasRetried = window.sessionStorage.getItem(VITE_PRELOAD_RETRY_KEY) === "1";
+
+    if (!hasRetried) {
+      window.sessionStorage.setItem(VITE_PRELOAD_RETRY_KEY, "1");
+      window.location.reload();
+      return;
+    }
+
+    window.sessionStorage.removeItem(VITE_PRELOAD_RETRY_KEY);
+  });
+
   // Limpeza imediata (caso o Supabase já tenha processado)
   stripAuthArtifactsFromUrl();
 
@@ -39,6 +53,8 @@ if (typeof window !== "undefined") {
   // Fallback: tenta limpar nos próximos ticks caso o detectSessionInUrl rode depois
   setTimeout(stripAuthArtifactsFromUrl, 0);
   setTimeout(stripAuthArtifactsFromUrl, 500);
+
+  window.sessionStorage.removeItem(VITE_PRELOAD_RETRY_KEY);
 }
 
 createRoot(document.getElementById("root")!).render(
