@@ -15,14 +15,14 @@ const SOCIAL_LINKS = [
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/financeit_tech",
+    href: "https://www.instagram.com/financeitbr",
     Icon: Instagram,
     bg: "bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF]",
     ring: "focus-visible:ring-[#DD2A7B]/40",
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/financeit_tech",
+    href: "https://www.facebook.com/financeit",
     Icon: Facebook,
     bg: "bg-[#1877F2]",
     ring: "focus-visible:ring-[#1877F2]/40",
