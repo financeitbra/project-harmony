@@ -25,6 +25,7 @@ const footerSections = [
     links: [
       { label: "Quem Somos", path: "/quem-somos" },
       { label: "Fale Conosco", path: "/contato" },
+      { label: "Política de Privacidade", path: "/politica-privacidade" },
     ],
   },
 ];

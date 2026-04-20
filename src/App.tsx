@@ -25,6 +25,9 @@ import InteligenciaNegocioPage from "./pages/InteligenciaNegocioPage";
 
 import HuntingInfoPage from "./pages/HuntingInfoPage";
 import AllocationInfoPage from "./pages/AllocationInfoPage";
+import PoliticaPrivacidadePage from "./pages/PoliticaPrivacidadePage";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import CookieBanner from "@/components/CookieBanner";
 
 const queryClient = new QueryClient();
 
@@ -63,9 +66,12 @@ const App = () => (
             
             <Route path="/hunting-info" element={<HuntingInfoPage />} />
             <Route path="/alocacao-info" element={<AllocationInfoPage />} />
+            <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <WhatsAppButton />
+        <CookieBanner />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
