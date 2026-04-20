@@ -236,7 +236,7 @@ const FormularioContato = () => {
       console.error("Submit error:", err);
       toast({
         title: "Erro ao enviar mensagem",
-        description: "Tente novamente em alguns instantes. Sua mensagem não foi perdida.",
+        description: "Não conseguimos concluir o envio agora. Revise os dados e tente novamente em instantes.",
         variant: "destructive",
       });
     } finally {
