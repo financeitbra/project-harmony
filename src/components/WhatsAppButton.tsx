@@ -96,9 +96,9 @@ const WhatsAppButton = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className={`flex h-10 w-10 items-center justify-center rounded-full ${bg} text-white shadow-md shadow-black/20 transition-all hover:scale-110 hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 ${ring} md:h-11 md:w-11`}
+          className={`flex h-8 w-8 items-center justify-center rounded-full ${bg} text-white shadow-md shadow-black/20 transition-all hover:scale-110 hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 ${ring} md:h-9 md:w-9`}
         >
-          <Icon className="h-5 w-5 md:h-[22px] md:w-[22px]" />
+          <Icon className="h-4 w-4 md:h-[18px] md:w-[18px]" />
         </a>
       ))}
 
