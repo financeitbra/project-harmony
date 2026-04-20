@@ -1,5 +1,4 @@
-// Envio de emails via Edge Function (Lovable Cloud) usando SMTP HostGator.
-import { supabase } from "@/integrations/supabase/client";
+// Envio de emails via backend function usando SMTP HostGator.
 
 export interface ContactEmailPayload {
   nome: string;
@@ -22,12 +21,40 @@ export interface EmailResponse {
   message?: string;
 }
 
-async function invokeSendEmail(body: Record<string, unknown>): Promise<EmailResponse> {
-  const { data, error } = await supabase.functions.invoke("send-email", { body });
-  if (error) {
-    return { status: "error", message: error.message };
+function getSendEmailUrl(): string {
+  const baseUrl = import.meta.env.VITE_SUPABASE_URL;
+
+  if (!baseUrl) {
+    throw new Error("A configuração do serviço de envio de e-mail está indisponível.");
   }
-  return (data as EmailResponse) ?? { status: "success" };
+
+  return `${baseUrl}/functions/v1/send-email`;
+}
+
+async function invokeSendEmail(body: Record<string, unknown>): Promise<EmailResponse> {
+  const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+  if (!publishableKey) {
+    throw new Error("A chave pública do serviço de envio de e-mail não foi configurada.");
+  }
+
+  const response = await fetch(getSendEmailUrl(), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: publishableKey,
+      Authorization: `Bearer ${publishableKey}`,
+    },
+    body: JSON.stringify(body),
+  });
+
+  const data = (await response.json().catch(() => null)) as EmailResponse | null;
+
+  if (!response.ok || data?.status === "error") {
+    throw new Error(data?.message || "Não foi possível enviar o e-mail no momento.");
+  }
+
+  return data ?? { status: "success" };
 }
 
 export const emailService = {
