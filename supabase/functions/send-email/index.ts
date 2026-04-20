@@ -454,11 +454,24 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Normalize HTML to avoid quoted-printable soft-wrap artifacts (=20, =\n)
+    // by collapsing runs of whitespace and breaking lines after tags.
+    const normalizedHtml = html
+      .replace(/\r\n?|\n/g, "\n")
+      .replace(/[\t ]+/g, " ")
+      .replace(/\n\s+/g, "\n")
+      .replace(/>\s+</g, "><")
+      .replace(/>/g, ">\n")
+      .split("\n")
+      .map((line) => line.trimEnd())
+      .filter((line) => line.length > 0)
+      .join("\n");
+
     const sendOptions: Record<string, unknown> = {
       from: `Financeit <${SMTP_USER}>`,
       to,
       subject,
-      html,
+      html: normalizedHtml,
       content: "auto",
     };
 
