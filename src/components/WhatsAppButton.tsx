@@ -8,11 +8,7 @@ const WhatsAppButton = () => {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    // Abre em nova aba (evita bloqueio em iframes/preview)
-    const win = window.open(href, "_blank", "noopener,noreferrer");
-    if (!win) {
-      window.location.href = href;
-    }
+    window.open(href, "_blank", "noopener,noreferrer");
   };
 
   return (
