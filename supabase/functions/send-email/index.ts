@@ -367,13 +367,20 @@ Deno.serve(async (req) => {
       );
     }
 
-    await client.send({
+    const sendOptions: Record<string, unknown> = {
       from: `Financeit <${SMTP_USER}>`,
       to,
       subject,
       html,
       content: "auto",
-    });
+    };
+
+    // Cópia oculta para o time comercial nos diagnósticos de prontidão
+    if (body.type === "assessment") {
+      sendOptions.bcc = "comercial@financeit.com.br";
+    }
+
+    await client.send(sendOptions as any);
     await client.close();
 
     return new Response(
