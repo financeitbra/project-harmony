@@ -1,5 +1,3 @@
-import { supabase } from "@/integrations/supabase/client";
-
 // Envio de emails via backend function usando SMTP HostGator.
 
 export interface ContactEmailPayload {
@@ -23,9 +21,7 @@ export interface EmailResponse {
   message?: string;
 }
 
-function getSendEmailUrl(): string {
-  const baseUrl = import.meta.env.VITE_SUPABASE_URL;
-
+function getSendEmailUrl(baseUrl?: string): string {
   if (!baseUrl) {
     throw new Error("A configuração do serviço de envio de e-mail está indisponível.");
   }
@@ -34,27 +30,31 @@ function getSendEmailUrl(): string {
 }
 
 async function invokeSendEmail(body: Record<string, unknown>): Promise<EmailResponse> {
+  const baseUrl = import.meta.env.VITE_SUPABASE_URL;
+  const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
   try {
-    const { data, error } = await supabase.functions.invoke<EmailResponse>("send-email", {
-      body,
-    });
+    if (baseUrl && publishableKey) {
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { data, error } = await supabase.functions.invoke<EmailResponse>("send-email", {
+        body,
+      });
 
-    if (!error && data?.status !== "error") {
-      return data ?? { status: "success" };
+      if (!error && data?.status !== "error") {
+        return data ?? { status: "success" };
+      }
+
+      console.error("Falha ao invocar o serviço de e-mail pelo cliente integrado:", error ?? data);
     }
-
-    console.error("Falha ao invocar o serviço de e-mail pelo cliente integrado:", error ?? data);
   } catch (invokeError) {
     console.error("Erro inesperado ao invocar o serviço de e-mail pelo cliente integrado:", invokeError);
   }
 
-  const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-
-  if (!publishableKey) {
-    throw new Error("A chave pública do serviço de envio de e-mail não foi configurada.");
+  if (!baseUrl || !publishableKey) {
+    throw new Error("A configuração pública do serviço de envio de e-mail não foi encontrada.");
   }
 
-  const response = await fetch(getSendEmailUrl(), {
+  const response = await fetch(getSendEmailUrl(baseUrl), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
