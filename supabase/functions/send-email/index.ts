@@ -39,6 +39,8 @@ const BRAND = {
   border: "#E2E8F0",
   softBlue: "#EFF6FF",
   softTeal: "#ECFEF8",
+  headerBg: "#F5F7FA",
+  logoUrl: "https://mgmhhltfdiigsvkirgyz.supabase.co/storage/v1/object/public/email-assets/logo-financeit.png",
   site: "https://financeit.com.br",
   contact: "https://financeit.com.br/contato",
 };
@@ -53,18 +55,7 @@ function escapeHtml(value: string): string {
 }
 
 function logoBlock(): string {
-  return `
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-      <tr>
-        <td width="38" height="38" align="center" valign="middle" style="background:${BRAND.primary};border-radius:10px;font-family:Arial,Helvetica,sans-serif;font-size:22px;line-height:38px;font-weight:700;color:#ffffff;">
-          F
-        </td>
-        <td width="12"></td>
-        <td style="font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:28px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">
-          Financeit
-        </td>
-      </tr>
-    </table>`;
+  return `<img src="${BRAND.logoUrl}" alt="Financeit" width="180" style="display:block;border:0;outline:none;text-decoration:none;height:auto;max-width:180px;" />`;
 }
 
 function preheader(text: string): string {
@@ -168,7 +159,7 @@ function wrapEmail(title: string, intro: string, bodyHtml: string): string {
         <td align="center" style="padding:24px 10px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:640px;background:${BRAND.card};border:1px solid ${BRAND.border};border-radius:18px;">
             <tr>
-              <td style="padding:26px 28px;background:${BRAND.primaryDark};border-top-left-radius:18px;border-top-right-radius:18px;">
+              <td style="padding:22px 28px;background:${BRAND.headerBg};border-top-left-radius:18px;border-top-right-radius:18px;border-bottom:1px solid ${BRAND.border};">
                 ${logoBlock()}
               </td>
             </tr>
@@ -463,11 +454,24 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Normalize HTML to avoid quoted-printable soft-wrap artifacts (=20, =\n)
+    // by collapsing runs of whitespace and breaking lines after tags.
+    const normalizedHtml = html
+      .replace(/\r\n?|\n/g, "\n")
+      .replace(/[\t ]+/g, " ")
+      .replace(/\n\s+/g, "\n")
+      .replace(/>\s+</g, "><")
+      .replace(/>/g, ">\n")
+      .split("\n")
+      .map((line) => line.trimEnd())
+      .filter((line) => line.length > 0)
+      .join("\n");
+
     const sendOptions: Record<string, unknown> = {
       from: `Financeit <${SMTP_USER}>`,
       to,
       subject,
-      html,
+      html: normalizedHtml,
       content: "auto",
     };
 
