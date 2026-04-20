@@ -10,6 +10,24 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom", "react-router-dom"],
+          ui: [
+            "@radix-ui/react-accordion",
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-dropdown-menu",
+            "@radix-ui/react-popover",
+            "@radix-ui/react-toast",
+            "lucide-react",
+          ],
+          vendor: ["@tanstack/react-query", "recharts", "zod", "sonner", "react-helmet-async"],
+        },
+      },
+    },
+  },
   plugins: [react()].filter(Boolean),
   resolve: {
     alias: {

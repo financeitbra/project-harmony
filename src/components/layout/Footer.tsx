@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logoFinanceit from "@/assets/logo-financeit.png";
 
 const footerSections = [
   {
@@ -38,7 +39,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4 lg:col-span-2">
             <div className="flex items-center">
-              <img src="/logo-financeit.png" alt="FinanceIT" className="h-[50.8px] w-auto brightness-0 invert" />
+              <img src={logoFinanceit} alt="FinanceIT" className="h-[50.8px] w-auto brightness-0 invert" />
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-primary-foreground/70">
               Inteligência de negócio. Talentos, tecnologia, dados, governança e execução conectados para transformar empresas.
