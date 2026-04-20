@@ -6,9 +6,19 @@ const DEFAULT_MESSAGE = "Que bom que nos chamou! Brevemente entraremos em contat
 const WhatsAppButton = () => {
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    // Abre em nova aba (evita bloqueio em iframes/preview)
+    const win = window.open(href, "_blank", "noopener,noreferrer");
+    if (!win) {
+      window.location.href = href;
+    }
+  };
+
   return (
     <a
       href={href}
+      onClick={handleClick}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Fale conosco pelo WhatsApp"
