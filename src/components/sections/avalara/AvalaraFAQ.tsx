@@ -1,5 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import FAQSchema from "@/components/FAQSchema";
 
 const avalaraOrange = "#F57C20";
 const avalaraDark = "#1E2A3A";
@@ -110,6 +111,7 @@ const faqItems = [
 const AvalaraFAQ = () => {
   return (
     <section className="section-padding">
+      <FAQSchema items={faqItems.map((i) => ({ question: i.question, answer: i.answer }))} />
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest" style={{ color: avalaraOrange }}>

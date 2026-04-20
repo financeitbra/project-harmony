@@ -75,6 +75,11 @@ const PAGE_META: Record<string, PageMeta> = {
     description: "Fale com a Financeit. Conte seu desafio em inteligência de negócio, dados, governança ou IA e construímos a melhor abordagem.",
     keywords: "contato, fale conosco, Financeit",
   },
+  "/politica-privacidade": {
+    title: "Política de Privacidade — Financeit",
+    description: "Saiba como a Financeit coleta, usa e protege seus dados pessoais em conformidade com a LGPD.",
+    keywords: "política de privacidade, LGPD, proteção de dados, Financeit",
+  },
 };
 
 const PublicLayout = () => {
