@@ -21,6 +21,10 @@ export interface EmailResponse {
   message?: string;
 }
 
+const FALLBACK_EMAIL_FUNCTION_URL = "https://mgmhhltfdiigsvkirgyz.supabase.co";
+const FALLBACK_EMAIL_FUNCTION_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nbWhobHRmZGlpZ3N2a2lyZ3l6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjcxNzgsImV4cCI6MjA5MjEwMzE3OH0.b0EG7UMCDHKPc9N_LyJCoAlaOYBfWhRJMu67PcYIzdQ";
+
 function getSendEmailUrl(baseUrl?: string): string {
   if (!baseUrl) {
     throw new Error("A configuração do serviço de envio de e-mail está indisponível.");
@@ -30,11 +34,13 @@ function getSendEmailUrl(baseUrl?: string): string {
 }
 
 async function invokeSendEmail(body: Record<string, unknown>): Promise<EmailResponse> {
-  const baseUrl = import.meta.env.VITE_SUPABASE_URL;
-  const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+  const configuredBaseUrl = import.meta.env.VITE_SUPABASE_URL;
+  const configuredPublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+  const baseUrl = configuredBaseUrl || FALLBACK_EMAIL_FUNCTION_URL;
+  const publishableKey = configuredPublishableKey || FALLBACK_EMAIL_FUNCTION_KEY;
 
   try {
-    if (baseUrl && publishableKey) {
+    if (configuredBaseUrl && configuredPublishableKey) {
       const { supabase } = await import("@/integrations/supabase/client");
       const { data, error } = await supabase.functions.invoke<EmailResponse>("send-email", {
         body,
@@ -48,10 +54,6 @@ async function invokeSendEmail(body: Record<string, unknown>): Promise<EmailResp
     }
   } catch (invokeError) {
     console.error("Erro inesperado ao invocar o serviço de e-mail pelo cliente integrado:", invokeError);
-  }
-
-  if (!baseUrl || !publishableKey) {
-    throw new Error("A configuração pública do serviço de envio de e-mail não foi encontrada.");
   }
 
   const response = await fetch(getSendEmailUrl(baseUrl), {
