@@ -269,7 +269,7 @@ function drawHeader(
   margin: number,
   logo: { data: string; w: number; h: number } | null,
 ) {
-  doc.setFillColor(NAVY[0], NAVY[1], NAVY[2]);
+  doc.setFillColor(MAGENTA[0], MAGENTA[1], MAGENTA[2]);
   doc.rect(0, 0, pageW, 60, "F");
   doc.setFillColor(CYAN[0], CYAN[1], CYAN[2]);
   doc.rect(0, 60, pageW, 3, "F");
