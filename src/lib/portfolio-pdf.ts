@@ -44,6 +44,7 @@ const LIGHT: [number, number, number] = [241, 245, 249];
 
 export async function generatePortfolioPDF(casos: CasoPDF[]) {
   const logo = await loadImageAsDataUrl(logoFinanceit).catch(() => null);
+  const luneta = await loadImageAsDataUrl(lunetaImg).catch(() => null);
   const doc = new jsPDF({ unit: "pt", format: "a4" });
   const pageW = doc.internal.pageSize.getWidth();
   const pageH = doc.internal.pageSize.getHeight();
