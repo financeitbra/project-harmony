@@ -101,7 +101,7 @@ export async function generatePortfolioPDF(casos: CasoPDF[]) {
 
   // ---------- MANIFESTO ----------
   doc.addPage();
-  drawHeader(doc, pageW, margin);
+  drawHeader(doc, pageW, margin, logo);
   let y = 130;
 
   setText(NAVY);
