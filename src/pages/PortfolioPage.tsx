@@ -376,8 +376,8 @@ const PortfolioPage = () => {
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
                 No mercado de tecnologia, é comum prescrever ferramentas antes de
-                entender a doença. A Financeit faz o oposto: ouvimos, examinamos,
-                diagnosticamos — e só então prescrevemos o tratamento que cura.
+                entender a dor e a real necessidade. A Financeit faz o oposto: ouvimos,
+                examinamos, diagnosticamos — e só então prescrevemos o tratamento que cura.
               </p>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
                 Cada solução do nosso portfólio é uma especialidade clínica. Cada projeto,
