@@ -1,4 +1,23 @@
 import { jsPDF } from "jspdf";
+import logoFinanceit from "@/assets/logo-financeit.png";
+
+async function loadImageAsDataUrl(src: string): Promise<{ data: string; w: number; h: number }> {
+  const res = await fetch(src);
+  const blob = await res.blob();
+  const data: string = await new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result as string);
+    r.onerror = reject;
+    r.readAsDataURL(blob);
+  });
+  const dims: { w: number; h: number } = await new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve({ w: img.width, h: img.height });
+    img.onerror = reject;
+    img.src = data;
+  });
+  return { data, w: dims.w, h: dims.h };
+}
 
 type CasoPDF = {
   especialidade: string;
@@ -21,7 +40,8 @@ const TEXT: [number, number, number] = [30, 41, 59];
 const MUTED: [number, number, number] = [100, 116, 139];
 const LIGHT: [number, number, number] = [241, 245, 249];
 
-export function generatePortfolioPDF(casos: CasoPDF[]) {
+export async function generatePortfolioPDF(casos: CasoPDF[]) {
+  const logo = await loadImageAsDataUrl(logoFinanceit).catch(() => null);
   const doc = new jsPDF({ unit: "pt", format: "a4" });
   const pageW = doc.internal.pageSize.getWidth();
   const pageH = doc.internal.pageSize.getHeight();
@@ -40,13 +60,21 @@ export function generatePortfolioPDF(casos: CasoPDF[]) {
   setFill(CYAN);
   doc.circle(pageW - 60, 80, 90, "F");
 
-  setText([255, 255, 255]);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(11);
-  doc.text("FINANCEIT", margin, 70);
+  // Logo on cover
+  if (logo) {
+    const logoW = 130;
+    const logoH = (logo.h / logo.w) * logoW;
+    doc.addImage(logo.data, "PNG", margin, 50, logoW, logoH);
+  } else {
+    setText([255, 255, 255]);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("FINANCEIT", margin, 70);
+  }
   setText(CYAN);
+  doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
-  doc.text("CLÍNICA DE EXCELÊNCIA EM DADOS, BI, IA E TALENTOS", margin, 86);
+  doc.text("CLÍNICA DE EXCELÊNCIA EM DADOS, BI, IA E TALENTOS", margin, 110);
 
   setText([255, 255, 255]);
   doc.setFont("helvetica", "bold");
@@ -73,7 +101,7 @@ export function generatePortfolioPDF(casos: CasoPDF[]) {
 
   // ---------- MANIFESTO ----------
   doc.addPage();
-  drawHeader(doc, pageW, margin);
+  drawHeader(doc, pageW, margin, logo);
   let y = 130;
 
   setText(NAVY);
@@ -122,7 +150,7 @@ export function generatePortfolioPDF(casos: CasoPDF[]) {
   // ---------- ESPECIALIDADES ----------
   casos.forEach((caso, idx) => {
     doc.addPage();
-    drawHeader(doc, pageW, margin);
+    drawHeader(doc, pageW, margin, logo);
 
     let cy = 130;
 
@@ -226,16 +254,28 @@ export function generatePortfolioPDF(casos: CasoPDF[]) {
   doc.save("financeit-portfolio-solucoes.pdf");
 }
 
-function drawHeader(doc: jsPDF, pageW: number, margin: number) {
+function drawHeader(
+  doc: jsPDF,
+  pageW: number,
+  margin: number,
+  logo: { data: string; w: number; h: number } | null,
+) {
   doc.setFillColor(NAVY[0], NAVY[1], NAVY[2]);
   doc.rect(0, 0, pageW, 60, "F");
   doc.setFillColor(CYAN[0], CYAN[1], CYAN[2]);
   doc.rect(0, 60, pageW, 3, "F");
-  doc.setTextColor(255, 255, 255);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(11);
-  doc.text("FINANCEIT", margin, 36);
+  if (logo) {
+    const logoH = 32;
+    const logoW = (logo.w / logo.h) * logoH;
+    doc.addImage(logo.data, "PNG", margin, 14, logoW, logoH);
+  } else {
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("FINANCEIT", margin, 36);
+  }
   doc.setTextColor(CYAN[0], CYAN[1], CYAN[2]);
+  doc.setFont("helvetica", "bold");
   doc.setFontSize(8);
   doc.text("Portfólio de Soluções", pageW - margin, 36, { align: "right" });
 }
