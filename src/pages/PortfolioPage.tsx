@@ -324,9 +324,10 @@ const PortfolioPage = () => {
               Nós entregamos o <span className="text-[hsl(var(--cyan-glow))]">tratamento</span>.
             </h1>
             <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/80 md:text-xl">
-              Como uma clínica de excelência em dados, BI e IA, a Financeit não vende
-              soluções de prateleira. Diagnosticamos a dor real, prescrevemos o tratamento
-              certo e acompanhamos a recuperação até o resultado.
+              Como uma clínica de excelência em Dados, BI, IA e Talentos, a Financeit
+              não vende soluções de prateleira. Diagnosticamos a dor real, prescrevemos o
+              tratamento certo e acompanhamos a recuperação até o resultado final, de
+              forma a deixar nosso paciente 100% satisfeito.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button asChild size="lg" className="bg-[hsl(var(--cyan-tech))] text-white hover:bg-[hsl(var(--cyan-glow))]">
