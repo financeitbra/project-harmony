@@ -254,16 +254,28 @@ export async function generatePortfolioPDF(casos: CasoPDF[]) {
   doc.save("financeit-portfolio-solucoes.pdf");
 }
 
-function drawHeader(doc: jsPDF, pageW: number, margin: number) {
+function drawHeader(
+  doc: jsPDF,
+  pageW: number,
+  margin: number,
+  logo: { data: string; w: number; h: number } | null,
+) {
   doc.setFillColor(NAVY[0], NAVY[1], NAVY[2]);
   doc.rect(0, 0, pageW, 60, "F");
   doc.setFillColor(CYAN[0], CYAN[1], CYAN[2]);
   doc.rect(0, 60, pageW, 3, "F");
-  doc.setTextColor(255, 255, 255);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(11);
-  doc.text("FINANCEIT", margin, 36);
+  if (logo) {
+    const logoH = 32;
+    const logoW = (logo.w / logo.h) * logoH;
+    doc.addImage(logo.data, "PNG", margin, 14, logoW, logoH);
+  } else {
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("FINANCEIT", margin, 36);
+  }
   doc.setTextColor(CYAN[0], CYAN[1], CYAN[2]);
+  doc.setFont("helvetica", "bold");
   doc.setFontSize(8);
   doc.text("Portfólio de Soluções", pageW - margin, 36, { align: "right" });
 }
