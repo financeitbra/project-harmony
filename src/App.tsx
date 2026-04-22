@@ -29,6 +29,7 @@ const InteligenciaNegocioPage = lazy(() => import("./pages/InteligenciaNegocioPa
 const HuntingInfoPage = lazy(() => import("./pages/HuntingInfoPage"));
 const AllocationInfoPage = lazy(() => import("./pages/AllocationInfoPage"));
 const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
+const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
 
 const RouteFallback = () => (
   <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">
@@ -74,6 +75,7 @@ const App = () => (
                 <Route path="/hunting-info" element={<HuntingInfoPage />} />
                 <Route path="/alocacao-info" element={<AllocationInfoPage />} />
                 <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
+                <Route path="/portfolio" element={<PortfolioPage />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
