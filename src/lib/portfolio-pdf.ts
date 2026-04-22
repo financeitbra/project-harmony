@@ -1,4 +1,23 @@
 import { jsPDF } from "jspdf";
+import logoFinanceit from "@/assets/logo-financeit.png";
+
+async function loadImageAsDataUrl(src: string): Promise<{ data: string; w: number; h: number }> {
+  const res = await fetch(src);
+  const blob = await res.blob();
+  const data: string = await new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result as string);
+    r.onerror = reject;
+    r.readAsDataURL(blob);
+  });
+  const dims: { w: number; h: number } = await new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve({ w: img.width, h: img.height });
+    img.onerror = reject;
+    img.src = data;
+  });
+  return { data, w: dims.w, h: dims.h };
+}
 
 type CasoPDF = {
   especialidade: string;
