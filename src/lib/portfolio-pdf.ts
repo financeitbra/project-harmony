@@ -60,13 +60,21 @@ export async function generatePortfolioPDF(casos: CasoPDF[]) {
   setFill(CYAN);
   doc.circle(pageW - 60, 80, 90, "F");
 
-  setText([255, 255, 255]);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(11);
-  doc.text("FINANCEIT", margin, 70);
+  // Logo on cover
+  if (logo) {
+    const logoW = 130;
+    const logoH = (logo.h / logo.w) * logoW;
+    doc.addImage(logo.data, "PNG", margin, 50, logoW, logoH);
+  } else {
+    setText([255, 255, 255]);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("FINANCEIT", margin, 70);
+  }
   setText(CYAN);
+  doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
-  doc.text("CLÍNICA DE EXCELÊNCIA EM DADOS, BI, IA E TALENTOS", margin, 86);
+  doc.text("CLÍNICA DE EXCELÊNCIA EM DADOS, BI, IA E TALENTOS", margin, 110);
 
   setText([255, 255, 255]);
   doc.setFont("helvetica", "bold");
