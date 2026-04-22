@@ -547,16 +547,6 @@ const PortfolioPage = () => {
                             </li>
                           ))}
                         </ul>
-                        <Button
-                          asChild
-                          size="sm"
-                          className="mt-6 bg-[hsl(var(--navy))] text-primary-foreground hover:bg-[hsl(var(--petrol))]"
-                        >
-                          <Link to={caso.tratamento.cta.href}>
-                            {caso.tratamento.cta.label}
-                            <ArrowRight className="h-4 w-4" />
-                          </Link>
-                        </Button>
                       </div>
                     </div>
                   </div>
