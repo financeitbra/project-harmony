@@ -60,8 +60,14 @@ export async function generatePortfolioPDF(casos: CasoPDF[]) {
   doc.rect(0, 0, pageW, pageH, "F");
   setFill(PETROL);
   doc.rect(0, pageH * 0.55, pageW, pageH * 0.45, "F");
-  setFill(CYAN);
-  doc.circle(pageW - 60, 80, 90, "F");
+  if (luneta) {
+    const lW = 220;
+    const lH = (luneta.h / luneta.w) * lW;
+    doc.addImage(luneta.data, "PNG", pageW - lW - 20, 30, lW, lH);
+  } else {
+    setFill(CYAN);
+    doc.circle(pageW - 60, 80, 90, "F");
+  }
 
   // Logo on cover
   if (logo) {
