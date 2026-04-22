@@ -16,9 +16,11 @@ import {
   Users,
   Layers,
   Sparkles,
+  Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
+import { generatePortfolioPDF } from "@/lib/portfolio-pdf";
 
 type Caso = {
   icon: React.ComponentType<{ className?: string }>;
@@ -591,6 +593,20 @@ const PortfolioPage = () => {
                 className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
               >
                 <Link to="/prontidao-ia/avaliacao">Fazer avaliação de prontidão</Link>
+              </Button>
+            </div>
+
+            <div className="mt-12 flex flex-col items-center gap-3">
+              <p className="text-sm text-primary-foreground/60">
+                Prefere levar nosso portfólio com você?
+              </p>
+              <Button
+                size="lg"
+                onClick={() => generatePortfolioPDF(casos)}
+                className="bg-primary-foreground text-[hsl(var(--navy))] hover:bg-primary-foreground/90"
+              >
+                <Download className="h-4 w-4" />
+                Baixar PDF
               </Button>
             </div>
           </div>
