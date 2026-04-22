@@ -1,5 +1,6 @@
 import { jsPDF } from "jspdf";
 import logoFinanceit from "@/assets/logo-financeit.png";
+import lunetaImg from "@/assets/luneta.png";
 
 async function loadImageAsDataUrl(src: string): Promise<{ data: string; w: number; h: number }> {
   const res = await fetch(src);
@@ -35,6 +36,7 @@ type CasoPDF = {
 const NAVY: [number, number, number] = [13, 27, 62]; // deep navy
 const PETROL: [number, number, number] = [16, 56, 86];
 const CYAN: [number, number, number] = [0, 173, 213];
+const MAGENTA: [number, number, number] = [219, 35, 231];
 const GREEN: [number, number, number] = [34, 197, 145];
 const TEXT: [number, number, number] = [30, 41, 59];
 const MUTED: [number, number, number] = [100, 116, 139];
@@ -42,6 +44,7 @@ const LIGHT: [number, number, number] = [241, 245, 249];
 
 export async function generatePortfolioPDF(casos: CasoPDF[]) {
   const logo = await loadImageAsDataUrl(logoFinanceit).catch(() => null);
+  const luneta = await loadImageAsDataUrl(lunetaImg).catch(() => null);
   const doc = new jsPDF({ unit: "pt", format: "a4" });
   const pageW = doc.internal.pageSize.getWidth();
   const pageH = doc.internal.pageSize.getHeight();
@@ -57,8 +60,14 @@ export async function generatePortfolioPDF(casos: CasoPDF[]) {
   doc.rect(0, 0, pageW, pageH, "F");
   setFill(PETROL);
   doc.rect(0, pageH * 0.55, pageW, pageH * 0.45, "F");
-  setFill(CYAN);
-  doc.circle(pageW - 60, 80, 90, "F");
+  if (luneta) {
+    const lW = 220;
+    const lH = (luneta.h / luneta.w) * lW;
+    doc.addImage(luneta.data, "PNG", pageW - lW - 20, 30, lW, lH);
+  } else {
+    setFill(CYAN);
+    doc.circle(pageW - 60, 80, 90, "F");
+  }
 
   // Logo on cover
   if (logo) {
@@ -260,7 +269,7 @@ function drawHeader(
   margin: number,
   logo: { data: string; w: number; h: number } | null,
 ) {
-  doc.setFillColor(NAVY[0], NAVY[1], NAVY[2]);
+  doc.setFillColor(MAGENTA[0], MAGENTA[1], MAGENTA[2]);
   doc.rect(0, 0, pageW, 60, "F");
   doc.setFillColor(CYAN[0], CYAN[1], CYAN[2]);
   doc.rect(0, 60, pageW, 3, "F");
