@@ -261,21 +261,23 @@ function drawHeader(
   margin: number,
   logo: { data: string; w: number; h: number } | null,
 ) {
-  doc.setFillColor(MAGENTA[0], MAGENTA[1], MAGENTA[2]);
+  // Site header background: hsl(220 20% 97%) ≈ rgb(247, 248, 250)
+  doc.setFillColor(247, 248, 250);
   doc.rect(0, 0, pageW, 60, "F");
-  doc.setFillColor(CYAN[0], CYAN[1], CYAN[2]);
-  doc.rect(0, 60, pageW, 3, "F");
+  doc.setDrawColor(226, 232, 240);
+  doc.setLineWidth(0.6);
+  doc.line(0, 60, pageW, 60);
   if (logo) {
     const logoH = 32;
     const logoW = (logo.w / logo.h) * logoH;
     doc.addImage(logo.data, "PNG", margin, 14, logoW, logoH);
   } else {
-    doc.setTextColor(255, 255, 255);
+    doc.setTextColor(NAVY[0], NAVY[1], NAVY[2]);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
     doc.text("FINANCEIT", margin, 36);
   }
-  doc.setTextColor(CYAN[0], CYAN[1], CYAN[2]);
+  doc.setTextColor(NAVY[0], NAVY[1], NAVY[2]);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(8);
   doc.text("Portfólio de Soluções", pageW - margin, 36, { align: "right" });
