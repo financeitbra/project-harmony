@@ -287,6 +287,7 @@ const casos: Caso[] = [
       produto: "Hunting & Alocação",
       intervencao: [
         "Hunting estratégico de profissionais raros",
+        "Alocação de profissionais especializados sob demanda",
         "Alocação de squads completos",
         "Acompanhamento contínuo da entrega",
       ],
