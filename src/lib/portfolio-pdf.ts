@@ -1,6 +1,5 @@
 import { jsPDF } from "jspdf";
 import logoFinanceit from "@/assets/logo-financeit.png";
-import lunetaImg from "@/assets/luneta.png";
 
 async function loadImageAsDataUrl(src: string): Promise<{ data: string; w: number; h: number }> {
   const res = await fetch(src);
