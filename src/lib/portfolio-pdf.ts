@@ -40,7 +40,8 @@ const TEXT: [number, number, number] = [30, 41, 59];
 const MUTED: [number, number, number] = [100, 116, 139];
 const LIGHT: [number, number, number] = [241, 245, 249];
 
-export function generatePortfolioPDF(casos: CasoPDF[]) {
+export async function generatePortfolioPDF(casos: CasoPDF[]) {
+  const logo = await loadImageAsDataUrl(logoFinanceit).catch(() => null);
   const doc = new jsPDF({ unit: "pt", format: "a4" });
   const pageW = doc.internal.pageSize.getWidth();
   const pageH = doc.internal.pageSize.getHeight();
