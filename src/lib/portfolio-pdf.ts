@@ -157,11 +157,14 @@ export async function generatePortfolioPDF(casos: CasoPDF[]) {
 
     // Specialty number badge
     setFill(CYAN);
-    doc.roundedRect(margin, cy - 18, 56, 22, 4, 4, "F");
+    doc.roundedRect(margin, cy - 18, 110, 22, 4, 4, "F");
     setText([255, 255, 255]);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.text(`ESP. ${String(idx + 1).padStart(2, "0")}`, margin + 8, cy - 3);
+    doc.text(`ESPECIALIDADE ${String(idx + 1).padStart(2, "0")}`, margin + 8, cy - 3);
+
+    // 2-line gap between badge and title
+    cy += 32;
 
     setText(NAVY);
     doc.setFontSize(20);
