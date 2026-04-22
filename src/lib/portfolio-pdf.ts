@@ -150,7 +150,7 @@ export async function generatePortfolioPDF(casos: CasoPDF[]) {
   // ---------- ESPECIALIDADES ----------
   casos.forEach((caso, idx) => {
     doc.addPage();
-    drawHeader(doc, pageW, margin);
+    drawHeader(doc, pageW, margin, logo);
 
     let cy = 130;
 
