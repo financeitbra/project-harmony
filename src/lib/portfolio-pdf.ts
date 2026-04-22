@@ -36,6 +36,7 @@ type CasoPDF = {
 const NAVY: [number, number, number] = [13, 27, 62]; // deep navy
 const PETROL: [number, number, number] = [16, 56, 86];
 const CYAN: [number, number, number] = [0, 173, 213];
+const MAGENTA: [number, number, number] = [219, 35, 231];
 const GREEN: [number, number, number] = [34, 197, 145];
 const TEXT: [number, number, number] = [30, 41, 59];
 const MUTED: [number, number, number] = [100, 116, 139];
