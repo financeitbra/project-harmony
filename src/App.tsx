@@ -1,6 +1,6 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -41,6 +41,53 @@ const RouteFallback = () => (
 
 const queryClient = new QueryClient();
 
+const AppContent = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("Navigation to:", location.pathname);
+  }, [location]);
+
+  return (
+    <Suspense fallback={<RouteFallback />}>
+      <Routes>
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Index />} />
+          <Route path="/quem-somos" element={<QuemSomosPage />} />
+          <Route path="/solucoes" element={<SolucoesPage />} />
+          <Route path="/solucoes/execucao" element={<SolucoesPage />} />
+          <Route path="/solucoes/squads" element={<SolucoesPage />} />
+          <Route path="/solucoes/software" element={<SolucoesPage />} />
+          <Route path="/solucoes/esteira-ia" element={<ProntidaoIAPage />} />
+          <Route path="/prontidao-ia" element={<ProntidaoIAPage />} />
+          <Route path="/prontidao-ia/avaliacao" element={<AvaliacaoIAPage />} />
+          <Route path="/prontidao-ia/resultado" element={<AvaliacaoResultadoPage />} />
+          <Route path="/prontidao-ia/diagnostico" element={<DiagnosticoIAPage />} />
+          <Route path="/avaliacao-ia" element={<AvaliacaoIAPage />} />
+          <Route path="/avaliacao-ia/resultado" element={<AvaliacaoResultadoPage />} />
+          <Route path="/diagnostico-ia" element={<DiagnosticoIAPage />} />
+          <Route path="/inteligencia-negocios" element={<InteligenciaNegocioPage />} />
+          <Route path="/avalara" element={<AvalaraPage />} />
+          <Route path="/ppov" element={<PPOVPage />} />
+          <Route path="/qlik" element={<QlikPage />} />
+          <Route path="/denodo" element={<DenodoPage />} />
+          <Route path="/estruturacao-dados" element={<EstruturacaoDadosPage />} />
+          <Route path="/avalie-prontidao-ia" element={<AvalieProntidaoPage />} />
+          <Route path="/contato" element={<ContatoPage />} />
+          <Route path="/hunting-info" element={<HuntingInfoPage />} />
+          <Route path="/alocacao-info" element={<AllocationInfoPage />} />
+          <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/login" element={<Suspense fallback={<RouteFallback />}><Login /></Suspense>} />
+          <Route path="/reset-password" element={<Suspense fallback={<RouteFallback />}><ResetPassword /></Suspense>} />
+          <Route path="/dashboard" element={<div>Dashboard (Em construção)</div>} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
+  );
+};
+
 const App = () => (
   <AppErrorBoundary>
     <QueryClientProvider client={queryClient}>
@@ -49,42 +96,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <ScrollToTop />
-          <Suspense fallback={<RouteFallback />}>
-            <Routes>
-              <Route element={<PublicLayout />}>
-                <Route path="/" element={<Index />} />
-                <Route path="/quem-somos" element={<QuemSomosPage />} />
-                <Route path="/solucoes" element={<SolucoesPage />} />
-                <Route path="/solucoes/execucao" element={<SolucoesPage />} />
-                <Route path="/solucoes/squads" element={<SolucoesPage />} />
-                <Route path="/solucoes/software" element={<SolucoesPage />} />
-                <Route path="/solucoes/esteira-ia" element={<ProntidaoIAPage />} />
-                <Route path="/prontidao-ia" element={<ProntidaoIAPage />} />
-                <Route path="/prontidao-ia/avaliacao" element={<AvaliacaoIAPage />} />
-                <Route path="/prontidao-ia/resultado" element={<AvaliacaoResultadoPage />} />
-                <Route path="/prontidao-ia/diagnostico" element={<DiagnosticoIAPage />} />
-                <Route path="/avaliacao-ia" element={<AvaliacaoIAPage />} />
-                <Route path="/avaliacao-ia/resultado" element={<AvaliacaoResultadoPage />} />
-                <Route path="/diagnostico-ia" element={<DiagnosticoIAPage />} />
-                <Route path="/inteligencia-negocios" element={<InteligenciaNegocioPage />} />
-                <Route path="/avalara" element={<AvalaraPage />} />
-                <Route path="/ppov" element={<PPOVPage />} />
-                <Route path="/qlik" element={<QlikPage />} />
-                <Route path="/denodo" element={<DenodoPage />} />
-                <Route path="/estruturacao-dados" element={<EstruturacaoDadosPage />} />
-                <Route path="/avalie-prontidao-ia" element={<AvalieProntidaoPage />} />
-                <Route path="/contato" element={<ContatoPage />} />
-                <Route path="/hunting-info" element={<HuntingInfoPage />} />
-                <Route path="/alocacao-info" element={<AllocationInfoPage />} />
-                <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
-                <Route path="/portfolio" element={<PortfolioPage />} />
-                <Route path="/login" element={<Suspense fallback={<RouteFallback />}><Login /></Suspense>} />
-                <Route path="/reset-password" element={<Suspense fallback={<RouteFallback />}><ResetPassword /></Suspense>} />
-                <Route path="/dashboard" element={<div>Dashboard (Em construção)</div>} />
-              </Route>
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+          <AppContent />
           <WhatsAppButton />
           <CookieBanner />
         </BrowserRouter>
