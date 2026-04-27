@@ -80,6 +80,14 @@ const PAGE_META: Record<string, PageMeta> = {
     description: "Saiba como a Financeit coleta, usa e protege seus dados pessoais em conformidade com a LGPD.",
     keywords: "política de privacidade, LGPD, proteção de dados, Financeit",
   },
+  "/login": {
+    title: "Login — Financeit",
+    description: "Acesse a área logada da Financeit.",
+  },
+  "/reset-password": {
+    title: "Atualizar Senha — Financeit",
+    description: "Atualize sua senha para continuar acessando a plataforma.",
+  },
 };
 
 const PublicLayout = () => {
