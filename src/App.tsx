@@ -78,10 +78,10 @@ const App = () => (
                 <Route path="/alocacao-info" element={<AllocationInfoPage />} />
                 <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
                 <Route path="/portfolio" element={<PortfolioPage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/dashboard" element={<div>Dashboard (Em construção)</div>} />
               </Route>
-              <Route path="/login" element={<Login />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-              <Route path="/dashboard" element={<div>Dashboard (Em construção)</div>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
