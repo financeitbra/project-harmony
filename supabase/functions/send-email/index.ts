@@ -22,6 +22,7 @@ interface AssessmentPayload {
   resultado: string;
   recomendacoes: string[];
   nome?: string;
+  respostas?: Array<{ question: string; answer: string }>;
 }
 
 type Payload = ContactPayload | AssessmentPayload;
@@ -343,6 +344,30 @@ function buildAssessmentHtml(data: AssessmentPayload): string {
             </div>
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
               ${recommendationsHtml}
+            </table>
+          </td>
+        </tr>
+      </table>` : ""}
+    
+    ${data.respostas && data.respostas.length > 0 ? `
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BRAND.card};border:1px solid ${BRAND.border};border-radius:14px;margin-bottom:22px;">
+        <tr>
+          <td style="padding:18px 20px 6px;">
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:${BRAND.dark};font-weight:700;margin-bottom:12px;">
+              Suas perguntas e respostas
+            </div>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              ${data.respostas.map((r) => `
+                <tr>
+                  <td style="padding:0 0 16px;">
+                    <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:18px;color:${BRAND.muted};font-weight:700;margin-bottom:4px;">
+                      ${escapeHtml(r.question)}
+                    </div>
+                    <div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:${BRAND.dark};">
+                      ${escapeHtml(r.answer)}
+                    </div>
+                  </td>
+                </tr>`).join("")}
             </table>
           </td>
         </tr>

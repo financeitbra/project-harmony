@@ -14,6 +14,7 @@ export interface AssessmentEmailPayload {
   resultado: string;
   recomendacoes: string[];
   nome?: string;
+  respostas?: Array<{ question: string; answer: string }>;
 }
 
 export interface EmailResponse {
