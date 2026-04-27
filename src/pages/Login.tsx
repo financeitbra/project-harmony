@@ -22,7 +22,7 @@ export default function Login() {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
 
-      await logAction("login_success", { email });
+      // await logAction("login_success", { email });
 
       // Check for first access / password rotation
       const { data: profile } = await supabase
@@ -44,7 +44,7 @@ export default function Login() {
         navigate("/dashboard");
       }
     } catch (error: any) {
-      await logAction("login_failure", { email, error: error.message });
+      // await logAction("login_failure", { email, error: error.message });
       toast({
         variant: "destructive",
         title: "Erro ao entrar",
