@@ -92,11 +92,32 @@ const PAGE_META: Record<string, PageMeta> = {
 
 const PublicLayout = () => {
   const { pathname } = useLocation();
-  const meta = PAGE_META[pathname];
+  const meta = PAGE_META[pathname] || {
+    title: "Financeit",
+    description: "Inteligência de Negócio, Dados e IA"
+  };
+
+  // Auth pages don't show header/footer
+  const isAuthPage = pathname === "/login" || pathname === "/reset-password";
+
+  if (isAuthPage) {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <SEO title={meta.title} description={meta.description} />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
-      {meta && <SEO title={meta.title} description={meta.description} keywords={meta.keywords} />}
+      <SEO 
+        title={meta.title} 
+        description={meta.description} 
+        keywords={meta.keywords} 
+      />
       <Header />
       <main className="flex-1 pt-16 lg:pt-20">
         <Outlet />
