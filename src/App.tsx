@@ -78,8 +78,8 @@ const App = () => (
                 <Route path="/alocacao-info" element={<AllocationInfoPage />} />
                 <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
                 <Route path="/portfolio" element={<PortfolioPage />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/login" element={<Suspense fallback={<RouteFallback />}><Login /></Suspense>} />
+                <Route path="/reset-password" element={<Suspense fallback={<RouteFallback />}><ResetPassword /></Suspense>} />
                 <Route path="/dashboard" element={<div>Dashboard (Em construção)</div>} />
               </Route>
               <Route path="*" element={<NotFound />} />

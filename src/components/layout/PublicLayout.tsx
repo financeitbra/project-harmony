@@ -94,9 +94,20 @@ const PublicLayout = () => {
   const { pathname } = useLocation();
   const meta = PAGE_META[pathname];
 
+  // If no meta found for the exact path, we still need a default SEO to avoid crashes
+  // especially for dynamic or undefined routes.
+  const effectiveMeta = meta || {
+    title: "Financeit",
+    description: "Inteligência de Negócio, Dados e IA"
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
-      {meta && <SEO title={meta.title} description={meta.description} keywords={meta.keywords} />}
+      <SEO 
+        title={effectiveMeta.title} 
+        description={effectiveMeta.description} 
+        keywords={effectiveMeta.keywords} 
+      />
       <Header />
       <main className="flex-1 pt-16 lg:pt-20">
         <Outlet />
