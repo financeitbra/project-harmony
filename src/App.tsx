@@ -10,8 +10,8 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 
+// Standard pages
 const Index = lazy(() => import("./pages/Index"));
-const NotFound = lazy(() => import("./pages/NotFound"));
 const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
 const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
 const ProntidaoIAPage = lazy(() => import("./pages/ProntidaoIAPage"));
@@ -30,8 +30,11 @@ const HuntingInfoPage = lazy(() => import("./pages/HuntingInfoPage"));
 const AllocationInfoPage = lazy(() => import("./pages/AllocationInfoPage"));
 const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
 const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
-const Login = lazy(() => import("./pages/Login"));
-const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Auth pages (directly imported to avoid lazy loading issues)
+import LoginPage from "./pages/Login";
+import ResetPasswordPage from "./pages/ResetPassword";
 
 const RouteFallback = () => (
   <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">
@@ -85,8 +88,8 @@ const AppContent = () => {
           <Route path="/alocacao-info" element={<AllocationInfoPage />} />
           <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/dashboard" element={<div>Dashboard (Em construção)</div>} />
         </Route>
         <Route path="*" element={<NotFound />} />
