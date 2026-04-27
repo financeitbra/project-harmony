@@ -30,6 +30,8 @@ const HuntingInfoPage = lazy(() => import("./pages/HuntingInfoPage"));
 const AllocationInfoPage = lazy(() => import("./pages/AllocationInfoPage"));
 const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
 const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
+const Login = lazy(() => import("./pages/Login"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 
 const RouteFallback = () => (
   <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">
@@ -77,6 +79,8 @@ const App = () => (
                 <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
                 <Route path="/portfolio" element={<PortfolioPage />} />
               </Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
@@ -87,5 +91,7 @@ const App = () => (
     </QueryClientProvider>
   </AppErrorBoundary>
 );
+
+export default App;
 
 export default App;

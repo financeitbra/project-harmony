@@ -59,8 +59,8 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <Card className="w-full max-w-md border-primary/20 shadow-xl">
         <CardHeader className="space-y-1">
-          <div className="flex justify-center mb-4">
-            <img src="/logo.png" alt="Financeit" className="h-12" />
+          <div className="flex justify-center mb-4 text-primary font-bold text-2xl">
+            Financeit
           </div>
           <CardTitle className="text-2xl text-center">Área do Cliente & Colaborador</CardTitle>
           <CardDescription className="text-center">
@@ -83,7 +83,7 @@ export default function Login() {
             <div className="grid gap-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Senha</Label>
-                <Link to="/forgot-password" variant="link" className="text-xs text-primary hover:underline">
+                <Link to="/forgot-password" title="Esqueceu a senha?" className="text-xs text-primary hover:underline">
                   Esqueceu a senha?
                 </Link>
               </div>
