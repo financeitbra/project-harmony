@@ -287,11 +287,19 @@ const AvaliacaoIAPage = () => {
 
     // Build responses payload
     const responses: Record<string, Array<{ question_text: string; selected_option: string; option_index: number }>> = {};
+    const flatRespostas: Array<{ question: string; answer: string }> = [];
+    
     for (const b of blocks) {
       responses[b.backendKey] = b.questions.map((q) => {
         const selectedValue = answers[q.id] ?? 1;
         const optionIndex = selectedValue - 1; // convert 1-5 to 0-4
         const selectedOption = q.options.find((o) => o.value === selectedValue)?.label || "";
+        
+        flatRespostas.push({
+          question: q.text,
+          answer: selectedOption,
+        });
+        
         return {
           question_text: q.text,
           selected_option: selectedOption,
@@ -325,6 +333,7 @@ const AvaliacaoIAPage = () => {
           email: trimmedEmail,
           resultado: `Nível: ${maturityLevel.replace("_", " ")} — Score: ${pct}/100`,
           recomendacoes: recommendations.split("\n").filter(Boolean),
+          respostas: flatRespostas,
         });
         toast({ title: "Diagnóstico enviado", description: "Enviamos o resultado para o seu e-mail." });
       } catch (mailErr) {
