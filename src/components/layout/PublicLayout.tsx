@@ -94,8 +94,7 @@ const PublicLayout = () => {
   const { pathname } = useLocation();
   const meta = PAGE_META[pathname];
 
-  // If no meta found for the exact path, we still need a default SEO to avoid crashes
-  // especially for dynamic or undefined routes.
+  // If no meta found for the exact path, use a fallback
   const effectiveMeta = meta || {
     title: "Financeit",
     description: "Inteligência de Negócio, Dados e IA"
