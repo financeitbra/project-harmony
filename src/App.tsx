@@ -81,6 +81,7 @@ const App = () => (
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/dashboard" element={<div>Dashboard (Em construção)</div>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
