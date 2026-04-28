@@ -113,7 +113,7 @@ export default function Login() {
                     id="email"
                     type="email"
                     placeholder="exemplo@financeit.com.br"
-                    className="bg-white/5 border-white/10 text-white focus:bg-white/10 focus:ring-primary/40 focus:border-primary/40 transition-all h-14 rounded-2xl pl-4"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-slate-500 focus:bg-white/20 focus:ring-primary/40 focus:border-primary/40 transition-all h-14 rounded-2xl pl-4"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -129,7 +129,7 @@ export default function Login() {
                   id="password"
                   type="password"
                   placeholder="••••••••"
-                  className="bg-white/5 border-white/10 text-white focus:bg-white/10 focus:ring-primary/40 focus:border-primary/40 transition-all h-14 rounded-2xl pl-4"
+                  className="bg-white/10 border-white/20 text-white placeholder:text-slate-500 focus:bg-white/20 focus:ring-primary/40 focus:border-primary/40 transition-all h-14 rounded-2xl pl-4"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
