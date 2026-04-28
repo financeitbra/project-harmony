@@ -367,7 +367,18 @@ export default function Timesheet() {
              <div>
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-tighter">Período Selecionado</p>
                 <p className="text-sm font-bold text-slate-900 capitalize">
-                  {format(currentMonth, 'MMMM yyyy', { locale: ptBR })}
+                  {(() => {
+                    const client = clients.find(c => c.id === selectedClientId);
+                    if (client?.reporting_period_type === 'custom' && client?.start_day_of_month) {
+                      const startDay = client.start_day_of_month;
+                      const currentYear = currentMonth.getFullYear();
+                      const currentMonthIdx = currentMonth.getMonth();
+                      const start = new Date(currentYear, currentMonthIdx - 1, startDay);
+                      const end = new Date(currentYear, currentMonthIdx, startDay - 1);
+                      return `${format(start, 'dd/MM')} a ${format(end, 'dd/MM/yyyy')}`;
+                    }
+                    return format(currentMonth, 'MMMM yyyy', { locale: ptBR });
+                  })()}
                 </p>
              </div>
           </div>
