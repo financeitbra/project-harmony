@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoFinanceit from "@/assets/logo-financeit.png";
+import logoFinanceit from "../../assets/logo-financeit.png";
 
 const footerSections = [
   {
