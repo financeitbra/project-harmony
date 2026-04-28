@@ -1,5 +1,6 @@
 import { MessageCircle, Linkedin, Instagram, Facebook } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
+import { useLocation } from "react-router-dom";
 
 const WHATSAPP_NUMBER = "5511914696503";
 const DEFAULT_MESSAGE =
