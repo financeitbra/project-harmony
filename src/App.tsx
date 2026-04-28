@@ -32,6 +32,7 @@ import EstruturacaoDadosPage from "./pages/EstruturacaoDadosPage";
 import AvalieProntidaoPage from "./pages/AvalieProntidaoPage";
 import ResetPasswordPage from "./pages/ResetPassword";
 import AvaliacaoIAPage from "./pages/AvaliacaoIAPage";
+import AvaliacaoResultadoPage from "./pages/AvaliacaoResultadoPage";
 import NotFound from "./pages/NotFound";
 
 // Lazy loading for other pages to reduce initial bundle size
@@ -40,7 +41,7 @@ import NotFound from "./pages/NotFound";
 // const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
 // const ProntidaoIAPage = lazy(() => import("./pages/ProntidaoIAPage"));
 // const AvaliacaoIAPage = lazy(() => import("./pages/AvaliacaoIAPage"));
-const AvaliacaoResultadoPage = lazy(() => import("./pages/AvaliacaoResultadoPage"));
+// const AvaliacaoResultadoPage = lazy(() => import("./pages/AvaliacaoResultadoPage"));
 const DiagnosticoIAPage = lazy(() => import("./pages/DiagnosticoIAPage"));
 // const AvalaraPage = lazy(() => import("./pages/AvalaraPage"));
 const PPOVPage = lazy(() => import("./pages/PPOVPage"));
