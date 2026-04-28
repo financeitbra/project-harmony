@@ -77,14 +77,52 @@ export default function Timesheet() {
 
   const fetchClients = async () => {
     try {
-      const { data, error } = await supabase
-        .from("clients")
-        .select("*");
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      // First try to fetch clients linked to the user
+      const { data: linkedClients, error: linkError } = await supabase
+        .from("user_clients")
+        .select("client_id")
+        .eq("user_id", user.id);
       
-      if (error) throw error;
-      setClients(data || []);
-      if (data && data.length > 0) {
-        setSelectedClientId(data[0].id);
+      if (linkError) throw linkError;
+
+      const clientIds = linkedClients?.map(lc => lc.client_id) || [];
+      
+      // If no clients are explicitly linked, and it's an admin, we might want to show all
+      // But based on the current logic, we respect the user_clients link for everyone.
+      // Let's fetch the actual client details for the linked IDs
+      if (clientIds.length > 0) {
+        const { data: clientData, error: clientError } = await supabase
+          .from("clients")
+          .select("*")
+          .in("id", clientIds);
+        
+        if (clientError) throw clientError;
+        setClients(clientData || []);
+        if (clientData && clientData.length > 0) {
+          setSelectedClientId(clientData[0].id);
+        }
+      } else {
+        // Check if user is admin - admins might expect to see all if none linked
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", user.id)
+          .maybeSingle();
+        
+        if (profile?.role === 'admin') {
+          const { data: allClients, error: allErr } = await supabase
+            .from("clients")
+            .select("*");
+          
+          if (allErr) throw allErr;
+          setClients(allClients || []);
+          if (allClients && allClients.length > 0) {
+            setSelectedClientId(allClients[0].id);
+          }
+        }
       }
     } catch (error: any) {
       toast({

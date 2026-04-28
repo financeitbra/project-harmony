@@ -88,7 +88,7 @@ export default function AdminClientManagement() {
     try {
       const [clientsRes, profilesRes] = await Promise.all([
         supabase.from("clients").select("*").order("name"),
-        supabase.from("profiles").select("*").in("role", ["internal", "pr"])
+        supabase.from("profiles").select("*").in("role", ["internal", "pr", "admin"])
       ]);
 
       if (clientsRes.error) throw clientsRes.error;
