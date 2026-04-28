@@ -10,7 +10,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 
-// Standard pages - directly imported to test if lazy loading is the issue
+// Standard pages
 import Index from "./pages/Index";
 import QuemSomosPage from "./pages/QuemSomosPage";
 import SolucoesPage from "./pages/SolucoesPage";
@@ -34,12 +34,6 @@ import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ResetPasswordPage from "./pages/ResetPassword";
-
-const RouteFallback = () => (
-  <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">
-    Carregando...
-  </div>
-);
 
 const queryClient = new QueryClient({
   defaultOptions: {
