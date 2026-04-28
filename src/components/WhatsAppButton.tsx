@@ -1,5 +1,6 @@
 import { MessageCircle, Linkedin, Instagram, Facebook } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
+import { useLocation } from "react-router-dom";
 
 const WHATSAPP_NUMBER = "5511914696503";
 const DEFAULT_MESSAGE =
@@ -59,7 +60,11 @@ const copyToClipboard = async (value: string) => {
 };
 
 const WhatsAppButton = () => {
+  const location = useLocation();
+  const isLoggedArea = location.pathname.startsWith('/dashboard');
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
+
+  if (isLoggedArea) return null;
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     const isEmbeddedPreview = typeof window !== "undefined" && window.self !== window.top;
