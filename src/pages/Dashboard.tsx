@@ -149,7 +149,7 @@ export default function Dashboard() {
               <div>
                 <p className="text-sm font-bold text-white leading-none">{profile?.full_name || "Usuário"}</p>
                 <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-black">
-                  {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
+                  {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : profile?.role === 'pr' ? 'Colaborador PR' : 'Perfil não identificado'}
                 </p>
               </div>
             </div>
