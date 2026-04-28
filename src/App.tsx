@@ -15,7 +15,6 @@ import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 
-const Index = lazy(() => import("./pages/Index"));
 const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
 const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
 const ProntidaoIAPage = lazy(() => import("./pages/ProntidaoIAPage"));
@@ -35,8 +34,6 @@ const AllocationInfoPage = lazy(() => import("./pages/AllocationInfoPage"));
 const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
 const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const LoginPage = lazy(() => import("./pages/Login"));
-const Dashboard = lazy(() => import("./pages/Dashboard"));
 const ResetPasswordPage = lazy(() => import("./pages/ResetPassword"));
 
 const RouteFallback = () => (
