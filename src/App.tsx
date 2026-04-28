@@ -5,12 +5,12 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import PublicLayout from "@/components/layout/PublicLayout";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 
-// Standard components that are essential for the shell
+// Immediate imports to ensure the core layout is always available
+import PublicLayout from "./components/layout/PublicLayout";
 import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
