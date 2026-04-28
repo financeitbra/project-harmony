@@ -16,10 +16,14 @@ import PublicLayout from "./components/layout/PublicLayout";
 import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import SolucoesPage from "./pages/SolucoesPage";
+import ContatoPage from "./pages/ContatoPage";
+import NotFound from "./pages/NotFound";
 
 // Lazy loading for other pages to reduce initial bundle size
+// Lazy loading for other pages to reduce initial bundle size
 const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
-const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
+// const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
 const ProntidaoIAPage = lazy(() => import("./pages/ProntidaoIAPage"));
 const AvaliacaoIAPage = lazy(() => import("./pages/AvaliacaoIAPage"));
 const AvaliacaoResultadoPage = lazy(() => import("./pages/AvaliacaoResultadoPage"));
@@ -30,13 +34,13 @@ const QlikPage = lazy(() => import("./pages/QlikPage"));
 const DenodoPage = lazy(() => import("./pages/DenodoPage"));
 const EstruturacaoDadosPage = lazy(() => import("./pages/EstruturacaoDadosPage"));
 const AvalieProntidaoPage = lazy(() => import("./pages/AvalieProntidaoPage"));
-const ContatoPage = lazy(() => import("./pages/ContatoPage"));
+// const ContatoPage = lazy(() => import("./pages/ContatoPage"));
 const InteligenciaNegocioPage = lazy(() => import("./pages/InteligenciaNegocioPage"));
 const HuntingInfoPage = lazy(() => import("./pages/HuntingInfoPage"));
 const AllocationInfoPage = lazy(() => import("./pages/AllocationInfoPage"));
 const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
 const PortfolioPage = lazy(() => import("./pages/Portfolio"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+// const NotFound = lazy(() => import("./pages/NotFound"));
 const ResetPasswordPage = lazy(() => import("./pages/ResetPassword"));
 
 const queryClient = new QueryClient({
