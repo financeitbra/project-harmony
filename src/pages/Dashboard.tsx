@@ -122,7 +122,7 @@ export default function Dashboard() {
             <div className="hidden sm:flex flex-col items-end mr-2">
               <span className="text-sm font-medium">{profile?.full_name || profile?.email}</span>
               <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">
-                {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Interno' : 'Parceiro PR'}
+                {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
               </span>
             </div>
             <div className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-primary font-bold shadow-inner">
@@ -148,7 +148,9 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="text-sm font-bold text-white leading-none">{profile?.full_name || "Usuário"}</p>
-                <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-black">{profile?.role}</p>
+                <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-black">
+                  {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
+                </p>
               </div>
             </div>
             <Button variant="ghost" className="w-full justify-start text-slate-300 hover:text-white hover:bg-slate-800 py-3">
@@ -277,7 +279,7 @@ export default function Dashboard() {
                             ? 'bg-blue-100 text-blue-700' 
                             : 'bg-emerald-100 text-emerald-700'
                         }`}>
-                          {profile?.role === 'internal' ? 'Acesso Interno' : 'Parceiro PR'}
+                          {profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
                         </span>
                         <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-widest">
                           Ativo
@@ -336,7 +338,7 @@ export default function Dashboard() {
                       <p className="text-lg font-bold text-slate-900">Módulos em Preparação</p>
                       <p className="text-slate-500 mt-2 leading-relaxed">
                         Estamos customizando seu ambiente com base no seu perfil de <span className="text-primary font-bold">
-                        {profile?.role === 'internal' ? 'Colaborador Interno' : 'Parceiro PR'}</span>. 
+                        {profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}</span>. 
                         Em breve, dashboards e documentos estarão disponíveis.
                       </p>
                     </div>
