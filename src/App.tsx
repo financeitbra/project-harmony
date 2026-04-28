@@ -48,6 +48,12 @@ const queryClient = new QueryClient({
 const App = () => {
   console.log("App.tsx: App component rendering...");
   
+  if (!queryClient) {
+    console.error("App.tsx: queryClient is missing!");
+    return <div>QueryClient missing</div>;
+  }
+
+  
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
