@@ -10,6 +10,11 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 
+// Standard components that are essential for the shell
+import Index from "./pages/Index";
+import LoginPage from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+
 const Index = lazy(() => import("./pages/Index"));
 const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
 const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
