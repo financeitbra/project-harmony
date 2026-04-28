@@ -165,7 +165,7 @@ export default function Timesheet() {
         .select("*")
         .eq("client_id", selectedClientId)
         .gte("start_time", start.toISOString())
-        .lte("start_time", end.toISOString())
+        .lte("end_time", end.toISOString())
         .order("start_time", { ascending: false });
 
       if (error) throw error;
