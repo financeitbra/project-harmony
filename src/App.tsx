@@ -30,6 +30,7 @@ import QlikPage from "./pages/QlikPage";
 import DenodoPage from "./pages/DenodoPage";
 import EstruturacaoDadosPage from "./pages/EstruturacaoDadosPage";
 import AvalieProntidaoPage from "./pages/AvalieProntidaoPage";
+import ResetPasswordPage from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
 // Lazy loading for other pages to reduce initial bundle size
@@ -53,7 +54,7 @@ const PPOVPage = lazy(() => import("./pages/PPOVPage"));
 // const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
 // const PortfolioPage = lazy(() => import("./pages/Portfolio"));
 // const NotFound = lazy(() => import("./pages/NotFound"));
-const ResetPasswordPage = lazy(() => import("./pages/ResetPassword"));
+// const ResetPasswordPage = lazy(() => import("./pages/ResetPassword"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
