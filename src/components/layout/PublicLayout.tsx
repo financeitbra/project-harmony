@@ -98,7 +98,7 @@ const PublicLayout = () => {
   };
 
   // Auth pages don't show header/footer
-  const isAuthPage = pathname === "/login" || pathname === "/reset-password";
+  const isAuthPage = pathname === "/login" || pathname === "/reset-password" || pathname === "/dashboard";
 
   if (isAuthPage) {
     return (
