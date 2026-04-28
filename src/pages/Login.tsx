@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { logAction } from "@/lib/audit";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import logoFinanceit from "@/assets/logo-financeit.png";
 
 export default function Login() {
@@ -15,7 +16,10 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
-
+  const [showForgotModal, setShowForgotModal] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [resetLoading, setResetLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -89,6 +93,31 @@ export default function Login() {
       });
     } finally {
       setLoading(false);
+    }
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!resetEmail) return;
+    
+    setResetLoading(true);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail.trim(), {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+      
+      if (error) throw error;
+      
+      setShowForgotModal(false);
+      setShowSuccessModal(true);
+      void logAction("password_reset_requested", { email: resetEmail.trim() });
+    } catch (error: any) {
+      console.error("Reset password error:", error.message);
+      toast({
+        variant: "destructive",
+        title: "Erro ao solicitar recuperação",
+        description: "Não foi possível enviar o e-mail de recuperação. Tente novamente.",
+      });
+    } finally {
+      setResetLoading(false);
     }
   };
 
