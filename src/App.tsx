@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import { Toaster as Sonner } from "./components/ui/sonner";
 import { Toaster } from "./components/ui/toaster";
@@ -8,7 +8,10 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import CookieBanner from "./components/CookieBanner";
 import AppErrorBoundary from "./components/AppErrorBoundary";
 
-// Standard pages - Direct imports for maximum stability
+// Layout
+import PublicLayout from "./components/layout/PublicLayout";
+
+// Standard pages - Absolute direct imports
 import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -33,9 +36,6 @@ import PortfolioPage from "./pages/PortfolioPage";
 import NotFound from "./pages/NotFound";
 import ResetPasswordPage from "./pages/ResetPassword";
 
-// Layout
-import PublicLayout from "./components/layout/PublicLayout";
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -44,45 +44,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-
-const AppContent = () => {
-  return (
-    <Routes>
-      <Route element={<PublicLayout />}>
-        <Route path="/" element={<Index />} />
-        <Route path="/quem-somos" element={<QuemSomosPage />} />
-        <Route path="/solucoes" element={<SolucoesPage />} />
-        <Route path="/solucoes/execucao" element={<SolucoesPage />} />
-        <Route path="/solucoes/squads" element={<SolucoesPage />} />
-        <Route path="/solucoes/software" element={<SolucoesPage />} />
-        <Route path="/solucoes/esteira-ia" element={<ProntidaoIAPage />} />
-        <Route path="/prontidao-ia" element={<ProntidaoIAPage />} />
-        <Route path="/prontidao-ia/avaliacao" element={<AvaliacaoIAPage />} />
-        <Route path="/prontidao-ia/resultado" element={<AvaliacaoResultadoPage />} />
-        <Route path="/prontidao-ia/diagnostico" element={<DiagnosticoIAPage />} />
-        <Route path="/avaliacao-ia" element={<AvaliacaoIAPage />} />
-        <Route path="/avaliacao-ia/resultado" element={<AvaliacaoResultadoPage />} />
-        <Route path="/diagnostico-ia" element={<DiagnosticoIAPage />} />
-        <Route path="/inteligencia-negocios" element={<InteligenciaNegocioPage />} />
-        <Route path="/avalara" element={<AvalaraPage />} />
-        <Route path="/ppov" element={<PPOVPage />} />
-        <Route path="/qlik" element={<QlikPage />} />
-        <Route path="/denodo" element={<DenodoPage />} />
-        <Route path="/estruturacao-dados" element={<EstruturacaoDadosPage />} />
-        <Route path="/avalie-prontidao-ia" element={<AvalieProntidaoPage />} />
-        <Route path="/contato" element={<ContatoPage />} />
-        <Route path="/hunting-info" element={<HuntingInfoPage />} />
-        <Route path="/alocacao-info" element={<AllocationInfoPage />} />
-        <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
-        <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
-};
 
 const App = () => {
   return (
@@ -93,7 +54,40 @@ const App = () => {
             <Toaster />
             <Sonner />
             <ScrollToTop />
-            <AppContent />
+            <Routes>
+              <Route element={<PublicLayout />}>
+                <Route path="/" element={<Index />} />
+                <Route path="/quem-somos" element={<QuemSomosPage />} />
+                <Route path="/solucoes" element={<SolucoesPage />} />
+                <Route path="/solucoes/execucao" element={<SolucoesPage />} />
+                <Route path="/solucoes/squads" element={<SolucoesPage />} />
+                <Route path="/solucoes/software" element={<SolucoesPage />} />
+                <Route path="/solucoes/esteira-ia" element={<ProntidaoIAPage />} />
+                <Route path="/prontidao-ia" element={<ProntidaoIAPage />} />
+                <Route path="/prontidao-ia/avaliacao" element={<AvaliacaoIAPage />} />
+                <Route path="/prontidao-ia/resultado" element={<AvaliacaoResultadoPage />} />
+                <Route path="/prontidao-ia/diagnostico" element={<DiagnosticoIAPage />} />
+                <Route path="/avaliacao-ia" element={<AvaliacaoIAPage />} />
+                <Route path="/avaliacao-ia/resultado" element={<AvaliacaoResultadoPage />} />
+                <Route path="/diagnostico-ia" element={<DiagnosticoIAPage />} />
+                <Route path="/inteligencia-negocios" element={<InteligenciaNegocioPage />} />
+                <Route path="/avalara" element={<AvalaraPage />} />
+                <Route path="/ppov" element={<PPOVPage />} />
+                <Route path="/qlik" element={<QlikPage />} />
+                <Route path="/denodo" element={<DenodoPage />} />
+                <Route path="/estruturacao-dados" element={<EstruturacaoDadosPage />} />
+                <Route path="/avalie-prontidao-ia" element={<AvalieProntidaoPage />} />
+                <Route path="/contato" element={<ContatoPage />} />
+                <Route path="/hunting-info" element={<HuntingInfoPage />} />
+                <Route path="/alocacao-info" element={<AllocationInfoPage />} />
+                <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
+                <Route path="/portfolio" element={<PortfolioPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/reset-password" element={<ResetPasswordPage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
             <WhatsAppButton />
             <CookieBanner />
           </BrowserRouter>
@@ -104,3 +98,4 @@ const App = () => {
 };
 
 export default App;
+
