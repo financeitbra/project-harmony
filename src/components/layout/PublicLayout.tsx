@@ -108,7 +108,7 @@ const PublicLayout = () => {
 
   if (isAuthPage) {
     return (
-      <div className="flex min-h-screen flex-col bg-slate-50/50">
+      <div className="flex min-h-screen flex-col bg-slate-900">
         <SEO title={meta.title} description={meta.description} />
         <main className="flex-1">
           <Outlet />
