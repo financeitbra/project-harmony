@@ -47,7 +47,8 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  console.log("App component rendering...");
+  console.log("App.tsx: App component rendering...");
+  
   return (
     <AppErrorBoundary>
       <QueryClientProvider client={queryClient}>
