@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "../integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import { logAction } from "@/lib/audit";
-import logoFinanceit from "@/assets/logo-financeit.png";
+import { useToast } from "../hooks/use-toast";
+import { logAction } from "../lib/audit";
+import logoFinanceit from "../assets/logo-financeit.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");

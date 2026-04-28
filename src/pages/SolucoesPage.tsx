@@ -1,17 +1,19 @@
-import SolucoesHero from "@/components/sections/solucoes/SolucoesHero";
-import OfertaVisaoGeral from "@/components/sections/solucoes/OfertaVisaoGeral";
-import TalentosEstrategicos from "@/components/sections/solucoes/TalentosEstrategicos";
-import ExecucaoEscalavel from "@/components/sections/solucoes/ExecucaoEscalavel";
-import InteligenciaNegocio from "@/components/sections/solucoes/InteligenciaNegocio";
-import DadosGovernancaIA from "@/components/sections/solucoes/DadosGovernancaIA";
-import SolucoesEspecializadas from "@/components/sections/solucoes/SolucoesEspecializadas";
-import IntegracaoFrente from "@/components/sections/solucoes/IntegracaoFrente";
-import ParaEmpresasQue from "@/components/sections/solucoes/ParaEmpresasQue";
-import SolucoesCTAFinal from "@/components/sections/solucoes/SolucoesCTAFinal";
+import { lazy, Suspense } from "react";
+
+const SolucoesHero = lazy(() => import("@/components/sections/solucoes/SolucoesHero"));
+const OfertaVisaoGeral = lazy(() => import("@/components/sections/solucoes/OfertaVisaoGeral"));
+const TalentosEstrategicos = lazy(() => import("@/components/sections/solucoes/TalentosEstrategicos"));
+const ExecucaoEscalavel = lazy(() => import("@/components/sections/solucoes/ExecucaoEscalavel"));
+const InteligenciaNegocio = lazy(() => import("@/components/sections/solucoes/InteligenciaNegocio"));
+const DadosGovernancaIA = lazy(() => import("@/components/sections/solucoes/DadosGovernancaIA"));
+const SolucoesEspecializadas = lazy(() => import("@/components/sections/solucoes/SolucoesEspecializadas"));
+const IntegracaoFrente = lazy(() => import("@/components/sections/solucoes/IntegracaoFrente"));
+const ParaEmpresasQue = lazy(() => import("@/components/sections/solucoes/ParaEmpresasQue"));
+const SolucoesCTAFinal = lazy(() => import("@/components/sections/solucoes/SolucoesCTAFinal"));
 
 const SolucoesPage = () => {
   return (
-    <>
+    <Suspense fallback={<div className="h-96 w-full animate-pulse bg-slate-900/10" />}>
       <SolucoesHero />
       <OfertaVisaoGeral />
       <TalentosEstrategicos />
@@ -22,7 +24,7 @@ const SolucoesPage = () => {
       <IntegracaoFrente />
       <ParaEmpresasQue />
       <SolucoesCTAFinal />
-    </>
+    </Suspense>
   );
 };
 

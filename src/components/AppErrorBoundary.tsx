@@ -7,25 +7,23 @@ type Props = {
 
 type State = {
   hasError: boolean;
+  error: Error | null;
 };
 
 class AppErrorBoundary extends Component<Props, State> {
-  state: State = { hasError: false };
+  state: State = { hasError: false, error: null };
 
-  static getDerivedStateFromError(): State {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("App render error details:", {
-      message: error.message,
-      stack: error.stack,
-      componentStack: errorInfo.componentStack
-    });
+    console.error("CRITICAL APP ERROR:", error);
+    console.error("ERROR INFO:", errorInfo);
   }
 
   handleReload = () => {
-    window.location.reload();
+    window.location.href = "/";
   };
 
   render() {
@@ -33,20 +31,33 @@ class AppErrorBoundary extends Component<Props, State> {
       return (
         <div className="flex min-h-screen flex-col items-center justify-center bg-[#0F172A] px-6 text-center text-white">
           <div className="max-w-md space-y-4 rounded-2xl border border-white/10 bg-[#1E293B]/50 p-8 shadow-2xl backdrop-blur-xl">
-            <h1 className="font-display text-2xl font-semibold">Ops! Algo não carregou como esperado</h1>
+            <h1 className="font-display text-2xl font-semibold text-primary">Conexão Interrompida</h1>
             <p className="text-sm leading-relaxed text-slate-300">
-              Isso pode ser um erro temporário de conexão ou cache. Por favor, tente atualizar a página.
+              Ocorreu uma falha inesperada ao carregar este componente. Isso pode ser causado por cache antigo ou instabilidade na rede.
             </p>
-            <div className="pt-4">
+            
+            <div className="bg-black/20 p-3 rounded text-[10px] text-left font-mono overflow-auto max-h-32 text-slate-400 border border-white/5">
+              {this.state.error?.message || "Erro desconhecido"}
+            </div>
+
+            <div className="pt-4 space-y-3">
+              <Button 
+                onClick={() => window.location.reload()}
+                className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
+              >
+                Tentar novamente
+              </Button>
               <Button 
                 onClick={this.handleReload}
-                className="bg-primary hover:bg-primary/90 text-white font-semibold px-8"
+                variant="outline"
+                className="w-full border-white/10 hover:bg-white/5 text-white"
               >
-                Atualizar agora
+                Voltar para o Início
               </Button>
             </div>
-            <p className="text-[10px] text-slate-500 pt-4">
-              Se o erro persistir, limpe o cache do seu navegador ou tente em uma janela anônima.
+            
+            <p className="text-[10px] text-slate-500 pt-2">
+              Dica: Se o erro persistir, tente abrir em uma janela anônima.
             </p>
           </div>
         </div>

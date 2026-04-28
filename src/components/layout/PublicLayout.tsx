@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import SEO from "@/components/SEO";
+import SEO from "../SEO";
 
 type PageMeta = { title: string; description: string; keywords?: string };
 
@@ -52,7 +52,7 @@ const PAGE_META: Record<string, PageMeta> = {
   },
   "/denodo": {
     title: "Denodo — Virtualização de Dados",
-    description: "Denodo com a Financeit: data fabric e virtualização de dados para acessar e governar informações distribuídas em tempo real.",
+    description: "Denodo with Financeit: data fabric and data virtualization to access and govern distributed information in real time.",
     keywords: "Denodo, virtualização de dados, data fabric",
   },
   "/ppov": {
@@ -101,12 +101,12 @@ const PublicLayout = () => {
     description: "Inteligência de Negócio, Dados e IA"
   };
 
-  // Auth and Dashboard pages don't show header/footer
+  // Auth and Dashboard pages don't show header/footer to avoid layout conflicts
   const isAuthPage = pathname === "/login" || pathname === "/reset-password" || pathname === "/dashboard";
 
   if (isAuthPage) {
     return (
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col bg-background">
         <SEO title={meta.title} description={meta.description} />
         <main className="flex-1">
           <Outlet />
@@ -116,7 +116,7 @@ const PublicLayout = () => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-background">
       <SEO 
         title={meta.title} 
         description={meta.description} 
