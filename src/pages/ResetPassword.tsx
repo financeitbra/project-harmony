@@ -30,6 +30,7 @@ export default function ResetPassword() {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         await supabase.from('profiles').update({ 
+          password_reset_required: false,
           password_updated_at: new Date().toISOString() 
         }).eq('id', user.id);
         
@@ -46,7 +47,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0F172A] px-4 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-slate-900 px-4 relative overflow-hidden">
       {/* Background visual enhancements */}
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/10 blur-[120px] rounded-full pointer-events-none" />
@@ -55,7 +56,7 @@ export default function ResetPassword() {
         <CardHeader className="space-y-4 pt-8">
           <CardTitle className="text-2xl text-center font-bold tracking-tight">Atualizar Senha</CardTitle>
           <CardDescription className="text-center text-slate-400">
-            Sua senha deve ser alterada a cada 30 dias por segurança.
+            Por favor, defina sua senha definitiva para o primeiro acesso.
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleReset}>

@@ -37,7 +37,7 @@ export default function Login() {
         // Get fresh profile data
         const { data: profile, error: profileError } = await supabase
           .from('profiles')
-          .select('password_updated_at, role')
+          .select('password_reset_required, role')
           .eq('id', data.user.id)
           .maybeSingle();
 
@@ -45,10 +45,7 @@ export default function Login() {
           console.error("Login profile check error:", profileError);
         }
 
-        const thirtyDaysAgo = new Date();
-        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-
-        const needsPasswordReset = !profile?.password_updated_at || new Date(profile.password_updated_at) < thirtyDaysAgo;
+        const needsPasswordReset = profile?.password_reset_required;
 
         if (needsPasswordReset) {
           toast({
