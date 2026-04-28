@@ -83,6 +83,7 @@ export default function AdminUserManagement() {
           data: {
             full_name: newFullName,
             role: newRole,
+            password_reset_required: true
           }
         }
       });

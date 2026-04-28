@@ -45,6 +45,7 @@ export type Database = {
           email: string | null
           full_name: string | null
           id: string
+          password_reset_required: boolean | null
           password_updated_at: string | null
           role: Database["public"]["Enums"]["user_role"] | null
           updated_at: string | null
@@ -55,6 +56,7 @@ export type Database = {
           email?: string | null
           full_name?: string | null
           id: string
+          password_reset_required?: boolean | null
           password_updated_at?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
           updated_at?: string | null
@@ -65,6 +67,7 @@ export type Database = {
           email?: string | null
           full_name?: string | null
           id?: string
+          password_reset_required?: boolean | null
           password_updated_at?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
           updated_at?: string | null
