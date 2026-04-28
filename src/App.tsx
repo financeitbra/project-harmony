@@ -35,7 +35,7 @@ const InteligenciaNegocioPage = lazy(() => import("./pages/InteligenciaNegocioPa
 const HuntingInfoPage = lazy(() => import("./pages/HuntingInfoPage"));
 const AllocationInfoPage = lazy(() => import("./pages/AllocationInfoPage"));
 const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
-const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
+const PortfolioPage = lazy(() => import("./pages/Portfolio"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ResetPasswordPage = lazy(() => import("./pages/ResetPassword"));
 
