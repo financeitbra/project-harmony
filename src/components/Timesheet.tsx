@@ -164,6 +164,8 @@ export default function Timesheet() {
         .from("time_entries")
         .select("*")
         .eq("client_id", selectedClientId)
+        .gte("start_time", start.toISOString())
+        .lte("start_time", end.toISOString())
         .order("start_time", { ascending: false });
 
       if (error) throw error;
