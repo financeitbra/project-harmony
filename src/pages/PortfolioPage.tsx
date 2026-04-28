@@ -300,7 +300,7 @@ const casos: Caso[] = [
   },
 ];
 
-const PortfolioPage = () => {
+export default function PortfolioPage() {
   return (
     <div className="bg-background">
       <SEO
@@ -616,4 +616,4 @@ const PortfolioPage = () => {
   );
 };
 
-export default PortfolioPage;
+
