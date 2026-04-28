@@ -32,6 +32,7 @@ import PoliticaPrivacidadePage from "./pages/PoliticaPrivacidadePage";
 import PortfolioPage from "./pages/PortfolioPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import ResetPasswordPage from "./pages/ResetPassword";
 
 const RouteFallback = () => (
