@@ -11,7 +11,7 @@ import AppErrorBoundary from "./components/AppErrorBoundary";
 // Layout
 import PublicLayout from "./components/layout/PublicLayout";
 
-// Direct imports for all pages to avoid any potential lazy loading issues
+// Direct imports for all pages
 import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -46,18 +46,10 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  console.log("App.tsx: App component rendering at", new Date().toISOString(), "window.location.pathname:", window.location.pathname);
-  
-  if (!queryClient) {
-    console.error("App.tsx: queryClient is missing!");
-    return <div>QueryClient missing</div>;
-  }
-
-  
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AppErrorBoundary>
+    <AppErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
           <BrowserRouter>
             <Toaster />
             <Sonner />
@@ -99,9 +91,9 @@ const App = () => {
             <WhatsAppButton />
             <CookieBanner />
           </BrowserRouter>
-        </AppErrorBoundary>
-      </TooltipProvider>
-    </QueryClientProvider>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </AppErrorBoundary>
   );
 };
 
