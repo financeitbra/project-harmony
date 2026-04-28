@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { logAction } from "@/lib/audit";
+import logoFinanceit from "@/assets/logo-financeit.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -56,16 +57,24 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
-      <Card className="w-full max-w-md border-primary/20 shadow-xl">
-        <CardHeader className="space-y-1">
-          <div className="flex justify-center mb-4 text-primary font-bold text-2xl">
-            Financeit
+    <div className="min-h-screen flex items-center justify-center bg-[#0F172A] px-4 relative overflow-hidden">
+      {/* Background gradients to match site identity */}
+      <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/10 blur-[120px] rounded-full pointer-events-none" />
+      
+      <Card className="w-full max-w-md border-border/40 bg-background/85 backdrop-blur-xl shadow-2xl relative z-10">
+        <CardHeader className="space-y-4 pt-8">
+          <div className="flex justify-center">
+            <Link to="/">
+              <img src={logoFinanceit} alt="Financeit" className="h-16 w-auto" />
+            </Link>
           </div>
-          <CardTitle className="text-2xl text-center">Área do Cliente & Colaborador</CardTitle>
-          <CardDescription className="text-center">
-            Entre com suas credenciais para acessar a plataforma
-          </CardDescription>
+          <div className="space-y-1">
+            <CardTitle className="text-2xl text-center font-bold tracking-tight">Acesso à Plataforma</CardTitle>
+            <CardDescription className="text-center">
+              Entre com suas credenciais para continuar
+            </CardDescription>
+          </div>
         </CardHeader>
         <form onSubmit={handleLogin}>
           <CardContent className="grid gap-4">
@@ -75,6 +84,7 @@ export default function Login() {
                 id="email"
                 type="email"
                 placeholder="nome@financeit.com.br"
+                className="bg-background/50 border-border/50 focus:border-primary/50 transition-colors"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -83,26 +93,32 @@ export default function Login() {
             <div className="grid gap-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Senha</Label>
-                <Link to="/forgot-password" title="Esqueceu a senha?" className="text-xs text-primary hover:underline">
+                <Link to="/forgot-password" title="Esqueceu a senha?" className="text-xs text-primary hover:text-primary/80 transition-colors font-medium">
                   Esqueceu a senha?
                 </Link>
               </div>
               <Input
                 id="password"
                 type="password"
+                className="bg-background/50 border-border/50 focus:border-primary/50 transition-colors"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col gap-4">
-            <Button className="w-full bg-[#db23e7] hover:bg-[#c11ecb]" type="submit" disabled={loading}>
+          <CardFooter className="flex flex-col gap-6 pb-8">
+            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/20 h-11 transition-all" type="submit" disabled={loading}>
               {loading ? "Entrando..." : "Entrar"}
             </Button>
-            <p className="text-xs text-center text-muted-foreground">
-              Acesso restrito. Todas as atividades são monitoradas.
-            </p>
+            <div className="text-center space-y-2">
+              <p className="text-xs text-muted-foreground max-w-[280px] mx-auto leading-relaxed">
+                Acesso restrito a colaboradores e clientes autorizados. Todas as atividades são monitoradas.
+              </p>
+              <Link to="/" className="text-xs text-primary hover:underline block pt-2">
+                Voltar para o site
+              </Link>
+            </div>
           </CardFooter>
         </form>
       </Card>
