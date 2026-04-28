@@ -16,10 +16,12 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  
   const [showForgotModal, setShowForgotModal] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
   const [resetLoading, setResetLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -49,13 +51,9 @@ export default function Login() {
           localStorage.removeItem("rememberedEmail");
         }
 
-        // Run audit logging in background
         void logAction("login_success", { email: email.trim() });
-
-        // Force a brief delay to ensure session is stored in localStorage
         await new Promise(resolve => setTimeout(resolve, 500));
 
-        // Get fresh profile data
         const { data: profile, error: profileError } = await supabase
           .from('profiles')
           .select('password_reset_required, role')
@@ -94,6 +92,8 @@ export default function Login() {
     } finally {
       setLoading(false);
     }
+  };
+
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!resetEmail) return;
@@ -194,9 +194,16 @@ export default function Login() {
                     Lembrar-me
                   </Label>
                 </div>
-                <Link to="/contato" className="text-xs text-white font-bold hover:underline underline-offset-4">
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setResetEmail(email);
+                    setShowForgotModal(true);
+                  }}
+                  className="text-xs text-white font-bold hover:underline underline-offset-4"
+                >
                   Esqueci a senha
-                </Link>
+                </button>
               </div>
             </CardContent>
 
@@ -236,6 +243,80 @@ export default function Login() {
           © {new Date().getFullYear()} FinanceIT Intelligence System
         </p>
       </div>
+
+      {/* Forgot Password Modal */}
+      <Dialog open={showForgotModal} onOpenChange={setShowForgotModal}>
+        <DialogContent className="border-white/10 bg-slate-900/95 backdrop-blur-xl text-white rounded-3xl max-w-[400px]">
+          <DialogHeader className="space-y-3">
+            <DialogTitle className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+              Recuperar Senha
+            </DialogTitle>
+            <DialogDescription className="text-white/60 font-medium">
+              Informe seu e-mail corporativo para receber as instruções de recuperação.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleForgotPassword} className="space-y-6 mt-4">
+            <div className="space-y-2">
+              <Label htmlFor="reset-email" className="text-xs font-black uppercase tracking-widest text-white ml-1">
+                E-mail Corporativo
+              </Label>
+              <Input
+                id="reset-email"
+                type="email"
+                placeholder="exemplo@financeit.com.br"
+                className="bg-white/10 border-white/20 text-white placeholder:text-slate-500 focus:bg-white/20 focus:ring-primary/40 focus:border-primary/40 transition-all h-14 rounded-2xl pl-4"
+                value={resetEmail}
+                onChange={(e) => setResetEmail(e.target.value)}
+                required
+              />
+            </div>
+            <Button 
+              type="submit" 
+              className="w-full bg-primary hover:bg-primary/90 text-white font-black h-14 rounded-2xl shadow-[0_10px_20px_rgba(var(--primary),0.3)] transition-all"
+              disabled={resetLoading}
+            >
+              {resetLoading ? (
+                <div className="flex items-center gap-3">
+                  <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  <span>Enviando...</span>
+                </div>
+              ) : (
+                "Enviar Link de Recuperação"
+              )}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Success Modal */}
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="border-white/10 bg-slate-900/95 backdrop-blur-xl text-white rounded-3xl max-w-[400px] text-center p-10">
+          <div className="flex justify-center mb-6">
+            <div className="h-20 w-20 rounded-full bg-primary/20 flex items-center justify-center animate-bounce">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          </div>
+          <DialogHeader className="space-y-3">
+            <DialogTitle className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+              E-mail Enviado!
+            </DialogTitle>
+            <DialogDescription className="text-white/70 font-medium text-base leading-relaxed">
+              Enviamos um link de recuperação para <span className="text-white font-bold">{resetEmail}</span>. 
+              Por favor, verifique sua caixa de entrada e spam.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-8">
+            <Button 
+              onClick={() => setShowSuccessModal(false)}
+              className="w-full bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold h-14 rounded-2xl transition-all"
+            >
+              Entendi
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
