@@ -136,16 +136,36 @@ export default function Timesheet() {
   };
 
   const fetchEntries = async () => {
-    const start = startOfMonth(currentMonth).toISOString();
-    const end = endOfMonth(currentMonth).toISOString();
+    if (!selectedClientId) return;
 
     try {
+      const client = clients.find(c => c.id === selectedClientId);
+      let start, end;
+
+      if (client?.reporting_period_type === 'custom' && client?.start_day_of_month) {
+        // Custom period: from start_day of current month to (start_day - 1) of next month
+        const startDay = client.start_day_of_month;
+        const currentYear = currentMonth.getFullYear();
+        const currentMonthIdx = currentMonth.getMonth();
+        
+        start = new Date(currentYear, currentMonthIdx, startDay);
+        // If the date is in the future for this month, maybe the user means the previous period?
+        // Actually, usually "April 2026" with start_day 21 means March 21 to April 20.
+        // Let's adjust to match common business logic: the period ending in the selected month.
+        end = new Date(currentYear, currentMonthIdx, startDay - 1, 23, 59, 59);
+        start = new Date(currentYear, currentMonthIdx - 1, startDay);
+      } else {
+        // Default: calendar month
+        start = startOfMonth(currentMonth);
+        end = endOfMonth(currentMonth);
+      }
+
       const { data, error } = await supabase
         .from("time_entries")
         .select("*")
         .eq("client_id", selectedClientId)
-        .gte("start_time", start)
-        .lte("start_time", end)
+        .gte("start_time", start.toISOString())
+        .lte("start_time", end.toISOString())
         .order("start_time", { ascending: false });
 
       if (error) throw error;
@@ -347,7 +367,18 @@ export default function Timesheet() {
              <div>
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-tighter">Período Selecionado</p>
                 <p className="text-sm font-bold text-slate-900 capitalize">
-                  {format(currentMonth, 'MMMM yyyy', { locale: ptBR })}
+                  {(() => {
+                    const client = clients.find(c => c.id === selectedClientId);
+                    if (client?.reporting_period_type === 'custom' && client?.start_day_of_month) {
+                      const startDay = client.start_day_of_month;
+                      const currentYear = currentMonth.getFullYear();
+                      const currentMonthIdx = currentMonth.getMonth();
+                      const start = new Date(currentYear, currentMonthIdx - 1, startDay);
+                      const end = new Date(currentYear, currentMonthIdx, startDay - 1);
+                      return `${format(start, 'dd/MM')} a ${format(end, 'dd/MM/yyyy')}`;
+                    }
+                    return format(currentMonth, 'MMMM yyyy', { locale: ptBR });
+                  })()}
                 </p>
              </div>
           </div>
