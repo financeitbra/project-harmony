@@ -49,9 +49,9 @@ const App = () => {
   console.log("App.tsx: App component rendering...");
   
   return (
-    <AppErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <AppErrorBoundary>
           <BrowserRouter>
             <Toaster />
             <Sonner />
@@ -93,9 +93,9 @@ const App = () => {
             <WhatsAppButton />
             <CookieBanner />
           </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </AppErrorBoundary>
+        </AppErrorBoundary>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 };
 
