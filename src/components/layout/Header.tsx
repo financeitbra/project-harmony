@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Target, Users, BarChart3, Network, Receipt, PieChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoFinanceit from "@/assets/logo-financeit.png";
+import logoFinanceit from "../../assets/logo-financeit.png";
 
 const navItems = [
   { label: "Quem Somos", path: "/quem-somos" },
