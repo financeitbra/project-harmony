@@ -14,10 +14,10 @@ import PublicLayout from "./components/layout/PublicLayout";
 
 // Standard pages - Absolute direct imports
 import Index from "./pages/Index";
+import LoginPage from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 // Lazy loaded pages
-const LoginPage = lazy(() => import("./pages/Login"));
-const Dashboard = lazy(() => import("./pages/Dashboard"));
 const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
 const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
 const ProntidaoIAPage = lazy(() => import("./pages/ProntidaoIAPage"));
