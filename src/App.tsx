@@ -26,6 +26,7 @@ import HuntingInfoPage from "./pages/HuntingInfoPage";
 import AllocationInfoPage from "./pages/AllocationInfoPage";
 import PoliticaPrivacidadePage from "./pages/PoliticaPrivacidadePage";
 import AvalaraPage from "./pages/AvalaraPage";
+import QlikPage from "./pages/QlikPage";
 import NotFound from "./pages/NotFound";
 
 // Lazy loading for other pages to reduce initial bundle size
@@ -38,7 +39,7 @@ const AvaliacaoResultadoPage = lazy(() => import("./pages/AvaliacaoResultadoPage
 const DiagnosticoIAPage = lazy(() => import("./pages/DiagnosticoIAPage"));
 // const AvalaraPage = lazy(() => import("./pages/AvalaraPage"));
 const PPOVPage = lazy(() => import("./pages/PPOVPage"));
-const QlikPage = lazy(() => import("./pages/QlikPage"));
+// const QlikPage = lazy(() => import("./pages/QlikPage"));
 const DenodoPage = lazy(() => import("./pages/DenodoPage"));
 const EstruturacaoDadosPage = lazy(() => import("./pages/EstruturacaoDadosPage"));
 const AvalieProntidaoPage = lazy(() => import("./pages/AvalieProntidaoPage"));
