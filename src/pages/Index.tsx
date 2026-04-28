@@ -22,17 +22,19 @@ const Index = () => {
         keywords="inteligência de negócio, dados, governança, IA, prontidão IA, Qlik, Denodo, Avalara"
       />
 
-      <HeroSection />
-      <AIReadinessSection />
-      <SolutionsSection />
-      <VanguardSection />
-      <AIReadinessHighlight />
-      <TalentsSection />
-      <SpecializedSection />
-      <DifferentialsSection />
-      <InstitutionalProofSection />
-      <PartnersSection />
-      <CTASection />
+      <Suspense fallback={<div className="h-96 w-full animate-pulse bg-slate-900/10" />}>
+        <HeroSection />
+        <AIReadinessSection />
+        <SolutionsSection />
+        <VanguardSection />
+        <AIReadinessHighlight />
+        <TalentsSection />
+        <SpecializedSection />
+        <DifferentialsSection />
+        <InstitutionalProofSection />
+        <PartnersSection />
+        <CTASection />
+      </Suspense>
     </>
   );
 };
