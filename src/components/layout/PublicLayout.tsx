@@ -97,8 +97,8 @@ const PublicLayout = () => {
     description: "Inteligência de Negócio, Dados e IA"
   };
 
-  // Auth pages don't show header/footer
-  const isAuthPage = pathname === "/login" || pathname === "/reset-password";
+  // Auth and Dashboard pages don't show header/footer
+  const isAuthPage = pathname === "/login" || pathname === "/reset-password" || pathname === "/dashboard";
 
   if (isAuthPage) {
     return (
