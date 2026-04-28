@@ -148,7 +148,9 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="text-sm font-bold text-white leading-none">{profile?.full_name || "Usuário"}</p>
-                <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-black">{profile?.role}</p>
+                <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-black">
+                  {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
+                </p>
               </div>
             </div>
             <Button variant="ghost" className="w-full justify-start text-slate-300 hover:text-white hover:bg-slate-800 py-3">
