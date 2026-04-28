@@ -97,20 +97,7 @@ const PublicLayout = () => {
     description: "Inteligência de Negócio, Dados e IA"
   };
 
-  // Auth pages don't show header/footer
-  const isAuthPage = pathname === "/login";
-
-  if (isAuthPage) {
-    return (
-      <div className="flex min-h-screen flex-col">
-        <SEO title={meta.title} description={meta.description} />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-      </div>
-    );
-  }
-
+  // PublicLayout handles the common header/footer structure
   return (
     <div className="flex min-h-screen flex-col">
       <SEO 
