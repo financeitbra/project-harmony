@@ -1,4 +1,3 @@
-import { lazy, Suspense } from "react";
 import SEO from "@/components/SEO";
 
 // Disable lazy loading for the home page sections to prevent blank screens during hydration

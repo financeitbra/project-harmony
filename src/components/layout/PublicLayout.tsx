@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import SEO from "../SEO";
+import SEO from "@/components/SEO";
 
 type PageMeta = { title: string; description: string; keywords?: string };
 
