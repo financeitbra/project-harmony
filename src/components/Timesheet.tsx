@@ -204,6 +204,7 @@ export default function Timesheet() {
       toast({
         title: "Sucesso!",
         description: "Horas lançadas com sucesso.",
+        duration: 2000,
       });
 
       setDescription("");
