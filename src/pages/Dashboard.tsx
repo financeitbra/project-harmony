@@ -109,7 +109,9 @@ export default function Dashboard() {
                     <TabsTrigger value="logs">Logs do Sistema</TabsTrigger>
                   </TabsList>
                   <TabsContent value="users" className="mt-0">
-                    <AdminUserManagement />
+                    <Suspense fallback={<div className="h-40 w-full animate-pulse bg-slate-100 rounded-lg" />}>
+                      <AdminUserManagement />
+                    </Suspense>
                   </TabsContent>
                   <TabsContent value="logs" className="mt-0">
                     <div className="flex flex-col items-center justify-center py-12 text-center">
