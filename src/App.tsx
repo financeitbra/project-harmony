@@ -29,6 +29,7 @@ import AvalaraPage from "./pages/AvalaraPage";
 import QlikPage from "./pages/QlikPage";
 import DenodoPage from "./pages/DenodoPage";
 import EstruturacaoDadosPage from "./pages/EstruturacaoDadosPage";
+import AvalieProntidaoPage from "./pages/AvalieProntidaoPage";
 import NotFound from "./pages/NotFound";
 
 // Lazy loading for other pages to reduce initial bundle size
@@ -44,7 +45,7 @@ const PPOVPage = lazy(() => import("./pages/PPOVPage"));
 // const QlikPage = lazy(() => import("./pages/QlikPage"));
 // const DenodoPage = lazy(() => import("./pages/DenodoPage"));
 // const EstruturacaoDadosPage = lazy(() => import("./pages/EstruturacaoDadosPage"));
-const AvalieProntidaoPage = lazy(() => import("./pages/AvalieProntidaoPage"));
+// const AvalieProntidaoPage = lazy(() => import("./pages/AvalieProntidaoPage"));
 // const ContatoPage = lazy(() => import("./pages/ContatoPage"));
 // const InteligenciaNegocioPage = lazy(() => import("./pages/InteligenciaNegocioPage"));
 // const HuntingInfoPage = lazy(() => import("./pages/HuntingInfoPage"));
