@@ -76,6 +76,8 @@ export default function AdminUserManagement() {
     setCreating(true);
 
     try {
+      // In Lovable Cloud/Supabase, signUp will create a new user.
+      // Note: By default, users might need to confirm email unless configured otherwise.
       const { data, error: authError } = await supabase.auth.signUp({
         email: newEmail,
         password: newPassword,
@@ -115,7 +117,7 @@ export default function AdminUserManagement() {
       case "admin": return <Shield className="h-4 w-4 text-primary" />;
       case "internal": return <User className="h-4 w-4 text-blue-500" />;
       case "pr": return <Globe className="h-4 w-4 text-green-500" />;
-      default: return null;
+      default: return <User className="h-4 w-4" />;
     }
   };
 
@@ -124,7 +126,7 @@ export default function AdminUserManagement() {
       case "admin": return "Administrador";
       case "internal": return "Colaborador Interno";
       case "pr": return "Colaborador PR";
-      default: return role;
+      default: return role || "N/A";
     }
   };
 
@@ -139,7 +141,7 @@ export default function AdminUserManagement() {
               Cadastrar Colaborador
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Novo Colaborador</DialogTitle>
               <DialogDescription>
@@ -188,9 +190,9 @@ export default function AdminUserManagement() {
                   </SelectContent>
                 </Select>
               </div>
-              <DialogFooter>
-                <Button type="submit" disabled={creating}>
-                  {creating ? "Cadastrando..." : "Cadastrar Colaborador"}
+              <DialogFooter className="pt-4">
+                <Button type="submit" disabled={creating} className="w-full">
+                  {creating ? "Cadastrando..." : "Confirmar Cadastro"}
                 </Button>
               </DialogFooter>
             </form>
@@ -198,37 +200,46 @@ export default function AdminUserManagement() {
         </Dialog>
       </div>
 
-      <div className="border rounded-md">
+      <div className="border rounded-md overflow-hidden">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-muted/50">
             <TableRow>
-              <TableHead>Nome</TableHead>
-              <TableHead>E-mail</TableHead>
-              <TableHead>Perfil</TableHead>
-              <TableHead>Data de Cadastro</TableHead>
+              <TableHead className="font-semibold">Nome</TableHead>
+              <TableHead className="font-semibold">E-mail</TableHead>
+              <TableHead className="font-semibold">Perfil</TableHead>
+              <TableHead className="font-semibold">Cadastro</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell colSpan={4} className="text-center py-8">Carregando...</TableCell>
+                <TableCell colSpan={4} className="text-center py-12">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                    <span className="text-sm text-muted-foreground">Carregando lista...</span>
+                  </div>
+                </TableCell>
               </TableRow>
             ) : users.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={4} className="text-center py-8 text-muted-foreground">Nenhum colaborador encontrado.</TableCell>
+                <TableCell colSpan={4} className="text-center py-12 text-muted-foreground italic">
+                  Nenhum colaborador encontrado.
+                </TableCell>
               </TableRow>
             ) : (
               users.map((user) => (
-                <TableRow key={user.id}>
+                <TableRow key={user.id} className="hover:bg-muted/30 transition-colors">
                   <TableCell className="font-medium">{user.full_name || "N/A"}</TableCell>
-                  <TableCell>{user.email || user.id}</TableCell>
+                  <TableCell className="text-sm">{user.email || "N/A"}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       {getRoleIcon(user.role)}
-                      <span>{getRoleLabel(user.role)}</span>
+                      <span className="text-xs">{getRoleLabel(user.role)}</span>
                     </div>
                   </TableCell>
-                  <TableCell>{new Date(user.created_at).toLocaleDateString()}</TableCell>
+                  <TableCell className="text-xs text-muted-foreground">
+                    {user.created_at ? new Date(user.created_at).toLocaleDateString() : "N/A"}
+                  </TableCell>
                 </TableRow>
               ))
             )}
