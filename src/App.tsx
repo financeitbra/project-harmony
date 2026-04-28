@@ -35,6 +35,15 @@ const LoginPage = lazy(() => import("./pages/Login"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const ResetPasswordPage = lazy(() => import("./pages/ResetPassword"));
 
+const RouteFallback = () => (
+  <div className="flex min-h-screen items-center justify-center bg-[#0F172A] text-white">
+    <div className="flex flex-col items-center gap-4">
+      <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      <p className="text-sm font-medium">Carregando plataforma...</p>
+    </div>
+  </div>
+);
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
