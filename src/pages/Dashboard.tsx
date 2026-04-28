@@ -16,13 +16,16 @@ import {
   Bell,
   ShieldCheck,
   Globe,
-  UserCircle
+  UserCircle,
+  Menu,
+  X
 } from "lucide-react";
 import AdminUserManagement from "@/components/admin/AdminUserManagement";
 
 export default function Dashboard() {
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -94,12 +97,12 @@ export default function Dashboard() {
       {/* Sidebar/Navigation */}
       <nav className="bg-slate-900 text-white w-full border-b border-slate-800 sticky top-0 z-50">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 sm:gap-8">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <LayoutDashboard className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-lg tracking-tight hidden sm:inline-block">FinanceIT</span>
+              <span className="font-bold text-lg tracking-tight">FinanceIT</span>
             </div>
             
             <div className="hidden md:flex items-center gap-1">
@@ -115,7 +118,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <div className="hidden sm:flex flex-col items-end mr-2">
               <span className="text-sm font-medium">{profile?.full_name || profile?.email}</span>
               <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">
@@ -125,11 +128,45 @@ export default function Dashboard() {
             <div className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-primary font-bold shadow-inner">
               {profile?.full_name?.charAt(0) || profile?.email?.charAt(0).toUpperCase()}
             </div>
-            <Button variant="ghost" size="icon" onClick={handleLogout} title="Sair" className="text-slate-400 hover:text-white hover:bg-slate-800 rounded-full">
-              <LogOut className="w-5 h-5" />
-            </Button>
+            <div className="flex items-center gap-1">
+              <Button variant="ghost" size="icon" onClick={handleLogout} title="Sair" className="hidden sm:flex text-slate-400 hover:text-white hover:bg-slate-800 rounded-full">
+                <LogOut className="w-5 h-5" />
+              </Button>
+              <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-slate-300">
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </Button>
+            </div>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-slate-900 border-t border-slate-800 p-4 space-y-2 animate-in slide-in-from-top duration-200">
+            <div className="flex items-center gap-3 px-2 py-3 border-b border-slate-800 mb-2">
+               <div className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-primary font-bold">
+                {profile?.full_name?.charAt(0) || profile?.email?.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <p className="text-sm font-bold text-white leading-none">{profile?.full_name || "Usuário"}</p>
+                <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest font-black">{profile?.role}</p>
+              </div>
+            </div>
+            <Button variant="ghost" className="w-full justify-start text-slate-300 hover:text-white hover:bg-slate-800 py-3">
+              <LayoutDashboard className="w-4 h-4 mr-3" /> Dashboard
+            </Button>
+            <Button variant="ghost" className="w-full justify-start text-slate-300 hover:text-white hover:bg-slate-800 py-3">
+              <Briefcase className="w-4 h-4 mr-3" /> Projetos
+            </Button>
+            <Button variant="ghost" className="w-full justify-start text-slate-300 hover:text-white hover:bg-slate-800 py-3">
+              <FileText className="w-4 h-4 mr-3" /> Relatórios
+            </Button>
+            <div className="pt-4 mt-2 border-t border-slate-800">
+              <Button variant="destructive" className="w-full justify-start py-3" onClick={handleLogout}>
+                <LogOut className="w-4 h-4 mr-3" /> Sair da conta
+              </Button>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Main Content */}
