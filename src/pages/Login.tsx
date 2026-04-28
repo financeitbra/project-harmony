@@ -79,7 +79,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0F172A] px-4 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-background/85 backdrop-blur-xl px-4 relative overflow-hidden">
       {/* Background visual enhancements */}
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/10 blur-[120px] rounded-full pointer-events-none" />
@@ -115,9 +115,6 @@ export default function Login() {
             <div className="grid gap-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password" title="Sua senha de acesso" className="text-slate-300">Senha</Label>
-                <Link to="/contato" className="text-xs text-primary hover:text-cyan-400 transition-colors">
-                  Precisa de ajuda?
-                </Link>
               </div>
               <Input
                 id="password"
