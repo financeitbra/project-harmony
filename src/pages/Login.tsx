@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { logAction } from "@/lib/audit";
 import logoFinanceit from "@/assets/logo-financeit.png";
@@ -13,8 +14,17 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("rememberedEmail");
+    if (savedEmail) {
+      setEmail(savedEmail);
+      setRememberMe(true);
+    }
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +38,12 @@ export default function Login() {
       if (error) throw error;
 
       if (data.user) {
+        if (rememberMe) {
+          localStorage.setItem("rememberedEmail", email.trim());
+        } else {
+          localStorage.removeItem("rememberedEmail");
+        }
+
         // Run audit logging in background
         void logAction("login_success", { email: email.trim() });
 
@@ -97,7 +113,7 @@ export default function Login() {
             <CardTitle className="text-3xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
               Bem-vindo
             </CardTitle>
-            <CardDescription className="text-slate-400 font-medium">
+            <CardDescription className="text-white font-medium opacity-80">
               Acesse sua conta estratégica FinanceIT
             </CardDescription>
           </CardHeader>
@@ -105,7 +121,7 @@ export default function Login() {
           <form onSubmit={handleLogin}>
             <CardContent className="space-y-5 px-8">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">
+                <Label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-white ml-1">
                   E-mail Corporativo
                 </Label>
                 <div className="relative group">
@@ -122,7 +138,7 @@ export default function Login() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" title="Sua senha de acesso" className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">
+                <Label htmlFor="password" title="Sua senha de acesso" className="text-xs font-black uppercase tracking-widest text-white ml-1">
                   Senha de Acesso
                 </Label>
                 <Input
@@ -138,10 +154,17 @@ export default function Login() {
 
               <div className="flex items-center justify-between pt-1">
                 <div className="flex items-center space-x-2">
-                  <div className="w-4 h-4 rounded border border-white/20 bg-white/5" />
-                  <span className="text-xs text-slate-400 font-medium">Lembrar-me</span>
+                  <Checkbox 
+                    id="remember" 
+                    checked={rememberMe}
+                    onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                    className="border-white/20 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                  />
+                  <Label htmlFor="remember" className="text-xs text-white font-medium cursor-pointer">
+                    Lembrar-me
+                  </Label>
                 </div>
-                <Link to="/contato" className="text-xs text-primary font-bold hover:underline underline-offset-4">
+                <Link to="/contato" className="text-xs text-white font-bold hover:underline underline-offset-4">
                   Esqueci a senha
                 </Link>
               </div>
@@ -166,12 +189,12 @@ export default function Login() {
               </Button>
 
               <div className="text-center space-y-4">
-                <p className="text-[10px] text-slate-500 max-w-[280px] mx-auto leading-relaxed font-medium">
+                <p className="text-[10px] text-white opacity-60 max-w-[280px] mx-auto leading-relaxed font-medium">
                   ACESSO RESTRITO A COLABORADORES.
                   O MONITORAMENTO É ATIVO E CONSTANTE.
                 </p>
-                <Link to="/" className="inline-flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-all font-bold group">
-                  <div className="w-5 h-px bg-slate-700 group-hover:w-8 transition-all" />
+                <Link to="/" className="inline-flex items-center gap-2 text-xs text-white opacity-80 hover:opacity-100 transition-all font-bold group">
+                  <div className="w-5 h-px bg-white/20 group-hover:w-8 transition-all" />
                   Voltar ao Portal Público
                 </Link>
               </div>
@@ -179,7 +202,7 @@ export default function Login() {
           </form>
         </Card>
         
-        <p className="text-center mt-8 text-slate-600 text-[10px] font-bold tracking-widest uppercase">
+        <p className="text-center mt-8 text-white opacity-40 text-[10px] font-bold tracking-widest uppercase">
           © {new Date().getFullYear()} FinanceIT Intelligence System
         </p>
       </div>
