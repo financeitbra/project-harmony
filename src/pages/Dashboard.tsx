@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import AdminUserManagement from "@/components/admin/AdminUserManagement";
+import { lazy, Suspense } from "react";
+const AdminUserManagement = lazy(() => import("@/components/admin/AdminUserManagement"));
 
 export default function Dashboard() {
   const [profile, setProfile] = useState<any>(null);
