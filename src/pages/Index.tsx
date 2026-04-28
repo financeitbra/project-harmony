@@ -1,17 +1,18 @@
 import { lazy, Suspense } from "react";
 import SEO from "@/components/SEO";
 
-const HeroSection = lazy(() => import("@/components/sections/HeroSection"));
-const AIReadinessSection = lazy(() => import("@/components/sections/AIReadinessSection"));
-const SolutionsSection = lazy(() => import("@/components/sections/SolutionsSection"));
-const VanguardSection = lazy(() => import("@/components/sections/VanguardSection"));
-const AIReadinessHighlight = lazy(() => import("@/components/sections/AIReadinessHighlight"));
-const TalentsSection = lazy(() => import("@/components/sections/TalentsSection"));
-const SpecializedSection = lazy(() => import("@/components/sections/SpecializedSection"));
-const DifferentialsSection = lazy(() => import("@/components/sections/DifferentialsSection"));
-const InstitutionalProofSection = lazy(() => import("@/components/sections/InstitutionalProofSection"));
-const PartnersSection = lazy(() => import("@/components/sections/PartnersSection"));
-const CTASection = lazy(() => import("@/components/sections/CTASection"));
+// Disable lazy loading for the home page sections to prevent blank screens during hydration
+import HeroSection from "@/components/sections/HeroSection";
+import AIReadinessSection from "@/components/sections/AIReadinessSection";
+import SolutionsSection from "@/components/sections/SolutionsSection";
+import VanguardSection from "@/components/sections/VanguardSection";
+import AIReadinessHighlight from "@/components/sections/AIReadinessHighlight";
+import TalentsSection from "@/components/sections/TalentsSection";
+import SpecializedSection from "@/components/sections/SpecializedSection";
+import DifferentialsSection from "@/components/sections/DifferentialsSection";
+import InstitutionalProofSection from "@/components/sections/InstitutionalProofSection";
+import PartnersSection from "@/components/sections/PartnersSection";
+import CTASection from "@/components/sections/CTASection";
 
 const Index = () => {
   return (
@@ -22,19 +23,17 @@ const Index = () => {
         keywords="inteligência de negócio, dados, governança, IA, prontidão IA, Qlik, Denodo, Avalara"
       />
 
-      <Suspense fallback={<div className="h-96 w-full animate-pulse bg-slate-900/10" />}>
-        <HeroSection />
-        <AIReadinessSection />
-        <SolutionsSection />
-        <VanguardSection />
-        <AIReadinessHighlight />
-        <TalentsSection />
-        <SpecializedSection />
-        <DifferentialsSection />
-        <InstitutionalProofSection />
-        <PartnersSection />
-        <CTASection />
-      </Suspense>
+      <HeroSection />
+      <AIReadinessSection />
+      <SolutionsSection />
+      <VanguardSection />
+      <AIReadinessHighlight />
+      <TalentsSection />
+      <SpecializedSection />
+      <DifferentialsSection />
+      <InstitutionalProofSection />
+      <PartnersSection />
+      <CTASection />
     </>
   );
 };
