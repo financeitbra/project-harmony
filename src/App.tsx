@@ -9,38 +9,39 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 
-// Immediate imports to ensure the core layout is always available
-import PublicLayout from "./components/layout/PublicLayout";
+// Load standard pages immediately to prevent initial screen blankness
 import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import QuemSomosPage from "./pages/QuemSomosPage";
+import SolucoesPage from "./pages/SolucoesPage";
+import ProntidaoIAPage from "./pages/ProntidaoIAPage";
+import AvaliacaoIAPage from "./pages/AvaliacaoIAPage";
+import AvaliacaoResultadoPage from "./pages/AvaliacaoResultadoPage";
+import DiagnosticoIAPage from "./pages/DiagnosticoIAPage";
+import AvalaraPage from "./pages/AvalaraPage";
+import PPOVPage from "./pages/PPOVPage";
+import QlikPage from "./pages/QlikPage";
+import DenodoPage from "./pages/DenodoPage";
+import EstruturacaoDadosPage from "./pages/EstruturacaoDadosPage";
+import AvalieProntidaoPage from "./pages/AvalieProntidaoPage";
+import ContatoPage from "./pages/ContatoPage";
+import InteligenciaNegocioPage from "./pages/InteligenciaNegocioPage";
+import HuntingInfoPage from "./pages/HuntingInfoPage";
+import AllocationInfoPage from "./pages/AllocationInfoPage";
+import PoliticaPrivacidadePage from "./pages/PoliticaPrivacidadePage";
+import PortfolioPage from "./pages/PortfolioPage";
+import NotFound from "./pages/NotFound";
+import ResetPasswordPage from "./pages/ResetPassword";
 
-const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
-const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
-const ProntidaoIAPage = lazy(() => import("./pages/ProntidaoIAPage"));
-const AvaliacaoIAPage = lazy(() => import("./pages/AvaliacaoIAPage"));
-const AvaliacaoResultadoPage = lazy(() => import("./pages/AvaliacaoResultadoPage"));
-const DiagnosticoIAPage = lazy(() => import("./pages/DiagnosticoIAPage"));
-const AvalaraPage = lazy(() => import("./pages/AvalaraPage"));
-const PPOVPage = lazy(() => import("./pages/PPOVPage"));
-const QlikPage = lazy(() => import("./pages/QlikPage"));
-const DenodoPage = lazy(() => import("./pages/DenodoPage"));
-const EstruturacaoDadosPage = lazy(() => import("./pages/EstruturacaoDadosPage"));
-const AvalieProntidaoPage = lazy(() => import("./pages/AvalieProntidaoPage"));
-const ContatoPage = lazy(() => import("./pages/ContatoPage"));
-const InteligenciaNegocioPage = lazy(() => import("./pages/InteligenciaNegocioPage"));
-const HuntingInfoPage = lazy(() => import("./pages/HuntingInfoPage"));
-const AllocationInfoPage = lazy(() => import("./pages/AllocationInfoPage"));
-const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
-const PortfolioPage = lazy(() => import("./pages/PortfolioPage"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const ResetPasswordPage = lazy(() => import("./pages/ResetPassword"));
+// Core layout
+import PublicLayout from "./components/layout/PublicLayout";
 
 const RouteFallback = () => (
-  <div className="flex min-h-screen items-center justify-center bg-[#0F172A] text-white">
+  <div className="flex min-h-screen items-center justify-center bg-[#0F172A] text-white font-sans">
     <div className="flex flex-col items-center gap-4">
       <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      <p className="text-sm font-medium">Carregando plataforma...</p>
+      <p className="text-sm font-medium tracking-wide">Carregando plataforma...</p>
     </div>
   </div>
 );
