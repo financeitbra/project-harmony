@@ -4,6 +4,14 @@ import App from "./App";
 import "./index.css";
 
 console.log("Main.tsx: Application starting at", new Date().toISOString());
+window.addEventListener('error', (event) => {
+  console.error('GLOBAL ERROR DETECTED:', event.error);
+  const rootEl = document.getElementById("root");
+  if (rootEl && rootEl.innerHTML.length < 50) {
+    rootEl.innerHTML = `<div style="padding: 20px; background: #900; color: white;">Global Error: ${event.message}</div>`;
+  }
+});
+
 
 const container = document.getElementById("root");
 if (!container) {

@@ -279,7 +279,7 @@ export default function Dashboard() {
                             ? 'bg-blue-100 text-blue-700' 
                             : 'bg-emerald-100 text-emerald-700'
                         }`}>
-                          {profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
+                          {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
                         </span>
                         <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-widest">
                           Ativo
@@ -338,7 +338,7 @@ export default function Dashboard() {
                       <p className="text-lg font-bold text-slate-900">Módulos em Preparação</p>
                       <p className="text-slate-500 mt-2 leading-relaxed">
                         Estamos customizando seu ambiente com base no seu perfil de <span className="text-primary font-bold">
-                        {profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}</span>. 
+                        {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}</span>. 
                         Em breve, dashboards e documentos estarão disponíveis.
                       </p>
                     </div>
