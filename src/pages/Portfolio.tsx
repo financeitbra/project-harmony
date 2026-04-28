@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
-import { generatePortfolioPDF } from "@/lib/portfolio-pdf";
+// import { generatePortfolioPDF } from "@/lib/portfolio-pdf";
 
 type Caso = {
   icon: React.ComponentType<{ className?: string }>;
@@ -300,7 +300,7 @@ const casos: Caso[] = [
   },
 ];
 
-const PortfolioPage = () => {
+export default function PortfolioPage() {
   return (
     <div className="bg-background">
       <SEO
@@ -602,7 +602,7 @@ const PortfolioPage = () => {
               </p>
               <Button
                 size="lg"
-                onClick={() => generatePortfolioPDF(casos)}
+                onClick={() => console.log("PDF generation temporarily disabled")}
                 className="bg-primary-foreground text-[hsl(var(--navy))] hover:bg-primary-foreground/90"
               >
                 <Download className="h-4 w-4" />
@@ -616,4 +616,4 @@ const PortfolioPage = () => {
   );
 };
 
-export default PortfolioPage;
+
