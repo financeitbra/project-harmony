@@ -38,6 +38,33 @@ export type Database = {
         }
         Relationships: []
       }
+      clients: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          reporting_period_type: string
+          start_day_of_month: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          reporting_period_type?: string
+          start_day_of_month?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          reporting_period_type?: string
+          start_day_of_month?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -73,6 +100,93 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      time_entries: {
+        Row: {
+          activity_description: string
+          client_id: string
+          created_at: string
+          end_time: string
+          id: string
+          is_extra_hours: boolean | null
+          start_time: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          activity_description: string
+          client_id: string
+          created_at?: string
+          end_time: string
+          id?: string
+          is_extra_hours?: boolean | null
+          start_time: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          activity_description?: string
+          client_id?: string
+          created_at?: string
+          end_time?: string
+          id?: string
+          is_extra_hours?: boolean | null
+          start_time?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "time_entries_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "time_entries_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_clients: {
+        Row: {
+          client_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          client_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          client_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_clients_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_clients_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

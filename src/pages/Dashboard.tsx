@@ -18,9 +18,12 @@ import {
   Globe,
   UserCircle,
   Menu,
-  X
+  X,
+  Clock
 } from "lucide-react";
 import AdminUserManagement from "@/components/admin/AdminUserManagement";
+import Timesheet from "@/components/Timesheet";
+import AdminClientManagement from "@/components/admin/AdminClientManagement";
 
 export default function Dashboard() {
   const [profile, setProfile] = useState<any>(null);
@@ -212,29 +215,41 @@ export default function Dashboard() {
               </div>
 
               <Card className="border-slate-200 shadow-xl overflow-hidden rounded-2xl">
-                <Tabs defaultValue="users" className="w-full">
-                  <div className="bg-white border-b border-slate-100 px-6 pt-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <Tabs defaultValue="timesheet" className="w-full">
+                  <div className="bg-white border-b border-slate-100 px-6 pt-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     <div className="flex items-center gap-2 pb-4">
                       <div className="p-2 bg-slate-50 rounded-lg">
                         <Settings className="w-5 h-5 text-slate-600" />
                       </div>
                       <div>
-                        <CardTitle className="text-lg font-bold">Gerenciamento</CardTitle>
-                        <CardDescription className="text-xs">Controle de acessos e auditoria</CardDescription>
+                        <CardTitle className="text-lg font-bold">Administração</CardTitle>
+                        <CardDescription className="text-xs">Gestão de colaboradores, clientes e horas</CardDescription>
                       </div>
                     </div>
-                    <TabsList className="bg-slate-100/80 p-1 rounded-xl mb-4 h-auto">
-                      <TabsTrigger value="users" className="rounded-lg py-2 px-6 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                    <TabsList className="bg-slate-100/80 p-1 rounded-xl mb-4 h-auto flex-wrap">
+                      <TabsTrigger value="timesheet" className="rounded-lg py-2 px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                        <Clock className="w-4 h-4 mr-2" /> Meu Apontamento
+                      </TabsTrigger>
+                      <TabsTrigger value="users" className="rounded-lg py-2 px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm">
                         <Users className="w-4 h-4 mr-2" /> Colaboradores
                       </TabsTrigger>
-                      <TabsTrigger value="logs" className="rounded-lg py-2 px-6 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                      <TabsTrigger value="clients" className="rounded-lg py-2 px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                        <Briefcase className="w-4 h-4 mr-2" /> Clientes
+                      </TabsTrigger>
+                      <TabsTrigger value="logs" className="rounded-lg py-2 px-4 data-[state=active]:bg-white data-[state=active]:shadow-sm">
                         <History className="w-4 h-4 mr-2" /> Auditoria
                       </TabsTrigger>
                     </TabsList>
                   </div>
                   <CardContent className="p-6">
+                    <TabsContent value="timesheet" className="mt-0 focus-visible:outline-none">
+                      <Timesheet />
+                    </TabsContent>
                     <TabsContent value="users" className="mt-0 focus-visible:outline-none">
                       <AdminUserManagement />
+                    </TabsContent>
+                    <TabsContent value="clients" className="mt-0 focus-visible:outline-none">
+                      <AdminClientManagement />
                     </TabsContent>
                     <TabsContent value="logs" className="mt-0 focus-visible:outline-none">
                       <div className="flex flex-col items-center justify-center py-20 text-center space-y-4">
@@ -316,41 +331,16 @@ export default function Dashboard() {
 
               {/* User Main Content */}
               <div className="lg:col-span-2 space-y-6">
-                <Card className="border-slate-200 shadow-xl rounded-2xl overflow-hidden min-h-[400px] flex flex-col bg-white">
-                  <CardHeader className="border-b border-slate-50 flex flex-row items-center justify-between">
+                <Card className="border-slate-200 shadow-xl rounded-2xl overflow-hidden flex flex-col bg-white">
+                  <div className="bg-white border-b border-slate-50 px-6 py-4 flex items-center justify-between">
                     <div>
-                      <CardTitle className="text-xl font-black text-slate-900">Seu Workspace</CardTitle>
-                      <CardDescription className="text-xs">Acessos e ferramentas específicas</CardDescription>
+                      <CardTitle className="text-xl font-black text-slate-900">Apontamento de Horas</CardTitle>
+                      <CardDescription className="text-xs">Gerencie suas atividades e horas extras</CardDescription>
                     </div>
-                    <LayoutDashboard className="w-6 h-6 text-slate-200" />
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col items-center justify-center p-12 text-center space-y-6">
-                    <div className="relative">
-                      <div className="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center animate-pulse">
-                        <FileText className="w-10 h-10 text-slate-200" />
-                      </div>
-                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-primary rounded-xl flex items-center justify-center shadow-lg">
-                        <Settings className="w-4 h-4 text-white animate-spin-slow" />
-                      </div>
-                    </div>
-                    
-                    <div className="max-w-md">
-                      <p className="text-lg font-bold text-slate-900">Módulos em Preparação</p>
-                      <p className="text-slate-500 mt-2 leading-relaxed">
-                        Estamos customizando seu ambiente com base no seu perfil de <span className="text-primary font-bold">
-                        {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : profile?.role === 'pr' ? 'Colaborador PR' : 'Perfil não identificado'}</span>. 
-                        Em breve, dashboards e documentos estarão disponíveis.
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-sm pt-4">
-                      <Button variant="outline" className="rounded-xl border-slate-200 text-slate-600 hover:bg-slate-50">
-                        Ver Documentação
-                      </Button>
-                      <Button className="rounded-xl shadow-lg shadow-primary/20">
-                        Abrir Perfil
-                      </Button>
-                    </div>
+                    <Clock className="w-6 h-6 text-primary/20" />
+                  </div>
+                  <CardContent className="p-6">
+                    <Timesheet />
                   </CardContent>
                 </Card>
               </div>
@@ -358,20 +348,6 @@ export default function Dashboard() {
           )}
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="py-6 border-t border-slate-200 bg-white mt-auto">
-        <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-400">
-            © {new Date().getFullYear()} FinanceIT. Todos os direitos reservados.
-          </p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-xs text-slate-400 hover:text-primary transition-colors">Termos</a>
-            <a href="#" className="text-xs text-slate-400 hover:text-primary transition-colors">Privacidade</a>
-            <a href="#" className="text-xs text-slate-400 hover:text-primary transition-colors">Suporte</a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
