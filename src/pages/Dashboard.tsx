@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import AdminUserManagement from "@/components/admin/AdminUserManagement";
+import { supabase } from "../integrations/supabase/client";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+import { useToast } from "../hooks/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import AdminUserManagement from "../components/admin/AdminUserManagement";
 
 export default function Dashboard() {
   const [profile, setProfile] = useState<any>(null);
@@ -15,28 +15,33 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function getProfile() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        navigate("/login");
-        return;
-      }
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          navigate("/login");
+          return;
+        }
 
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single();
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
 
-      if (error) {
-        toast({
-          variant: "destructive",
-          title: "Erro ao carregar perfil",
-          description: error.message,
-        });
-      } else {
-        setProfile(data);
+        if (error) {
+          toast({
+            variant: "destructive",
+            title: "Erro ao carregar perfil",
+            description: error.message,
+          });
+        } else {
+          setProfile(data);
+        }
+      } catch (err: any) {
+        console.error("Dashboard profile error:", err);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
 
     getProfile();
