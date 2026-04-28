@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import { Toaster as Sonner } from "./components/ui/sonner";
 import { Toaster } from "./components/ui/toaster";
@@ -16,28 +16,26 @@ import PublicLayout from "./components/layout/PublicLayout";
 import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-
-// Lazy loaded pages
-const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
-const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
-const ProntidaoIAPage = lazy(() => import("./pages/ProntidaoIAPage"));
-const AvaliacaoIAPage = lazy(() => import("./pages/AvaliacaoIAPage"));
-const AvaliacaoResultadoPage = lazy(() => import("./pages/AvaliacaoResultadoPage"));
-const DiagnosticoIAPage = lazy(() => import("./pages/DiagnosticoIAPage"));
-const AvalaraPage = lazy(() => import("./pages/AvalaraPage"));
-const PPOVPage = lazy(() => import("./pages/PPOVPage"));
-const QlikPage = lazy(() => import("./pages/QlikPage"));
-const DenodoPage = lazy(() => import("./pages/DenodoPage"));
-const EstruturacaoDadosPage = lazy(() => import("./pages/EstruturacaoDadosPage"));
-const AvalieProntidaoPage = lazy(() => import("./pages/AvalieProntidaoPage"));
-const ContatoPage = lazy(() => import("./pages/ContatoPage"));
-const InteligenciaNegocioPage = lazy(() => import("./pages/InteligenciaNegocioPage"));
-const HuntingInfoPage = lazy(() => import("./pages/HuntingInfoPage"));
-const AllocationInfoPage = lazy(() => import("./pages/AllocationInfoPage"));
-const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
-const PortfolioPage = lazy(() => import("./pages/Portfolio"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const ResetPasswordPage = lazy(() => import("./pages/ResetPassword"));
+import QuemSomosPage from "./pages/QuemSomosPage";
+import SolucoesPage from "./pages/SolucoesPage";
+import ProntidaoIAPage from "./pages/ProntidaoIAPage";
+import AvaliacaoIAPage from "./pages/AvaliacaoIAPage";
+import AvaliacaoResultadoPage from "./pages/AvaliacaoResultadoPage";
+import DiagnosticoIAPage from "./pages/DiagnosticoIAPage";
+import AvalaraPage from "./pages/AvalaraPage";
+import PPOVPage from "./pages/PPOVPage";
+import QlikPage from "./pages/QlikPage";
+import DenodoPage from "./pages/DenodoPage";
+import EstruturacaoDadosPage from "./pages/EstruturacaoDadosPage";
+import AvalieProntidaoPage from "./pages/AvalieProntidaoPage";
+import ContatoPage from "./pages/ContatoPage";
+import InteligenciaNegocioPage from "./pages/InteligenciaNegocioPage";
+import HuntingInfoPage from "./pages/HuntingInfoPage";
+import AllocationInfoPage from "./pages/AllocationInfoPage";
+import PoliticaPrivacidadePage from "./pages/PoliticaPrivacidadePage";
+import PortfolioPage from "./pages/Portfolio";
+import NotFound from "./pages/NotFound";
+import ResetPasswordPage from "./pages/ResetPassword";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -109,4 +107,3 @@ const App = () => {
 };
 
 export default App;
-
