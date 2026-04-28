@@ -5,8 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { lazy, Suspense } from "react";
-const AdminUserManagement = lazy(() => import("@/components/admin/AdminUserManagement"));
+import AdminUserManagement from "@/components/admin/AdminUserManagement";
 
 export default function Dashboard() {
   const [profile, setProfile] = useState<any>(null);
@@ -43,9 +42,6 @@ export default function Dashboard() {
           }
         } else if (data) {
           if (isMounted) setProfile(data);
-        } else {
-          // Profile doesn't exist yet, which might happen if RLS is strict or creation failed
-          console.warn("No profile found for user:", session.user.id);
         }
       } catch (err: any) {
         console.error("Dashboard profile catch error:", err);
@@ -109,9 +105,7 @@ export default function Dashboard() {
                     <TabsTrigger value="logs">Logs do Sistema</TabsTrigger>
                   </TabsList>
                   <TabsContent value="users" className="mt-0">
-                    <Suspense fallback={<div className="h-40 w-full animate-pulse bg-slate-100 rounded-lg" />}>
-                      <AdminUserManagement />
-                    </Suspense>
+                    <AdminUserManagement />
                   </TabsContent>
                   <TabsContent value="logs" className="mt-0">
                     <div className="flex flex-col items-center justify-center py-12 text-center">
