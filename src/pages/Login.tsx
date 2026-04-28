@@ -79,77 +79,113 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background/85 backdrop-blur-xl px-4 relative overflow-hidden">
-      {/* Background visual enhancements */}
-      <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/10 blur-[120px] rounded-full pointer-events-none" />
+    <div className="min-h-screen flex items-center justify-center bg-slate-900 px-4 relative overflow-hidden">
+      {/* Dynamic background elements */}
+      <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/20 blur-[120px] rounded-full animate-pulse" />
+      <div className="absolute bottom-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 blur-[120px] rounded-full animate-pulse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none" />
       
-      <Card className="w-full max-w-md border-white/5 bg-[#1E293B]/80 backdrop-blur-2xl shadow-2xl relative z-10 text-white">
-        <CardHeader className="space-y-4 pt-8">
-          <div className="flex justify-center">
-            <Link to="/">
-              <img src={logoFinanceit} alt="Financeit" className="h-14 w-auto" />
-            </Link>
-          </div>
-          <div className="space-y-1">
-            <CardTitle className="text-2xl text-center font-bold tracking-tight">Área Restrita</CardTitle>
-            <CardDescription className="text-center text-slate-400">
-              Identifique-se para acessar o painel
+      <div className="w-full max-w-[440px] relative z-10">
+        <div className="flex flex-col items-center mb-10">
+          <Link to="/" className="mb-6 hover:scale-105 transition-transform duration-300">
+            <img src={logoFinanceit} alt="Financeit" className="h-16 w-auto brightness-0 invert" />
+          </Link>
+          <div className="h-1 w-12 bg-primary rounded-full" />
+        </div>
+
+        <Card className="border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] text-white overflow-hidden rounded-3xl">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+          
+          <CardHeader className="space-y-2 pt-10 pb-6 text-center">
+            <CardTitle className="text-3xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+              Bem-vindo
+            </CardTitle>
+            <CardDescription className="text-slate-400 font-medium">
+              Acesse sua conta estratégica FinanceIT
             </CardDescription>
-          </div>
-        </CardHeader>
-        <form onSubmit={handleLogin}>
-          <CardContent className="grid gap-5">
-            <div className="grid gap-2">
-              <Label htmlFor="email" className="text-slate-300">E-mail Corporativo</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="exemplo@financeit.com.br"
-                className="bg-slate-900/50 border-white/10 text-white focus:ring-primary/40 focus:border-primary/40 transition-all h-11"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="password" title="Sua senha de acesso" className="text-slate-300">Senha</Label>
-              </div>
-              <Input
-                id="password"
-                type="password"
-                className="bg-slate-900/50 border-white/10 text-white focus:ring-primary/40 focus:border-primary/40 transition-all h-11"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-          </CardContent>
-          <CardFooter className="flex flex-col gap-6 pb-8 pt-2">
-            <Button 
-              className="w-full bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg shadow-primary/20 h-12 transition-all text-base" 
-              type="submit" 
-              disabled={loading}
-            >
-              {loading ? (
-                <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  <span>Autenticando...</span>
+          </CardHeader>
+
+          <form onSubmit={handleLogin}>
+            <CardContent className="space-y-5 px-8">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">
+                  E-mail Corporativo
+                </Label>
+                <div className="relative group">
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="exemplo@financeit.com.br"
+                    className="bg-white/5 border-white/10 text-white focus:bg-white/10 focus:ring-primary/40 focus:border-primary/40 transition-all h-14 rounded-2xl pl-4"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
                 </div>
-              ) : "Acessar Plataforma"}
-            </Button>
-            <div className="text-center space-y-3">
-              <p className="text-[11px] text-slate-500 max-w-[300px] mx-auto leading-relaxed">
-                Este sistema é para uso exclusivo de colaboradores autorizados. O acesso não autorizado é proibido.
-              </p>
-              <Link to="/" className="text-xs text-slate-400 hover:text-white transition-colors block underline-offset-4 hover:underline">
-                Voltar para o portal público
-              </Link>
-            </div>
-          </CardFooter>
-        </form>
-      </Card>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="password" title="Sua senha de acesso" className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">
+                  Senha de Acesso
+                </Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  className="bg-white/5 border-white/10 text-white focus:bg-white/10 focus:ring-primary/40 focus:border-primary/40 transition-all h-14 rounded-2xl pl-4"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="flex items-center justify-between pt-1">
+                <div className="flex items-center space-x-2">
+                  <div className="w-4 h-4 rounded border border-white/20 bg-white/5" />
+                  <span className="text-xs text-slate-400 font-medium">Lembrar-me</span>
+                </div>
+                <Link to="/contato" className="text-xs text-primary font-bold hover:underline underline-offset-4">
+                  Esqueci a senha
+                </Link>
+              </div>
+            </CardContent>
+
+            <CardFooter className="flex flex-col gap-8 pb-10 pt-4 px-8">
+              <Button 
+                className="w-full bg-primary hover:bg-primary/90 text-white font-black shadow-[0_10px_20px_rgba(var(--primary),0.3)] h-14 rounded-2xl transition-all text-base group" 
+                type="submit" 
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className="flex items-center gap-3">
+                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    <span>Autenticando...</span>
+                  </div>
+                ) : (
+                  <span className="flex items-center gap-2">
+                    Acessar Plataforma
+                  </span>
+                )}
+              </Button>
+
+              <div className="text-center space-y-4">
+                <p className="text-[10px] text-slate-500 max-w-[280px] mx-auto leading-relaxed font-medium">
+                  ACESSO RESTRITO A COLABORADORES.
+                  O MONITORAMENTO É ATIVO E CONSTANTE.
+                </p>
+                <Link to="/" className="inline-flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-all font-bold group">
+                  <div className="w-5 h-px bg-slate-700 group-hover:w-8 transition-all" />
+                  Voltar ao Portal Público
+                </Link>
+              </div>
+            </CardFooter>
+          </form>
+        </Card>
+        
+        <p className="text-center mt-8 text-slate-600 text-[10px] font-bold tracking-widest uppercase">
+          © {new Date().getFullYear()} FinanceIT Intelligence System
+        </p>
+      </div>
     </div>
   );
 }
