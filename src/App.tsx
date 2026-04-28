@@ -19,11 +19,12 @@ import Dashboard from "./pages/Dashboard";
 import SolucoesPage from "./pages/SolucoesPage";
 import ContatoPage from "./pages/ContatoPage";
 import PortfolioPage from "./pages/Portfolio";
+import QuemSomosPage from "./pages/QuemSomosPage";
 import NotFound from "./pages/NotFound";
 
 // Lazy loading for other pages to reduce initial bundle size
 // Lazy loading for other pages to reduce initial bundle size
-const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
+// const QuemSomosPage = lazy(() => import("./pages/QuemSomosPage"));
 // const SolucoesPage = lazy(() => import("./pages/SolucoesPage"));
 const ProntidaoIAPage = lazy(() => import("./pages/ProntidaoIAPage"));
 const AvaliacaoIAPage = lazy(() => import("./pages/AvaliacaoIAPage"));
