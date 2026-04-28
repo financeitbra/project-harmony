@@ -21,6 +21,8 @@ import {
   X
 } from "lucide-react";
 import AdminUserManagement from "@/components/admin/AdminUserManagement";
+import Timesheet from "@/components/Timesheet";
+import AdminClientManagement from "@/components/admin/AdminClientManagement";
 
 export default function Dashboard() {
   const [profile, setProfile] = useState<any>(null);
