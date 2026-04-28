@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
+import { supabase } from "../../integrations/supabase/client";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { useToast } from "../../hooks/use-toast";
 import {
   Table,
   TableBody,
@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "../ui/table";
 import {
   Dialog,
   DialogContent,
@@ -20,14 +20,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "../ui/dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "../ui/select";
 import { PlusCircle, UserPlus, Shield, User, Globe } from "lucide-react";
 
 export default function AdminUserManagement() {
@@ -49,21 +49,26 @@ export default function AdminUserManagement() {
 
   async function fetchUsers() {
     setLoading(true);
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("*")
-      .order("created_at", { ascending: false });
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .order("created_at", { ascending: false });
 
-    if (error) {
-      toast({
-        variant: "destructive",
-        title: "Erro ao buscar usuários",
-        description: error.message,
-      });
-    } else {
-      setUsers(data || []);
+      if (error) {
+        toast({
+          variant: "destructive",
+          title: "Erro ao buscar usuários",
+          description: error.message,
+        });
+      } else {
+        setUsers(data || []);
+      }
+    } catch (err) {
+      console.error("Fetch users error:", err);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   const handleCreateUser = async (e: React.FormEvent) => {
@@ -71,11 +76,6 @@ export default function AdminUserManagement() {
     setCreating(true);
 
     try {
-      // In a real application, we would use a Supabase Edge Function to create users via the Admin Auth API
-      // Since we don't have that set up yet, we'll use the public signUp method.
-      // Note: This will sign out the current admin if they are using signUp directly.
-      // For this demo, we'll explain that the admin should use the Supabase Dashboard or an Edge Function.
-      
       const { data, error: authError } = await supabase.auth.signUp({
         email: newEmail,
         password: newPassword,
