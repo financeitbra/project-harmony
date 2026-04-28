@@ -28,7 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { PlusCircle, UserPlus, Shield, User, Globe } from "lucide-react";
+import { Shield, User, Globe, UserPlus } from "lucide-react";
 
 export default function AdminUserManagement() {
   const [users, setUsers] = useState<any[]>([]);
@@ -76,8 +76,6 @@ export default function AdminUserManagement() {
     setCreating(true);
 
     try {
-      // In Lovable Cloud/Supabase, signUp will create a new user.
-      // Note: By default, users might need to confirm email unless configured otherwise.
       const { data, error: authError } = await supabase.auth.signUp({
         email: newEmail,
         password: newPassword,
