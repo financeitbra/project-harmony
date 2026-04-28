@@ -17,7 +17,11 @@ class AppErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("App render error:", error, errorInfo);
+    console.error("App render error details:", {
+      message: error.message,
+      stack: error.stack,
+      componentStack: errorInfo.componentStack
+    });
   }
 
   handleReload = () => {
