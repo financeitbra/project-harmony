@@ -160,10 +160,13 @@ export default function Timesheet() {
         end = endOfMonth(currentMonth);
       }
 
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
       const { data, error } = await supabase
         .from("time_entries")
         .select("*")
-        .eq("client_id", selectedClientId)
+        .eq("user_id", user.id)
         .order("start_time", { ascending: false });
 
       if (error) throw error;
