@@ -46,7 +46,7 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  console.log("App.tsx: App component rendering...");
+  console.log("App.tsx: App component rendering at", new Date().toISOString(), "window.location.pathname:", window.location.pathname);
   
   if (!queryClient) {
     console.error("App.tsx: queryClient is missing!");

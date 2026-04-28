@@ -96,7 +96,7 @@ const PAGE_META: Record<string, PageMeta> = {
 
 const PublicLayout = () => {
   const { pathname } = useLocation();
-  console.log("PublicLayout.tsx: Rendering route:", pathname);
+  console.log("PublicLayout.tsx: Rendering route:", pathname, "at", new Date().toISOString());
   
   const meta = PAGE_META[pathname] || {
     title: "Financeit",
