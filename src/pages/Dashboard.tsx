@@ -338,7 +338,7 @@ export default function Dashboard() {
                       <p className="text-lg font-bold text-slate-900">Módulos em Preparação</p>
                       <p className="text-slate-500 mt-2 leading-relaxed">
                         Estamos customizando seu ambiente com base no seu perfil de <span className="text-primary font-bold">
-                        {profile?.role === 'internal' ? 'Colaborador Interno' : 'Parceiro PR'}</span>. 
+                        {profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}</span>. 
                         Em breve, dashboards e documentos estarão disponíveis.
                       </p>
                     </div>
