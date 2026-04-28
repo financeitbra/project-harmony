@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { logAction } from "@/lib/audit";
-import logoFinanceit from "@/assets/logo-financeit.png";
+import logoFinanceit from "../assets/logo-financeit.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
