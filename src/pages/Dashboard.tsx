@@ -122,7 +122,7 @@ export default function Dashboard() {
             <div className="hidden sm:flex flex-col items-end mr-2">
               <span className="text-sm font-medium">{profile?.full_name || profile?.email}</span>
               <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">
-                {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
+                {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : profile?.role === 'pr' ? 'Colaborador PR' : 'Perfil não identificado'}
               </span>
             </div>
             <div className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-primary font-bold shadow-inner">
