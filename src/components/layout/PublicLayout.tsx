@@ -88,6 +88,10 @@ const PAGE_META: Record<string, PageMeta> = {
     title: "Atualizar Senha — Financeit",
     description: "Atualize sua senha para continuar acessando a plataforma.",
   },
+  "/dashboard": {
+    title: "Dashboard — Financeit",
+    description: "Área administrativa e de colaboradores.",
+  },
 };
 
 const PublicLayout = () => {

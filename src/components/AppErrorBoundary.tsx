@@ -31,13 +31,23 @@ class AppErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center text-foreground">
-          <div className="max-w-md space-y-4 rounded-2xl border border-border bg-card p-8 shadow-xl">
-            <h1 className="font-display text-2xl font-semibold">O site encontrou um erro ao carregar</h1>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Atualize a página para carregar a versão mais recente. Se o problema persistir, tente novamente em alguns segundos.
+        <div className="flex min-h-screen flex-col items-center justify-center bg-[#0F172A] px-6 text-center text-white">
+          <div className="max-w-md space-y-4 rounded-2xl border border-white/10 bg-[#1E293B]/50 p-8 shadow-2xl backdrop-blur-xl">
+            <h1 className="font-display text-2xl font-semibold">Ops! Algo não carregou como esperado</h1>
+            <p className="text-sm leading-relaxed text-slate-300">
+              Isso pode ser um erro temporário de conexão ou cache. Por favor, tente atualizar a página.
             </p>
-            <Button onClick={this.handleReload}>Atualizar página</Button>
+            <div className="pt-4">
+              <Button 
+                onClick={this.handleReload}
+                className="bg-primary hover:bg-primary/90 text-white font-semibold px-8"
+              >
+                Atualizar agora
+              </Button>
+            </div>
+            <p className="text-[10px] text-slate-500 pt-4">
+              Se o erro persistir, limpe o cache do seu navegador ou tente em uma janela anônima.
+            </p>
           </div>
         </div>
       );
