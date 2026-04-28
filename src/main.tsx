@@ -18,5 +18,16 @@ if (!container) {
     );
   } catch (error) {
     console.error("CRITICAL ERROR: Failed to render React application:", error);
+    // Fallback UI in case React completely fails to mount
+    const rootEl = document.getElementById("root");
+    if (rootEl) {
+      rootEl.innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;background:#0F172A;color:white;text-align:center;font-family:sans-serif;">
+          <h1>Erro Crítico de Carregamento</h1>
+          <p>Ocorreu uma falha ao iniciar a aplicação. Por favor, tente recarregar.</p>
+          <button onclick="window.location.reload()" style="padding:10px 20px;background:#3B82F6;color:white;border:none;border-radius:5px;cursor:pointer;">Recarregar</button>
+        </div>
+      `;
+    }
   }
 }
