@@ -3,7 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import "./index.css";
 
-console.log("Main.tsx: Application starting...");
+console.log("Main.tsx: Application starting at", new Date().toISOString());
 
 const container = document.getElementById("root");
 if (!container) {
