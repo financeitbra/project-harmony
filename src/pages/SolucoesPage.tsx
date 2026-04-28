@@ -13,7 +13,7 @@ const SolucoesCTAFinal = lazy(() => import("@/components/sections/solucoes/Soluc
 
 const SolucoesPage = () => {
   return (
-    <>
+    <Suspense fallback={<div className="h-96 w-full animate-pulse bg-slate-900/10" />}>
       <SolucoesHero />
       <OfertaVisaoGeral />
       <TalentosEstrategicos />
@@ -24,7 +24,7 @@ const SolucoesPage = () => {
       <IntegracaoFrente />
       <ParaEmpresasQue />
       <SolucoesCTAFinal />
-    </>
+    </Suspense>
   );
 };
 
