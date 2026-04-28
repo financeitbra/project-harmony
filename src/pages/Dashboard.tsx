@@ -279,7 +279,7 @@ export default function Dashboard() {
                             ? 'bg-blue-100 text-blue-700' 
                             : 'bg-emerald-100 text-emerald-700'
                         }`}>
-                          {profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
+                          {profile?.role === 'admin' ? 'Administrador' : profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}
                         </span>
                         <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-widest">
                           Ativo
