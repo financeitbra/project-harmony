@@ -5,12 +5,12 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import PublicLayout from "./components/layout/PublicLayout";
+import PublicLayout from "@/components/layout/PublicLayout";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 
-// Standard pages - directly imported to test if lazy loading is the issue
+// Standard pages
 import Index from "./pages/Index";
 import QuemSomosPage from "./pages/QuemSomosPage";
 import SolucoesPage from "./pages/SolucoesPage";
@@ -34,12 +34,6 @@ import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ResetPasswordPage from "./pages/ResetPassword";
-
-const RouteFallback = () => (
-  <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">
-    Carregando...
-  </div>
-);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -88,8 +82,8 @@ const AppContent = () => {
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
-      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
