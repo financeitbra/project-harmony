@@ -1,4 +1,3 @@
-import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
@@ -9,7 +8,7 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import CookieBanner from "./components/CookieBanner";
 import AppErrorBoundary from "./components/AppErrorBoundary";
 
-// Load standard pages immediately to prevent initial screen blankness
+// Load standard pages immediately - NO LAZY LOADING for critical routes
 import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -34,17 +33,8 @@ import PortfolioPage from "./pages/PortfolioPage";
 import NotFound from "./pages/NotFound";
 import ResetPasswordPage from "./pages/ResetPassword";
 
-// Core layout - Essential for structural integrity
+// Core layout
 import PublicLayout from "./components/layout/PublicLayout";
-
-const RouteFallback = () => (
-  <div className="flex min-h-screen items-center justify-center bg-[#0F172A] text-white font-sans">
-    <div className="flex flex-col items-center gap-4">
-      <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      <p className="text-sm font-medium tracking-wide">Carregando plataforma...</p>
-    </div>
-  </div>
-);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,10 +47,6 @@ const queryClient = new QueryClient({
 
 const AppContent = () => {
   const location = useLocation();
-
-  useEffect(() => {
-    console.log("Navigation to:", location.pathname);
-  }, [location]);
 
   return (
     <Routes>
