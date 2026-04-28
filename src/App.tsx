@@ -5,7 +5,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import PublicLayout from "@/components/layout/PublicLayout";
+import PublicLayout from "./components/layout/PublicLayout";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
@@ -88,8 +88,8 @@ const AppContent = () => {
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
