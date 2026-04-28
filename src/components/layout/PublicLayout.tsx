@@ -103,32 +103,20 @@ const PublicLayout = () => {
     description: "Inteligência de Negócio, Dados e IA"
   };
 
-  // Auth and Dashboard pages don't show header/footer to avoid layout conflicts
   const isAuthPage = pathname === "/login" || pathname === "/reset-password" || pathname === "/dashboard";
 
-  if (isAuthPage) {
-    return (
-      <div className="flex min-h-screen flex-col bg-slate-900">
-        <SEO title={meta.title} description={meta.description} />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-      </div>
-    );
-  }
-
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className={`flex min-h-screen flex-col ${isAuthPage ? 'bg-slate-900' : 'bg-background'}`}>
       <SEO 
         title={meta.title} 
         description={meta.description} 
         keywords={meta.keywords} 
       />
-      <Header />
-      <main className="flex-1 pt-16 lg:pt-20">
+      {!isAuthPage && <Header />}
+      <main className={`flex-1 ${!isAuthPage ? 'pt-16 lg:pt-20' : ''}`}>
         <Outlet />
       </main>
-      <Footer />
+      {!isAuthPage && <Footer />}
     </div>
   );
 };
