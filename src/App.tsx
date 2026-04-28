@@ -21,6 +21,7 @@ import ContatoPage from "./pages/ContatoPage";
 import PortfolioPage from "./pages/Portfolio";
 import QuemSomosPage from "./pages/QuemSomosPage";
 import ProntidaoIAPage from "./pages/ProntidaoIAPage";
+import InteligenciaNegocioPage from "./pages/InteligenciaNegocioPage";
 import NotFound from "./pages/NotFound";
 
 // Lazy loading for other pages to reduce initial bundle size
@@ -38,7 +39,7 @@ const DenodoPage = lazy(() => import("./pages/DenodoPage"));
 const EstruturacaoDadosPage = lazy(() => import("./pages/EstruturacaoDadosPage"));
 const AvalieProntidaoPage = lazy(() => import("./pages/AvalieProntidaoPage"));
 // const ContatoPage = lazy(() => import("./pages/ContatoPage"));
-const InteligenciaNegocioPage = lazy(() => import("./pages/InteligenciaNegocioPage"));
+// const InteligenciaNegocioPage = lazy(() => import("./pages/InteligenciaNegocioPage"));
 const HuntingInfoPage = lazy(() => import("./pages/HuntingInfoPage"));
 const AllocationInfoPage = lazy(() => import("./pages/AllocationInfoPage"));
 const PoliticaPrivacidadePage = lazy(() => import("./pages/PoliticaPrivacidadePage"));
