@@ -96,6 +96,8 @@ const PAGE_META: Record<string, PageMeta> = {
 
 const PublicLayout = () => {
   const { pathname } = useLocation();
+  console.log("PublicLayout.tsx: Rendering route:", pathname);
+  
   const meta = PAGE_META[pathname] || {
     title: "Financeit",
     description: "Inteligência de Negócio, Dados e IA"
@@ -104,31 +106,44 @@ const PublicLayout = () => {
   // Auth and Dashboard pages don't show header/footer to avoid layout conflicts
   const isAuthPage = pathname === "/login" || pathname === "/reset-password" || pathname === "/dashboard";
 
-  if (isAuthPage) {
+  try {
+    if (isAuthPage) {
+      return (
+        <div className="flex min-h-screen flex-col bg-background">
+          <SEO title={meta.title} description={meta.description} />
+          <main className="flex-1">
+            <Outlet />
+          </main>
+        </div>
+      );
+    }
+
     return (
       <div className="flex min-h-screen flex-col bg-background">
-        <SEO title={meta.title} description={meta.description} />
-        <main className="flex-1">
+        <SEO 
+          title={meta.title} 
+          description={meta.description} 
+          keywords={meta.keywords} 
+        />
+        <Header />
+        <main className="flex-1 pt-16 lg:pt-20">
           <Outlet />
         </main>
+        <Footer />
+      </div>
+    );
+  } catch (error) {
+    console.error("PublicLayout Render Error:", error);
+    return (
+      <div className="p-10 text-center">
+        <h1 className="text-xl font-bold">Erro de Layout</h1>
+        <p>Houve um problema ao carregar esta página.</p>
+        <button onClick={() => window.location.reload()} className="mt-4 px-4 py-2 bg-primary text-white rounded">
+          Tentar novamente
+        </button>
       </div>
     );
   }
-
-  return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <SEO 
-        title={meta.title} 
-        description={meta.description} 
-        keywords={meta.keywords} 
-      />
-      <Header />
-      <main className="flex-1 pt-16 lg:pt-20">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
-  );
 };
 
 export default PublicLayout;

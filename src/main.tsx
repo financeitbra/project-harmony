@@ -3,25 +3,39 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import "./index.css";
 
-// Prevent URL issues with auth tokens before React mounting
-try {
-  const hash = window.location.hash;
-  if (hash && (hash.includes("access_token") || hash.includes("error"))) {
-    // Basic cleanup to prevent potential parsing errors in initial load
-    console.log("Auth artifacts detected, cleaning up...");
-  }
-} catch (e) {
-  console.error("URL check failed", e);
+console.log("Main.tsx: Application starting...");
+
+// Log window context for debugging blank screen
+if (typeof window !== 'undefined') {
+  console.log("Window Location:", window.location.href);
+  console.log("User Agent:", navigator.userAgent);
 }
+
+// Global error handler for uncaught promise rejections
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('Unhandled Promise Rejection:', event.reason);
+});
+
+// Global error handler for runtime errors
+window.onerror = (message, source, lineno, colno, error) => {
+  console.error('Global Runtime Error:', { message, source, lineno, colno, error });
+  return false;
+};
 
 const container = document.getElementById("root");
 if (!container) {
-  console.error("Critical Error: 'root' element not found in DOM");
+  console.error("CRITICAL ERROR: 'root' element not found in DOM");
 } else {
-  const root = createRoot(container);
-  root.render(
-    <HelmetProvider>
-      <App />
-    </HelmetProvider>
-  );
+  try {
+    console.log("Main.tsx: Found root container, initializing React...");
+    const root = createRoot(container);
+    root.render(
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    );
+    console.log("Main.tsx: React render call completed");
+  } catch (error) {
+    console.error("CRITICAL ERROR: Failed to render React application:", error);
+  }
 }
