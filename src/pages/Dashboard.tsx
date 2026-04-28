@@ -69,7 +69,7 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[#0F172A] text-white">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-50/50 text-slate-900">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent mb-4" />
         <p className="text-sm font-medium animate-pulse">Carregando seus dados...</p>
       </div>
@@ -77,7 +77,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50/50">
+    <div className="min-h-screen">
       <div className="container mx-auto py-8 px-4">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <div>
@@ -122,7 +122,7 @@ export default function Dashboard() {
               <CardHeader>
                 <CardTitle>Área do Colaborador</CardTitle>
                 <CardDescription>
-                  Você possui privilégios de: <span className="font-semibold text-primary">{profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}</span>
+                  Seu perfil atual: <span className="font-semibold text-primary">{profile?.role === 'internal' ? 'Colaborador Interno' : 'Colaborador PR'}</span>
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-12 text-center">
