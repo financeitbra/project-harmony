@@ -33,6 +33,7 @@ const navItems = [
   { label: "Prontidão para IA", path: "/prontidao-ia" },
   { label: "Inteligência de Negócio", path: "/inteligencia-negocios" },
   { label: "Contato", path: "/contato" },
+  { label: "Área Logada", path: "/login" },
 ];
 
 const Header = () => {
