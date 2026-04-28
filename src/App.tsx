@@ -90,10 +90,10 @@ const AppContent = () => {
           <Route path="/alocacao-info" element={<AllocationInfoPage />} />
           <Route path="/politica-privacidade" element={<PoliticaPrivacidadePage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
