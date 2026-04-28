@@ -8,7 +8,7 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import CookieBanner from "./components/CookieBanner";
 import AppErrorBoundary from "./components/AppErrorBoundary";
 
-// Load standard pages immediately - NO LAZY LOADING for critical routes
+// Standard pages - Direct imports for maximum stability
 import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -33,7 +33,7 @@ import PortfolioPage from "./pages/PortfolioPage";
 import NotFound from "./pages/NotFound";
 import ResetPasswordPage from "./pages/ResetPassword";
 
-// Core layout
+// Layout
 import PublicLayout from "./components/layout/PublicLayout";
 
 const queryClient = new QueryClient({
@@ -46,8 +46,6 @@ const queryClient = new QueryClient({
 });
 
 const AppContent = () => {
-  const location = useLocation();
-
   return (
     <Routes>
       <Route element={<PublicLayout />}>
@@ -86,21 +84,23 @@ const AppContent = () => {
   );
 };
 
-const App = () => (
-  <AppErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <BrowserRouter>
-          <Toaster />
-          <Sonner />
-          <ScrollToTop />
-          <AppContent />
-          <WhatsAppButton />
-          <CookieBanner />
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </AppErrorBoundary>
-);
+const App = () => {
+  return (
+    <AppErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <BrowserRouter>
+            <Toaster />
+            <Sonner />
+            <ScrollToTop />
+            <AppContent />
+            <WhatsAppButton />
+            <CookieBanner />
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </AppErrorBoundary>
+  );
+};
 
 export default App;
