@@ -264,6 +264,9 @@ const Header = () => {
                 {/* Mobile services */}
                 {item.services && (
                   <div className="ml-4 mt-1 space-y-1 border-t border-border/50 pt-1">
+                    <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                      Serviços
+                    </div>
                     {item.services.map((svc) => (
                       <Link
                         key={svc.path}
