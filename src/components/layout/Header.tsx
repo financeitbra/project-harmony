@@ -161,6 +161,9 @@ const Header = () => {
                       {item.services && (
                         <>
                           <div className="my-1.5 h-px bg-border" />
+                          <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                            Serviços
+                          </div>
                           {item.services.map((svc) => (
                             <Link
                               key={svc.path}
