@@ -458,18 +458,9 @@ Deno.serve(async (req) => {
     );
   }
 
-  let body: Payload;
-
-  try {
-    body = await req.json();
-  } catch {
-    return new Response(
-      JSON.stringify({ status: "error", message: "JSON inválido." }),
-      { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-    );
-  }
-
   const port = Number.parseInt(SMTP_PORT, 10);
+  console.log(`Iniciando envio via ${SMTP_HOST}:${port} (TLS: ${port === 465})`);
+
   const client = new SMTPClient({
     connection: {
       hostname: SMTP_HOST,
