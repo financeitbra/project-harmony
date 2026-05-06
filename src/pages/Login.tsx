@@ -246,29 +246,31 @@ export default function Login() {
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-1">
-                <div className="flex items-center space-x-2">
-                  <Checkbox 
-                    id="remember" 
-                    checked={rememberMe}
-                    onCheckedChange={(checked) => setRememberMe(checked as boolean)}
-                    className="border-white/20 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
-                  />
-                  <Label htmlFor="remember" className="text-xs text-white font-medium cursor-pointer">
-                    Lembrar-me
-                  </Label>
+              {!isFirstUser && (
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-2">
+                    <Checkbox 
+                      id="remember" 
+                      checked={rememberMe}
+                      onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                      className="border-white/20 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                    />
+                    <Label htmlFor="remember" className="text-xs text-white font-medium cursor-pointer">
+                      Lembrar-me
+                    </Label>
+                  </div>
+                  <button 
+                    type="button"
+                    onClick={() => {
+                      setResetEmail(email);
+                      setShowForgotModal(true);
+                    }}
+                    className="text-xs text-white font-bold hover:underline underline-offset-4"
+                  >
+                    Esqueci a senha
+                  </button>
                 </div>
-                <button 
-                  type="button"
-                  onClick={() => {
-                    setResetEmail(email);
-                    setShowForgotModal(true);
-                  }}
-                  className="text-xs text-white font-bold hover:underline underline-offset-4"
-                >
-                  Esqueci a senha
-                </button>
-              </div>
+              )}
             </CardContent>
 
             <CardFooter className="flex flex-col gap-8 pb-10 pt-4 px-8">
