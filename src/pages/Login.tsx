@@ -187,15 +187,33 @@ export default function Login() {
           
           <CardHeader className="space-y-2 pt-10 pb-6 text-center">
             <CardTitle className="text-3xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-              Bem-vindo
+              {isFirstUser ? "Configuração Inicial" : "Bem-vindo"}
             </CardTitle>
             <CardDescription className="text-white font-medium opacity-80">
-              Acesse sua conta estratégica FinanceIT
+              {isFirstUser 
+                ? "Crie a conta do administrador do sistema" 
+                : "Acesse sua conta estratégica FinanceIT"}
             </CardDescription>
           </CardHeader>
 
-          <form onSubmit={handleLogin}>
+          <form onSubmit={isFirstUser ? handleSignup : handleLogin}>
             <CardContent className="space-y-5 px-8">
+              {isFirstUser && (
+                <div className="space-y-2">
+                  <Label htmlFor="fullName" className="text-xs font-black uppercase tracking-widest text-white ml-1">
+                    Nome Completo
+                  </Label>
+                  <Input
+                    id="fullName"
+                    type="text"
+                    placeholder="Seu nome completo"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-slate-500 focus:bg-white/20 focus:ring-primary/40 focus:border-primary/40 transition-all h-14 rounded-2xl pl-4"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    required
+                  />
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-white ml-1">
                   E-mail Corporativo
