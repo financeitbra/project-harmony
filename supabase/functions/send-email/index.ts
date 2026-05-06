@@ -394,9 +394,47 @@ function buildAssessmentHtml(data: AssessmentPayload): string {
   );
 }
 
+// Simple in-memory rate limiter (per-IP). Resets on cold start.
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const rateBuckets = new Map<string, { count: number; resetAt: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const bucket = rateBuckets.get(ip);
+  if (!bucket || bucket.resetAt < now) {
+    rateBuckets.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  if (bucket.count >= RATE_LIMIT_MAX) return false;
+  bucket.count += 1;
+  return true;
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function isValidEmail(value: unknown): value is string {
+  return typeof value === "string" && value.length <= 254 && EMAIL_REGEX.test(value);
+}
+
+function isValidString(value: unknown, max: number): value is string {
+  return typeof value === "string" && value.trim().length > 0 && value.length <= max;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limit by IP
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+    || req.headers.get("cf-connecting-ip")
+    || "unknown";
+  if (!checkRateLimit(ip)) {
+    return new Response(
+      JSON.stringify({ status: "error", message: "Muitas requisições. Tente novamente mais tarde." }),
+      { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
   }
 
   const SMTP_HOST = Deno.env.get("SMTP_HOST");
