@@ -139,9 +139,17 @@ const Header = () => {
                           }`}
                         >
                           {child.logo ? (
-                            <img src={child.logo} alt={child.label} className="h-14 w-auto min-w-[55px] max-w-[70px] object-contain transition-all" />
+                            <div className="flex flex-col">
+                              <img src={child.logo} alt={child.label} className="h-14 w-auto min-w-[55px] max-w-[70px] object-contain transition-all" />
+                              <span className="mt-1 text-[10px] text-muted-foreground leading-tight max-w-[150px]">
+                                {child.description}
+                              </span>
+                            </div>
                           ) : (
-                            child.icon && <child.icon className="h-4 w-4 text-accent" />
+                            <div className="flex items-center gap-2">
+                              {child.icon && <child.icon className="h-4 w-4 text-accent" />}
+                              <span>{child.label}</span>
+                            </div>
                           )}
                         </Link>
                       ))}
