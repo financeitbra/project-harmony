@@ -62,22 +62,31 @@ const SolutionsSection = () => {
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {solutions.map((sol, i) => (
-            <div
-              key={sol.title}
-              className="group relative rounded-lg border border-border bg-card p-7 transition-all hover:border-accent/40 hover:shadow-lg"
-            >
-              {i === 0 && (
-                <div className="absolute left-0 top-6 h-8 w-0.5 rounded-full bg-orange-accent/60" />
-              )}
-              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-md bg-accent/10 transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                <sol.icon className="h-5 w-5 text-accent group-hover:text-accent-foreground" />
+        <div className="mt-16 space-y-16">
+          {solutionCategories.map((category) => (
+            <div key={category.title}>
+              <h3 className="mb-8 font-display text-xl font-bold md:text-2xl border-l-4 border-accent pl-4">
+                {category.title}
+              </h3>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+                {category.items.map((item) => (
+                  <Link
+                    key={item.title}
+                    to={item.path}
+                    className="group relative rounded-lg border border-border bg-card p-7 transition-all hover:border-accent/40 hover:shadow-lg flex flex-col md:flex-row gap-5"
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-accent/10 transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                      <item.icon className="h-6 w-6 text-accent group-hover:text-accent-foreground" />
+                    </div>
+                    <div>
+                      <h4 className="font-display text-lg font-semibold">{item.title}</h4>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
               </div>
-              <h3 className="font-display text-lg font-semibold">{sol.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {sol.description}
-              </p>
             </div>
           ))}
         </div>
