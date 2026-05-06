@@ -28,7 +28,7 @@ const navItems = [
       { 
         label: "PPOV", 
         path: "/ppov", 
-        icon: PieChart 
+        logo: "/logos/ppov.png" 
       },
     ],
 // ... keep existing code
