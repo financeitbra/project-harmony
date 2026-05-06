@@ -1,35 +1,45 @@
-import { Users, Code2, BarChart3, Brain, Building2 } from "lucide-react";
+import { Users, BarChart3, Target, Network, Receipt, PieChart } from "lucide-react";
 
-const camadas = [
+const solutionCategories = [
   {
-    icon: Users,
-    number: "01",
-    title: "Talentos",
-    description: "Hunting, recrutamento e alocação para empresas que precisam ampliar capacidade com mais precisão e velocidade.",
+    title: "Serviços",
+    items: [
+      {
+        icon: Target,
+        title: "Hunting de Profissionais de TI",
+        description: "Hunting, recrutamento e seleção técnica para empresas que precisam de precisão e velocidade na contratação.",
+      },
+      {
+        icon: Users,
+        title: "Alocação de Profissionais de TI",
+        description: "Squads e profissionais alocados para transformar prioridades de negócio em execução real e escalável.",
+      },
+    ],
   },
   {
-    icon: Code2,
-    number: "02",
-    title: "Execução",
-    description: "Squads, software e estrutura de entrega para transformar prioridade de negócio em resultado concreto.",
-  },
-  {
-    icon: BarChart3,
-    number: "03",
-    title: "Inteligência de negócio",
-    description: "Mais clareza para decidir, organizar a operação e direcionar esforços com melhor aderência.",
-  },
-  {
-    icon: Brain,
-    number: "04",
-    title: "Dados e IA",
-    description: "Governança, prontidão para IA e estrutura para produtos e operações orientados por inteligência.",
-  },
-  {
-    icon: Building2,
-    number: "05",
-    title: "Soluções empresariais especializadas",
-    description: "Capacidades aplicadas a áreas críticas, como fiscal, orçamento e resultado.",
+    title: "Produtos",
+    items: [
+      {
+        icon: BarChart3,
+        title: "Qlik",
+        description: "Líder em integração e visualização de dados para decisões baseadas em fatos.",
+      },
+      {
+        icon: Network,
+        title: "Denodo",
+        description: "Virtualização de dados para acesso rápido e unificado a fontes heterogêneas.",
+      },
+      {
+        icon: Receipt,
+        title: "Avalara",
+        description: "Soluções globais para automação fiscal e conformidade tributária.",
+      },
+      {
+        icon: PieChart,
+        title: "PPOV",
+        description: "Plataforma de gestão estratégica de orçamentos e resultados corporativos.",
+      },
+    ],
   },
 ];
 
@@ -39,31 +49,38 @@ const OfertaVisaoGeral = () => {
       <div className="container">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">
-            Uma oferta integrada em{" "}
-            <span className="text-accent">cinco camadas</span>
+            Uma oferta estruturada para{" "}
+            <span className="text-accent">cada necessidade</span>
           </h2>
           <p className="mt-5 text-muted-foreground md:text-lg leading-relaxed">
-            A Financeit organiza suas soluções para responder a desafios reais de contratação, execução, eficiência operacional, dados, governança e evolução tecnológica.
+            A Financeit divide suas soluções em duas verticais principais para garantir que sua empresa tenha os talentos certos e as melhores ferramentas tecnológicas.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {camadas.map((c, i) => (
-            <div
-              key={c.title}
-              className="group relative rounded-xl border border-border bg-card p-8 transition-all hover:border-accent/30 hover:shadow-lg"
-            >
-              {/* Layer number */}
-              <span className={`absolute right-6 top-6 font-display text-3xl font-extrabold ${i === 0 ? 'text-orange-accent/30' : 'text-muted/60'}`}>
-                {c.number}
-              </span>
-              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-accent/10 transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                <c.icon className="h-5 w-5 text-accent group-hover:text-accent-foreground" />
+        <div className="mt-16 space-y-16">
+          {solutionCategories.map((category) => (
+            <div key={category.title}>
+              <h3 className="mb-8 font-display text-xl font-bold md:text-2xl border-l-4 border-accent pl-4">
+                {category.title}
+              </h3>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+                {category.items.map((item) => (
+                  <div
+                    key={item.title}
+                    className="group relative rounded-xl border border-border bg-card p-8 transition-all hover:border-accent/30 hover:shadow-lg flex items-start gap-6"
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-accent/10 transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                      <item.icon className="h-6 w-6 text-accent group-hover:text-accent-foreground" />
+                    </div>
+                    <div>
+                      <h4 className="font-display text-lg font-bold">{item.title}</h4>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <h3 className="font-display text-lg font-bold">{c.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {c.description}
-              </p>
             </div>
           ))}
         </div>

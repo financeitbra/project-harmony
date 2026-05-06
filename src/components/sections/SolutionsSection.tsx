@@ -1,32 +1,53 @@
-import { Users, Code2, BarChart3, Brain, Building2, ArrowRight } from "lucide-react";
+import { Users, BarChart3, ArrowRight, Target, Network, Receipt, PieChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const solutions = [
+const solutionCategories = [
   {
-    icon: Users,
-    title: "Talentos estratégicos",
-    description: "Hunting, recrutamento e alocação para empresas que precisam ampliar capacidade com mais precisão e velocidade.",
+    title: "Serviços",
+    items: [
+      {
+        icon: Target,
+        title: "Hunting de Profissionais de TI",
+        description: "Encontre os melhores talentos em TI com precisão técnica e cultural.",
+        path: "/hunting-info",
+      },
+      {
+        icon: Users,
+        title: "Alocação de Profissionais de TI",
+        description: "Aumente sua capacidade de entrega com profissionais qualificados e prontos para atuar.",
+        path: "/alocacao-info",
+      },
+    ],
   },
   {
-    icon: Code2,
-    title: "Execução escalável",
-    description: "Squads, software e estrutura de entrega para transformar prioridade de negócio em resultado concreto.",
-  },
-  {
-    icon: BarChart3,
-    title: "Tecnologia aplicada",
-    description: "Soluções de software e plataforma alinhadas à realidade do negócio, com foco em clareza e eficiência operacional.",
-  },
-  {
-    icon: Brain,
-    title: "Dados, governança e IA",
-    description: "Governança, prontidão para IA e estrutura para produtos e operações orientados por inteligência.",
-  },
-  {
-    icon: Building2,
-    title: "Soluções empresariais especializadas",
-    description: "Capacidades aplicadas a áreas críticas como fiscal, orçamento e resultado com parceiros estratégicos.",
+    title: "Produtos",
+    items: [
+      {
+        icon: BarChart3,
+        title: "Qlik",
+        description: "Pipeline de dados end-to-end e visualizações poderosas para decisões ágeis.",
+        path: "/qlik",
+      },
+      {
+        icon: Network,
+        title: "Denodo",
+        description: "Virtualização de dados para acesso unificado e sem complexidade.",
+        path: "/denodo",
+      },
+      {
+        icon: Receipt,
+        title: "Avalara",
+        description: "Automação fiscal completa para conformidade e eficiência.",
+        path: "/avalara",
+      },
+      {
+        icon: PieChart,
+        title: "PPOV",
+        description: "Gestão inteligente de orçamentos e resultados corporativos.",
+        path: "/ppov",
+      },
+    ],
   },
 ];
 
@@ -41,22 +62,31 @@ const SolutionsSection = () => {
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {solutions.map((sol, i) => (
-            <div
-              key={sol.title}
-              className="group relative rounded-lg border border-border bg-card p-7 transition-all hover:border-accent/40 hover:shadow-lg"
-            >
-              {i === 0 && (
-                <div className="absolute left-0 top-6 h-8 w-0.5 rounded-full bg-orange-accent/60" />
-              )}
-              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-md bg-accent/10 transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                <sol.icon className="h-5 w-5 text-accent group-hover:text-accent-foreground" />
+        <div className="mt-16 space-y-16">
+          {solutionCategories.map((category) => (
+            <div key={category.title}>
+              <h3 className="mb-8 font-display text-xl font-bold md:text-2xl border-l-4 border-accent pl-4">
+                {category.title}
+              </h3>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+                {category.items.map((item) => (
+                  <Link
+                    key={item.title}
+                    to={item.path}
+                    className="group relative rounded-lg border border-border bg-card p-7 transition-all hover:border-accent/40 hover:shadow-lg flex flex-col md:flex-row gap-5"
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-accent/10 transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                      <item.icon className="h-6 w-6 text-accent group-hover:text-accent-foreground" />
+                    </div>
+                    <div>
+                      <h4 className="font-display text-lg font-semibold">{item.title}</h4>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
               </div>
-              <h3 className="font-display text-lg font-semibold">{sol.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {sol.description}
-              </p>
             </div>
           ))}
         </div>

@@ -128,6 +128,9 @@ const Header = () => {
                         Visão Geral
                       </Link>
                       <div className="my-1 h-px bg-border" />
+                      <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                        Produtos
+                      </div>
                       {item.children.map((child) => (
                         <Link
                           key={child.path}
@@ -158,6 +161,9 @@ const Header = () => {
                       {item.services && (
                         <>
                           <div className="my-1.5 h-px bg-border" />
+                          <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                            Serviços
+                          </div>
                           {item.services.map((svc) => (
                             <Link
                               key={svc.path}
@@ -233,6 +239,9 @@ const Header = () => {
                 <Link to={item.path} onClick={() => setMobileOpen(false)} className={`rounded-md px-3 py-2.5 text-sm font-medium transition-colors block ${location.pathname === item.path ? "bg-secondary text-foreground" : "text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>{item.label}</Link>
                 {item.children && (
                   <div className="ml-4 mt-1 space-y-1">
+                    <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                      Produtos
+                    </div>
                     {item.children.map((child) => (
                       <Link key={child.path} to={child.path} onClick={() => setMobileOpen(false)} className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${location.pathname === child.path ? "bg-secondary text-foreground" : "text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>
                         {child.logo ? (
@@ -255,6 +264,9 @@ const Header = () => {
                 {/* Mobile services */}
                 {item.services && (
                   <div className="ml-4 mt-1 space-y-1 border-t border-border/50 pt-1">
+                    <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                      Serviços
+                    </div>
                     {item.services.map((svc) => (
                       <Link
                         key={svc.path}
