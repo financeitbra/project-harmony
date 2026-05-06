@@ -139,9 +139,9 @@ const Header = () => {
                           }`}
                         >
                           {child.logo ? (
-                            <div className="flex flex-col">
+                            <div className="flex items-center gap-4">
                               <img src={child.logo} alt={child.label} className="h-14 w-auto min-w-[55px] max-w-[70px] object-contain transition-all" />
-                              <span className="mt-1 text-[10px] text-muted-foreground leading-tight max-w-[150px]">
+                              <span className="text-[11px] font-medium text-muted-foreground leading-tight max-w-[180px]">
                                 {child.description}
                               </span>
                             </div>
@@ -236,9 +236,9 @@ const Header = () => {
                     {item.children.map((child) => (
                       <Link key={child.path} to={child.path} onClick={() => setMobileOpen(false)} className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${location.pathname === child.path ? "bg-secondary text-foreground" : "text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>
                         {child.logo ? (
-                          <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-3">
                             <img src={child.logo} alt={child.label} className="h-12 w-auto min-w-[50px] max-w-[64px] object-contain" />
-                            <span className="text-[10px] text-muted-foreground leading-tight">
+                            <span className="text-[10px] font-medium text-muted-foreground leading-tight">
                               {child.description}
                             </span>
                           </div>
