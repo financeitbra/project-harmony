@@ -16,6 +16,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [isFirstUser, setIsFirstUser] = useState(false);
+  const [fullName, setFullName] = useState("");
   
   const [showForgotModal, setShowForgotModal] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
