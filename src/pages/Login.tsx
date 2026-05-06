@@ -35,8 +35,10 @@ export default function Login() {
     }
     
     const checkFirstUser = async () => {
-      const { count } = await supabase.from('profiles').select('*', { count: 'exact', head: true });
-      setIsFirstUser(count === 0);
+      const { data, error } = await supabase.rpc('has_users');
+      if (!error) {
+        setIsFirstUser(!data);
+      }
     };
     
     checkFirstUser();
