@@ -116,7 +116,7 @@ const Header = () => {
                           {child.logo ? (
                             <img src={child.logo} alt={child.label} className="h-12 w-auto min-w-[46px] max-w-[58px] object-contain transition-all" />
                           ) : (
-                            child.icon && <child.icon className="h-4 w-4 text-accent" />
+                            (child as any).icon && <(child as any).icon className="h-4 w-4 text-accent" />
                           )}
                           {child.label}
                         </Link>
