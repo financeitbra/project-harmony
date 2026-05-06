@@ -9,6 +9,7 @@ interface NavChild {
   path: string;
   logo?: string;
   icon?: LucideIcon;
+  description?: string;
 }
 
 interface NavItem {
@@ -32,22 +33,26 @@ const navItems: NavItem[] = [
       { 
         label: "Qlik", 
         path: "/qlik", 
-        logo: "/logos/qlik.svg"
+        logo: "/logos/qlik.svg",
+        description: "USA - Pipeline de Dados end-to-end"
       },
       { 
         label: "Denodo", 
         path: "/denodo", 
-        logo: "/logos/denodo.png"
+        logo: "/logos/denodo.png",
+        description: "ES - Virtualização de Dados"
       },
       { 
         label: "Avalara", 
         path: "/avalara", 
-        logo: "/logos/avalara.svg"
+        logo: "/logos/avalara.svg",
+        description: "USA - Soluções Fiscais"
       },
       { 
         label: "PPOV", 
         path: "/ppov", 
-        logo: "/logos/ppov.png" 
+        logo: "/logos/ppov.png",
+        description: "BR - Gestão de Orçamentos e Resultados"
       },
     ],
 // ... keep existing code
@@ -134,9 +139,17 @@ const Header = () => {
                           }`}
                         >
                           {child.logo ? (
-                            <img src={child.logo} alt={child.label} className="h-14 w-auto min-w-[55px] max-w-[70px] object-contain transition-all" />
+                            <div className="flex flex-col">
+                              <img src={child.logo} alt={child.label} className="h-14 w-auto min-w-[55px] max-w-[70px] object-contain transition-all" />
+                              <span className="mt-1 text-[10px] text-muted-foreground leading-tight max-w-[150px]">
+                                {child.description}
+                              </span>
+                            </div>
                           ) : (
-                            child.icon && <child.icon className="h-4 w-4 text-accent" />
+                            <div className="flex items-center gap-2">
+                              {child.icon && <child.icon className="h-4 w-4 text-accent" />}
+                              <span>{child.label}</span>
+                            </div>
                           )}
                         </Link>
                       ))}
@@ -223,9 +236,17 @@ const Header = () => {
                     {item.children.map((child) => (
                       <Link key={child.path} to={child.path} onClick={() => setMobileOpen(false)} className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${location.pathname === child.path ? "bg-secondary text-foreground" : "text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>
                         {child.logo ? (
-                          <img src={child.logo} alt={child.label} className="h-12 w-auto min-w-[50px] max-w-[64px] object-contain" />
+                          <div className="flex flex-col gap-1">
+                            <img src={child.logo} alt={child.label} className="h-12 w-auto min-w-[50px] max-w-[64px] object-contain" />
+                            <span className="text-[10px] text-muted-foreground leading-tight">
+                              {child.description}
+                            </span>
+                          </div>
                         ) : (
-                          child.icon && <child.icon className="h-4 w-4 text-accent" />
+                          <div className="flex items-center gap-2">
+                            {child.icon && <child.icon className="h-4 w-4 text-accent" />}
+                            <span>{child.label}</span>
+                          </div>
                         )}
                       </Link>
                     ))}
