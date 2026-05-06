@@ -540,7 +540,8 @@ Deno.serve(async (req) => {
     const sendOptions: Record<string, unknown> = {
       from: `Financeit <${SMTP_USER}>`,
       to,
-      subject,
+      replyTo: body.email.replace(/[\r\n]/g, ""),
+      subject: subject.replace(/[\r\n]/g, ""),
       html: normalizedHtml,
       content: "auto",
     };
