@@ -223,11 +223,10 @@ const Header = () => {
                     {item.children.map((child) => (
                       <Link key={child.path} to={child.path} onClick={() => setMobileOpen(false)} className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${location.pathname === child.path ? "bg-secondary text-foreground" : "text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>
                         {child.logo ? (
-                          <img src={child.logo} alt={child.label} className="h-10 w-auto min-w-[41px] max-w-[53px] object-contain" />
+                          <img src={child.logo} alt={child.label} className="h-12 w-auto min-w-[50px] max-w-[64px] object-contain" />
                         ) : (
                           child.icon && <child.icon className="h-4 w-4 text-accent" />
                         )}
-                        {child.label}
                       </Link>
                     ))}
                   </div>
