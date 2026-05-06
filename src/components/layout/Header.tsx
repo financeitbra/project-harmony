@@ -113,7 +113,11 @@ const Header = () => {
                               : "text-muted-foreground"
                           }`}
                         >
-                          {child.icon && <child.icon className="h-4 w-4 text-accent" />}
+                          {child.logo ? (
+                            <img src={child.logo} alt={child.label} className="h-4 w-auto max-w-[20px] object-contain" />
+                          ) : (
+                            child.icon && <child.icon className="h-4 w-4 text-accent" />
+                          )}
                           {child.label}
                         </Link>
                       ))}
