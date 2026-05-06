@@ -9,6 +9,7 @@ interface NavChild {
   path: string;
   logo?: string;
   icon?: LucideIcon;
+  description?: string;
 }
 
 interface NavItem {
@@ -32,22 +33,26 @@ const navItems: NavItem[] = [
       { 
         label: "Qlik", 
         path: "/qlik", 
-        logo: "/logos/qlik.svg"
+        logo: "/logos/qlik.svg",
+        description: "USA - Pipeline de Dados end-to-end"
       },
       { 
         label: "Denodo", 
         path: "/denodo", 
-        logo: "/logos/denodo.png"
+        logo: "/logos/denodo.png",
+        description: "ES - Virtualização de Dados"
       },
       { 
         label: "Avalara", 
         path: "/avalara", 
-        logo: "/logos/avalara.svg"
+        logo: "/logos/avalara.svg",
+        description: "USA - Soluções Fiscais"
       },
       { 
         label: "PPOV", 
         path: "/ppov", 
-        logo: "/logos/ppov.png" 
+        logo: "/logos/ppov.png",
+        description: "BR - Gestão de Orçamentos e Resultados"
       },
     ],
 // ... keep existing code
