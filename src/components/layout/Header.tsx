@@ -203,7 +203,11 @@ const Header = () => {
                   <div className="ml-4 mt-1 space-y-1">
                     {item.children.map((child) => (
                       <Link key={child.path} to={child.path} onClick={() => setMobileOpen(false)} className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${location.pathname === child.path ? "bg-secondary text-foreground" : "text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>
-                        {child.icon && <child.icon className="h-4 w-4 text-accent" />}
+                        {child.logo ? (
+                          <img src={child.logo} alt={child.label} className="h-4 w-auto max-w-[20px] object-contain" />
+                        ) : (
+                          child.icon && <child.icon className="h-4 w-4 text-accent" />
+                        )}
                         {child.label}
                       </Link>
                     ))}
