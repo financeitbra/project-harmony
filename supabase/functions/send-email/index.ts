@@ -473,6 +473,16 @@ Deno.serve(async (req) => {
     },
   });
 
+  let body: any;
+  try {
+    body = await req.json();
+  } catch {
+    return new Response(
+      JSON.stringify({ status: "error", message: "JSON inválido" }),
+      { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
+  }
+
   try {
     let to: string;
     let subject: string;
