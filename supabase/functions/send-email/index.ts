@@ -488,25 +488,29 @@ Deno.serve(async (req) => {
     let html: string;
 
     if (body.type === "contact") {
-      if (!body.nome || !body.email || !body.mensagem) {
+      if (!isValidString(body.nome, 100) || !isValidEmail(body.email) || !isValidString(body.mensagem, 5000)) {
         await client.close();
         return new Response(
-          JSON.stringify({ status: "error", message: "Campos obrigatórios: nome, email, mensagem" }),
+          JSON.stringify({ status: "error", message: "Campos inválidos: nome, email ou mensagem" }),
           { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
       }
+      if (body.empresa && !isValidString(body.empresa, 200)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"empresa inválida"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
+      if (body.cargo && !isValidString(body.cargo, 200)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"cargo inválido"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
+      if (body.telefone && !isValidString(body.telefone, 50)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"telefone inválido"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
 
       to = CONTACT_TO;
       subject = `Novo contato — ${body.nome}${body.empresa ? ` (${body.empresa})` : ""}`;
       html = buildContactHtml(body);
     } else if (body.type === "assessment") {
-      if (!body.email || !body.resultado || !Array.isArray(body.recomendacoes)) {
+      if (!isValidEmail(body.email) || !isValidString(body.resultado, 500) || !Array.isArray(body.recomendacoes) || body.recomendacoes.length > 20) {
         await client.close();
         return new Response(
-          JSON.stringify({ status: "error", message: "Campos obrigatórios: email, resultado, recomendacoes" }),
+          JSON.stringify({ status: "error", message: "Campos inválidos: email, resultado ou recomendacoes" }),
           { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
       }
+      if (body.nome && !isValidString(body.nome, 100)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"nome inválido"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
 
       to = body.email;
       subject = "Seu diagnóstico de prontidão para IA — Financeit";
