@@ -22,8 +22,8 @@ export interface EmailResponse {
   message?: string;
 }
 
-const FALLBACK_EMAIL_FUNCTION_URL = "";
-const FALLBACK_EMAIL_FUNCTION_KEY = "";
+const FALLBACK_EMAIL_FUNCTION_URL = "https://mgmhhltfdiigsvkirgyz.supabase.co";
+const FALLBACK_EMAIL_FUNCTION_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nbWhobHRmZGlpZ3N2a2lyZ3l6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjcxNzgsImV4cCI6MjA5MjEwMzE3OH0.b0EG7UMCDHKPc9N_LyJCoAlaOYBfWhRJMu67PcYIzdQ";
 
 function getSendEmailUrl(baseUrl?: string): string {
   if (!baseUrl) {
