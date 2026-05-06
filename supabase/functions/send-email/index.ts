@@ -394,9 +394,47 @@ function buildAssessmentHtml(data: AssessmentPayload): string {
   );
 }
 
+// Simple in-memory rate limiter (per-IP). Resets on cold start.
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const rateBuckets = new Map<string, { count: number; resetAt: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const bucket = rateBuckets.get(ip);
+  if (!bucket || bucket.resetAt < now) {
+    rateBuckets.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  if (bucket.count >= RATE_LIMIT_MAX) return false;
+  bucket.count += 1;
+  return true;
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function isValidEmail(value: unknown): value is string {
+  return typeof value === "string" && value.length <= 254 && EMAIL_REGEX.test(value);
+}
+
+function isValidString(value: unknown, max: number): value is string {
+  return typeof value === "string" && value.trim().length > 0 && value.length <= max;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limit by IP
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+    || req.headers.get("cf-connecting-ip")
+    || "unknown";
+  if (!checkRateLimit(ip)) {
+    return new Response(
+      JSON.stringify({ status: "error", message: "Muitas requisições. Tente novamente mais tarde." }),
+      { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
   }
 
   const SMTP_HOST = Deno.env.get("SMTP_HOST");
@@ -450,25 +488,29 @@ Deno.serve(async (req) => {
     let html: string;
 
     if (body.type === "contact") {
-      if (!body.nome || !body.email || !body.mensagem) {
+      if (!isValidString(body.nome, 100) || !isValidEmail(body.email) || !isValidString(body.mensagem, 5000)) {
         await client.close();
         return new Response(
-          JSON.stringify({ status: "error", message: "Campos obrigatórios: nome, email, mensagem" }),
+          JSON.stringify({ status: "error", message: "Campos inválidos: nome, email ou mensagem" }),
           { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
       }
+      if (body.empresa && !isValidString(body.empresa, 200)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"empresa inválida"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
+      if (body.cargo && !isValidString(body.cargo, 200)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"cargo inválido"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
+      if (body.telefone && !isValidString(body.telefone, 50)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"telefone inválido"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
 
       to = CONTACT_TO;
       subject = `Novo contato — ${body.nome}${body.empresa ? ` (${body.empresa})` : ""}`;
       html = buildContactHtml(body);
     } else if (body.type === "assessment") {
-      if (!body.email || !body.resultado || !Array.isArray(body.recomendacoes)) {
+      if (!isValidEmail(body.email) || !isValidString(body.resultado, 500) || !Array.isArray(body.recomendacoes) || body.recomendacoes.length > 20) {
         await client.close();
         return new Response(
-          JSON.stringify({ status: "error", message: "Campos obrigatórios: email, resultado, recomendacoes" }),
+          JSON.stringify({ status: "error", message: "Campos inválidos: email, resultado ou recomendacoes" }),
           { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
       }
+      if (body.nome && !isValidString(body.nome, 100)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"nome inválido"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
 
       to = body.email;
       subject = "Seu diagnóstico de prontidão para IA — Financeit";
