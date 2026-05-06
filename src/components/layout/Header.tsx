@@ -128,6 +128,9 @@ const Header = () => {
                         Visão Geral
                       </Link>
                       <div className="my-1 h-px bg-border" />
+                      <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                        Produtos
+                      </div>
                       {item.children.map((child) => (
                         <Link
                           key={child.path}
