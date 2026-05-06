@@ -16,6 +16,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [isFirstUser, setIsFirstUser] = useState(false);
+  const [fullName, setFullName] = useState("");
   
   const [showForgotModal, setShowForgotModal] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
@@ -31,7 +33,53 @@ export default function Login() {
       setEmail(savedEmail);
       setRememberMe(true);
     }
+    
+    const checkFirstUser = async () => {
+      const { data, error } = await supabase.rpc('has_users');
+      if (!error) {
+        setIsFirstUser(!data);
+      }
+    };
+    
+    checkFirstUser();
   }, []);
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: email.trim(),
+        password,
+        options: {
+          data: {
+            full_name: fullName,
+          }
+        }
+      });
+      
+      if (error) throw error;
+
+      if (data.user) {
+        toast({
+          title: "Administrador criado",
+          description: "Sua conta foi criada como administrador do sistema.",
+        });
+        setIsFirstUser(false);
+        // After signup, try to log in or wait for auto-login
+        navigate("/dashboard");
+      }
+    } catch (error: any) {
+      console.error("Signup error:", error.message);
+      toast({
+        variant: "destructive",
+        title: "Erro ao criar administrador",
+        description: error.message,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -141,15 +189,33 @@ export default function Login() {
           
           <CardHeader className="space-y-2 pt-10 pb-6 text-center">
             <CardTitle className="text-3xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-              Bem-vindo
+              {isFirstUser ? "Configuração Inicial" : "Bem-vindo"}
             </CardTitle>
             <CardDescription className="text-white font-medium opacity-80">
-              Acesse sua conta estratégica FinanceIT
+              {isFirstUser 
+                ? "Crie a conta do administrador do sistema" 
+                : "Acesse sua conta estratégica FinanceIT"}
             </CardDescription>
           </CardHeader>
 
-          <form onSubmit={handleLogin}>
+          <form onSubmit={isFirstUser ? handleSignup : handleLogin}>
             <CardContent className="space-y-5 px-8">
+              {isFirstUser && (
+                <div className="space-y-2">
+                  <Label htmlFor="fullName" className="text-xs font-black uppercase tracking-widest text-white ml-1">
+                    Nome Completo
+                  </Label>
+                  <Input
+                    id="fullName"
+                    type="text"
+                    placeholder="Seu nome completo"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-slate-500 focus:bg-white/20 focus:ring-primary/40 focus:border-primary/40 transition-all h-14 rounded-2xl pl-4"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    required
+                  />
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-white ml-1">
                   E-mail Corporativo
@@ -182,29 +248,31 @@ export default function Login() {
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-1">
-                <div className="flex items-center space-x-2">
-                  <Checkbox 
-                    id="remember" 
-                    checked={rememberMe}
-                    onCheckedChange={(checked) => setRememberMe(checked as boolean)}
-                    className="border-white/20 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
-                  />
-                  <Label htmlFor="remember" className="text-xs text-white font-medium cursor-pointer">
-                    Lembrar-me
-                  </Label>
+              {!isFirstUser && (
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-2">
+                    <Checkbox 
+                      id="remember" 
+                      checked={rememberMe}
+                      onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                      className="border-white/20 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                    />
+                    <Label htmlFor="remember" className="text-xs text-white font-medium cursor-pointer">
+                      Lembrar-me
+                    </Label>
+                  </div>
+                  <button 
+                    type="button"
+                    onClick={() => {
+                      setResetEmail(email);
+                      setShowForgotModal(true);
+                    }}
+                    className="text-xs text-white font-bold hover:underline underline-offset-4"
+                  >
+                    Esqueci a senha
+                  </button>
                 </div>
-                <button 
-                  type="button"
-                  onClick={() => {
-                    setResetEmail(email);
-                    setShowForgotModal(true);
-                  }}
-                  className="text-xs text-white font-bold hover:underline underline-offset-4"
-                >
-                  Esqueci a senha
-                </button>
-              </div>
+              )}
             </CardContent>
 
             <CardFooter className="flex flex-col gap-8 pb-10 pt-4 px-8">
@@ -216,11 +284,11 @@ export default function Login() {
                 {loading ? (
                   <div className="flex items-center gap-3">
                     <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                    <span>Autenticando...</span>
+                    <span>{isFirstUser ? "Criando..." : "Autenticando..."}</span>
                   </div>
                 ) : (
                   <span className="flex items-center gap-2">
-                    Acessar Plataforma
+                    {isFirstUser ? "Criar Administrador" : "Acessar Plataforma"}
                   </span>
                 )}
               </Button>

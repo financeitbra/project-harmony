@@ -193,6 +193,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      has_users: { Args: never; Returns: boolean }
       is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
