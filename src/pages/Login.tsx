@@ -280,11 +280,11 @@ export default function Login() {
                 {loading ? (
                   <div className="flex items-center gap-3">
                     <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                    <span>Autenticando...</span>
+                    <span>{isFirstUser ? "Criando..." : "Autenticando..."}</span>
                   </div>
                 ) : (
                   <span className="flex items-center gap-2">
-                    Acessar Plataforma
+                    {isFirstUser ? "Criar Administrador" : "Acessar Plataforma"}
                   </span>
                 )}
               </Button>
