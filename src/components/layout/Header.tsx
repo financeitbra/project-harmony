@@ -114,7 +114,7 @@ const Header = () => {
                           }`}
                         >
                           {child.logo ? (
-                            <img src={child.logo} alt={child.label} className="h-10 w-auto min-w-[38px] max-w-[48px] object-contain transition-all" />
+                            <img src={child.logo} alt={child.label} className="h-12 w-auto min-w-[46px] max-w-[58px] object-contain transition-all" />
                           ) : (
                             child.icon && <child.icon className="h-4 w-4 text-accent" />
                           )}
@@ -204,7 +204,7 @@ const Header = () => {
                     {item.children.map((child) => (
                       <Link key={child.path} to={child.path} onClick={() => setMobileOpen(false)} className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${location.pathname === child.path ? "bg-secondary text-foreground" : "text-muted-foreground hover:bg-secondary hover:text-foreground"}`}>
                         {child.logo ? (
-                          <img src={child.logo} alt={child.label} className="h-8 w-auto min-w-[34px] max-w-[44px] object-contain" />
+                          <img src={child.logo} alt={child.label} className="h-10 w-auto min-w-[41px] max-w-[53px] object-contain" />
                         ) : (
                           child.icon && <child.icon className="h-4 w-4 text-accent" />
                         )}
