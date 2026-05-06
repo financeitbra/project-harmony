@@ -1,4 +1,4 @@
-import { Users, Code2, BarChart3, Brain, Building2, ArrowRight } from "lucide-react";
+import { Users, BarChart3, ArrowRight, Target, Network, Receipt, PieChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
