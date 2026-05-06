@@ -2,31 +2,52 @@ import { Users, Code2, BarChart3, Brain, Building2, ArrowRight } from "lucide-re
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const solutions = [
+const solutionCategories = [
   {
-    icon: Users,
-    title: "Talentos estratégicos",
-    description: "Hunting, recrutamento e alocação para empresas que precisam ampliar capacidade com mais precisão e velocidade.",
+    title: "Serviços",
+    items: [
+      {
+        icon: Target,
+        title: "Hunting de Profissionais de TI",
+        description: "Encontre os melhores talentos em TI com precisão técnica e cultural.",
+        path: "/hunting-info",
+      },
+      {
+        icon: Users,
+        title: "Alocação de Profissionais de TI",
+        description: "Aumente sua capacidade de entrega com profissionais qualificados e prontos para atuar.",
+        path: "/alocacao-info",
+      },
+    ],
   },
   {
-    icon: Code2,
-    title: "Execução escalável",
-    description: "Squads, software e estrutura de entrega para transformar prioridade de negócio em resultado concreto.",
-  },
-  {
-    icon: BarChart3,
-    title: "Tecnologia aplicada",
-    description: "Soluções de software e plataforma alinhadas à realidade do negócio, com foco em clareza e eficiência operacional.",
-  },
-  {
-    icon: Brain,
-    title: "Dados, governança e IA",
-    description: "Governança, prontidão para IA e estrutura para produtos e operações orientados por inteligência.",
-  },
-  {
-    icon: Building2,
-    title: "Soluções empresariais especializadas",
-    description: "Capacidades aplicadas a áreas críticas como fiscal, orçamento e resultado com parceiros estratégicos.",
+    title: "Produtos",
+    items: [
+      {
+        icon: BarChart3,
+        title: "Qlik",
+        description: "Pipeline de dados end-to-end e visualizações poderosas para decisões ágeis.",
+        path: "/qlik",
+      },
+      {
+        icon: Network,
+        title: "Denodo",
+        description: "Virtualização de dados para acesso unificado e sem complexidade.",
+        path: "/denodo",
+      },
+      {
+        icon: Receipt,
+        title: "Avalara",
+        description: "Automação fiscal completa para conformidade e eficiência.",
+        path: "/avalara",
+      },
+      {
+        icon: PieChart,
+        title: "PPOV",
+        description: "Gestão inteligente de orçamentos e resultados corporativos.",
+        path: "/ppov",
+      },
+    ],
   },
 ];
 
