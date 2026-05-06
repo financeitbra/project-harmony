@@ -1,10 +1,29 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Target, Users, BarChart3, Network, Receipt, PieChart } from "lucide-react";
+import { Menu, X, ChevronDown, Target, Users, BarChart3, Network, Receipt, PieChart, LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoFinanceit from "@/assets/logo-financeit.png";
 
-const navItems = [
+interface NavChild {
+  label: string;
+  path: string;
+  logo?: string;
+  icon?: LucideIcon;
+}
+
+interface NavItem {
+  label: string;
+  path: string;
+  children?: NavChild[];
+  services?: {
+    label: string;
+    path: string;
+    description: string;
+    icon: "hunting" | "allocation";
+  }[];
+}
+
+const navItems: NavItem[] = [
   { label: "Quem Somos", path: "/quem-somos" },
   {
     label: "Soluções",
@@ -31,6 +50,7 @@ const navItems = [
         logo: "/logos/ppov.png" 
       },
     ],
+// ... keep existing code
 // ... keep existing code
     services: [
       {
