@@ -23,7 +23,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/financeit",
+    href: "https://www.facebook.com/financeitbr",
     Icon: Facebook,
     bg: "bg-[#1877F2]",
     ring: "focus-visible:ring-[#1877F2]/40",
