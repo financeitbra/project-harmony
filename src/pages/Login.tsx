@@ -33,6 +33,13 @@ export default function Login() {
       setEmail(savedEmail);
       setRememberMe(true);
     }
+    
+    const checkFirstUser = async () => {
+      const { count } = await supabase.from('profiles').select('*', { count: 'exact', head: true });
+      setIsFirstUser(count === 0);
+    };
+    
+    checkFirstUser();
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
