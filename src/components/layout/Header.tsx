@@ -10,11 +10,28 @@ const navItems = [
     label: "Soluções",
     path: "/solucoes",
     children: [
-      { label: "Qlik", path: "/qlik", icon: BarChart3 },
-      { label: "Denodo", path: "/denodo", icon: Network },
-      { label: "Avalara", path: "/avalara", icon: Receipt },
-      { label: "PPOV", path: "/ppov", icon: PieChart },
+      { 
+        label: "Qlik", 
+        path: "/qlik", 
+        logo: "/logos/qlik.svg"
+      },
+      { 
+        label: "Denodo", 
+        path: "/denodo", 
+        logo: "/logos/denodo.png"
+      },
+      { 
+        label: "Avalara", 
+        path: "/avalara", 
+        logo: "/logos/avalara.svg"
+      },
+      { 
+        label: "PPOV", 
+        path: "/ppov", 
+        icon: PieChart 
+      },
     ],
+// ... keep existing code
     services: [
       {
         label: "Hunting de Profissionais de TI",
