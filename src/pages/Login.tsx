@@ -42,6 +42,43 @@ export default function Login() {
     checkFirstUser();
   }, []);
 
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: email.trim(),
+        password,
+        options: {
+          data: {
+            full_name: fullName,
+          }
+        }
+      });
+      
+      if (error) throw error;
+
+      if (data.user) {
+        toast({
+          title: "Administrador criado",
+          description: "Sua conta foi criada como administrador do sistema.",
+        });
+        setIsFirstUser(false);
+        // After signup, try to log in or wait for auto-login
+        navigate("/dashboard");
+      }
+    } catch (error: any) {
+      console.error("Signup error:", error.message);
+      toast({
+        variant: "destructive",
+        title: "Erro ao criar administrador",
+        description: error.message,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
