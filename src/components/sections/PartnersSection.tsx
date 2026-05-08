@@ -2,10 +2,10 @@ import { BarChart3, Network, Receipt, PieChart } from "lucide-react";
 import logoToccato from "@/assets/logo-toccato.png";
 
 const partners = [
-  { name: "Qlik", icon: BarChart3, accent: false },
-  { name: "Denodo", icon: Network, accent: false },
-  { name: "Avalara", icon: Receipt, accent: true },
-  { name: "PPOV", icon: PieChart, accent: false },
+  { name: "Qlik", icon: BarChart3, accent: false, color: "#009845" },
+  { name: "Denodo", icon: Network, accent: false, color: "#E03127" },
+  { name: "Avalara", icon: Receipt, accent: true, color: "#ff6600" },
+  { name: "PPOV", icon: PieChart, accent: false, color: "#00d1b2" },
 ];
 
 const PartnersSection = () => {
