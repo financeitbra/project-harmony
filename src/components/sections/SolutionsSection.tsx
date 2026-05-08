@@ -81,8 +81,8 @@ const SolutionsSection = () => {
                     to={item.path}
                     className="group relative rounded-lg border border-border bg-card p-7 transition-all hover:border-accent/40 hover:shadow-lg flex flex-col md:flex-row gap-5"
                   >
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-accent/10 transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                      <item.icon className="h-6 w-6 text-accent group-hover:text-accent-foreground" />
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md transition-colors" style={{ backgroundColor: `${item.color}15` }}>
+                      <item.icon className="h-6 w-6" style={{ color: item.color }} />
                     </div>
                     <div>
                       <h4 className="font-display text-lg font-semibold">{item.title}</h4>
