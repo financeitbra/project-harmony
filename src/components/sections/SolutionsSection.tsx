@@ -11,12 +11,14 @@ const solutionCategories = [
         title: "Hunting de Profissionais de TI",
         description: "Encontre os melhores talentos em TI com precisão técnica e cultural.",
         path: "/hunting-info",
+        color: "#0EA5E9"
       },
       {
         icon: Users,
         title: "Alocação de Profissionais de TI",
         description: "Aumente sua capacidade de entrega com profissionais qualificados e prontos para atuar.",
         path: "/alocacao-info",
+        color: "#0EA5E9"
       },
     ],
   },
@@ -28,24 +30,28 @@ const solutionCategories = [
         title: "Qlik",
         description: "Pipeline de dados end-to-end e visualizações poderosas para decisões ágeis.",
         path: "/qlik",
+        color: "#009845"
       },
       {
         icon: Network,
         title: "Denodo",
         description: "Virtualização de dados para acesso unificado e sem complexidade.",
         path: "/denodo",
+        color: "#E03127"
       },
       {
         icon: Receipt,
         title: "Avalara",
         description: "Automação fiscal completa para conformidade e eficiência.",
         path: "/avalara",
+        color: "#ff6600"
       },
       {
         icon: PieChart,
         title: "PPOV",
         description: "Gestão inteligente de orçamentos e resultados corporativos.",
         path: "/ppov",
+        color: "#00d1b2"
       },
     ],
   },
@@ -75,8 +81,8 @@ const SolutionsSection = () => {
                     to={item.path}
                     className="group relative rounded-lg border border-border bg-card p-7 transition-all hover:border-accent/40 hover:shadow-lg flex flex-col md:flex-row gap-5"
                   >
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-accent/10 transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                      <item.icon className="h-6 w-6 text-accent group-hover:text-accent-foreground" />
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md transition-colors" style={{ backgroundColor: `${item.color}15` }}>
+                      <item.icon className="h-6 w-6" style={{ color: item.color }} />
                     </div>
                     <div>
                       <h4 className="font-display text-lg font-semibold">{item.title}</h4>
