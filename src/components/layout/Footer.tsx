@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import logoFinanceit from "@/assets/logo-financeit.png";
+import logoToccato from "@/assets/logo-toccato.png";
+
 
 const footerSections = [
   {
@@ -44,6 +46,13 @@ const Footer = () => {
             <p className="max-w-sm text-sm leading-relaxed text-primary-foreground/70">
               Inteligência de negócio. Talentos, tecnologia, dados, governança e execução conectados para transformar empresas.
             </p>
+            <div className="flex flex-col space-y-2 pt-4 border-t border-primary-foreground/10">
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-primary-foreground/30">
+                Distribuidor Qlik no Brasil
+              </span>
+              <img src={logoToccato} alt="Toccato - Distribuidor Qlik" className="h-8 w-auto self-start brightness-0 invert opacity-40 hover:opacity-100 transition-opacity" />
+            </div>
+
           </div>
 
           {/* Links */}
