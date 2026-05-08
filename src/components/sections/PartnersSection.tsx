@@ -28,7 +28,7 @@ const PartnersSection = () => {
               key={partner.name}
               className={`flex h-16 items-center gap-3 rounded-lg border bg-card px-10 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground ${partner.accent ? 'border-orange-accent/20 hover:border-orange-accent/40' : 'border-border hover:border-accent/30'}`}
             >
-              <partner.icon className={`h-5 w-5 ${partner.accent ? 'text-orange-accent' : 'text-accent'}`} />
+              <partner.icon className="h-5 w-5" style={{ color: partner.color }} />
               {partner.name}
             </div>
           ))}
