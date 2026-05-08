@@ -1,4 +1,5 @@
 import { BarChart3, Network, Receipt, PieChart } from "lucide-react";
+import logoToccato from "@/assets/logo-toccato.png";
 
 const partners = [
   { name: "Qlik", icon: BarChart3, accent: false },
@@ -33,7 +34,18 @@ const PartnersSection = () => {
           ))}
         </div>
 
-        <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+        <div className="mt-16 flex flex-col items-center justify-center border-t border-border/50 pt-10">
+          <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">
+            Distribuidor Qlik no Brasil
+          </p>
+          <img 
+            src={logoToccato} 
+            alt="Toccato - Distribuidor Qlik" 
+            className="h-12 w-auto opacity-80 transition-opacity hover:opacity-100 grayscale hover:grayscale-0"
+          />
+        </div>
+
+        <p className="mx-auto mt-12 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
           Mais do que tecnologia, essas parcerias reforçam a capacidade da Financeit de estruturar soluções aderentes ao negócio, com mais eficiência, inteligência e controle.
         </p>
       </div>
