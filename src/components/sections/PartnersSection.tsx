@@ -41,7 +41,7 @@ const PartnersSection = () => {
           <img 
             src={logoToccato} 
             alt="Toccato - Distribuidor Qlik" 
-            className="h-12 w-auto opacity-80 transition-opacity hover:opacity-100 grayscale hover:grayscale-0"
+            className="h-12 w-auto transition-opacity hover:opacity-100"
           />
         </div>
 
