@@ -26,10 +26,12 @@ const PartnersSection = () => {
           {partners.map((partner) => (
             <div
               key={partner.name}
-              className={`flex h-16 items-center gap-3 rounded-lg border bg-card px-10 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground ${partner.accent ? 'border-orange-accent/20 hover:border-orange-accent/40' : 'border-border hover:border-accent/30'}`}
+              className={`flex h-16 items-center gap-4 rounded-lg border bg-card px-8 transition-all hover:shadow-md ${partner.accent ? 'border-orange-accent/20 hover:border-orange-accent/40' : 'border-border hover:border-accent/30'}`}
             >
-              <partner.icon className="h-5 w-5" style={{ color: partner.color }} />
-              {partner.name}
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md" style={{ backgroundColor: `${partner.color}15` }}>
+                <partner.icon className="h-5 w-5" style={{ color: partner.color }} />
+              </div>
+              <span className="text-base font-bold text-foreground">{partner.name}</span>
             </div>
           ))}
         </div>
