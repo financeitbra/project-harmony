@@ -29,17 +29,17 @@ const DenodoPromoModal = () => {
         <div className="flex flex-col md:flex-row">
           {/* Lado Esquerdo - Visual Denodo */}
           <div 
-            className="relative p-8 text-white md:w-2/5 flex flex-col justify-center overflow-hidden"
-            style={{ backgroundColor: denodoDark }}
+            className="relative p-8 text-slate-900 md:w-2/5 flex flex-col justify-center overflow-hidden"
+            style={{ backgroundColor: "#F8F8FD" }}
           >
             <div className="absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rounded-full blur-3xl opacity-20" style={{ backgroundColor: denodoRed }}></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 -ml-12 -mb-12 rounded-full blur-2xl opacity-10" style={{ backgroundColor: denodoRed }}></div>
             
-            <div className="h-10 w-auto mb-6 relative z-10 bg-white/10 rounded p-2 flex items-center justify-center">
+            <div className="h-10 w-auto mb-6 relative z-10 bg-slate-100 rounded p-2 flex items-center justify-center">
               <img 
                 src="/logos/denodo.png" 
                 alt="Denodo Logo" 
-                className="h-full w-auto brightness-0 invert"
+                className="h-full w-auto"
               />
             </div>
 
@@ -48,7 +48,7 @@ const DenodoPromoModal = () => {
               Acelerando a Inteligência no Mercado Financeiro
             </h3>
             
-            <p className="text-sm text-white/70 relative z-10">
+            <p className="text-sm text-slate-600 relative z-10">
               A Logical Data Management permite acesso a dados em tempo real para conformidade, gestão de risco e visão 360 do cliente.
             </p>
           </div>
