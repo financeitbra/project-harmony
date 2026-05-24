@@ -24,6 +24,7 @@ import {
 import AdminUserManagement from "@/components/admin/AdminUserManagement";
 import Timesheet from "@/components/Timesheet";
 import AdminClientManagement from "@/components/admin/AdminClientManagement";
+import AdminAuditLogs from "@/components/admin/AdminAuditLogs";
 
 export default function Dashboard() {
   const [profile, setProfile] = useState<any>(null);
@@ -252,15 +253,7 @@ export default function Dashboard() {
                       <AdminClientManagement />
                     </TabsContent>
                     <TabsContent value="logs" className="mt-0 focus-visible:outline-none">
-                      <div className="flex flex-col items-center justify-center py-20 text-center space-y-4">
-                        <div className="p-4 bg-slate-50 rounded-full">
-                          <History className="w-10 h-10 text-slate-300" />
-                        </div>
-                        <div className="max-w-xs">
-                          <p className="text-slate-900 font-bold">Logs de Atividade</p>
-                          <p className="text-slate-500 text-sm mt-1">Os registros de acesso e alterações serão exibidos aqui em breve.</p>
-                        </div>
-                      </div>
+                      <AdminAuditLogs />
                     </TabsContent>
                   </CardContent>
                 </Tabs>
