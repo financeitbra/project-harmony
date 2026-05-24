@@ -6,8 +6,9 @@ const denodoDark = "#2D2D2D";
 
 const faqItems = [
   {
-    question: "O que é virtualização de dados e como ela difere de ETL tradicional?",
-    answer: "A virtualização de dados cria uma camada lógica que conecta fontes heterogêneas sem mover ou copiar dados fisicamente. Diferente do ETL tradicional, que extrai, transforma e carrega dados em um repositório central, a virtualização acessa os dados em tempo real nas fontes originais, reduzindo latência, custos de armazenamento e complexidade de manutenção."
+    question: "O que é Logical Data Management e como ela difere de ETL tradicional?",
+    answer: "A Logical Data Management cria uma camada lógica que conecta fontes heterogêneas sem mover ou copiar dados fisicamente. Diferente do ETL tradicional, que extrai, transforma e carrega dados em um repositório central, a Logical Data Management acessa os dados em tempo real nas fontes originais, reduzindo latência, custos de armazenamento e complexidade de manutenção."
+
   },
   {
     question: "Como a Denodo Platform garante performance em consultas distribuídas?",
@@ -18,8 +19,9 @@ const faqItems = [
     answer: "A Denodo conecta virtualmente qualquer fonte: bancos relacionais (Oracle, SQL Server, PostgreSQL), data lakes (S3, ADLS), APIs REST/SOAP, arquivos (CSV, JSON, XML, Parquet), SaaS (Salesforce, SAP), NoSQL (MongoDB, Cassandra), mainframes e plataformas de streaming como Kafka — tudo através de uma interface unificada."
   },
   {
-    question: "A virtualização de dados substitui o data warehouse?",
-    answer: "Não necessariamente. A virtualização complementa o data warehouse, criando uma camada de abstração que pode incluí-lo como uma das fontes. Muitas empresas usam a Denodo para reduzir a necessidade de novos data marts, acelerar acessos que não precisam de persistência e unificar a visão sobre dados que estão dentro e fora do warehouse."
+    question: "A Logical Data Management substitui o data warehouse?",
+    answer: "Não necessariamente. A Logical Data Management complementa o data warehouse, criando uma camada de abstração que pode incluí-lo como uma das fontes. Muitas empresas usam a Denodo para reduzir a necessidade de novos data marts, acelerar acessos que não precisam de persistência e unificar a visão sobre dados que estão dentro e fora do warehouse."
+
   },
   {
     question: "Como a Denodo suporta arquiteturas de Data Fabric e Data Mesh?",
@@ -30,12 +32,14 @@ const faqItems = [
     answer: "A virtualização centraliza as políticas de segurança e acesso em uma única camada. Isso significa controle granular por usuário, row-level security, mascaramento dinâmico de dados sensíveis, linhagem completa de dados e auditoria de acessos — facilitando conformidade com LGPD, GDPR e outras regulamentações."
   },
   {
-    question: "Quanto tempo leva para implementar a virtualização de dados?",
+    question: "Quanto tempo leva para implementar a Logical Data Management?",
     answer: "Projetos iniciais com a Denodo podem gerar valor em 4 a 8 semanas, começando com casos de uso prioritários. A abordagem iterativa permite expandir gradualmente, adicionando novas fontes e views conforme a demanda. A curva de aprendizado é acelerada por uma interface visual intuitiva e ampla documentação."
+
   },
   {
-    question: "Como a virtualização de dados reduz custos operacionais?",
+    question: "Como a Logical Data Management reduz custos operacionais?",
     answer: "Ao eliminar a necessidade de replicar dados entre sistemas, reduz custos de armazenamento, licenciamento e manutenção de pipelines. Estudos da Forrester mostram ROI de até 400% em 3 anos, com redução de até 65% no tempo de integração de novas fontes e menor dependência de equipes especializadas em ETL."
+
   },
   {
     question: "A Denodo tem recursos de IA e machine learning integrados?",
@@ -66,11 +70,12 @@ const DenodoFAQ = () => {
           </span>
           <h2 className="mt-4 font-display text-2xl font-bold md:text-3xl lg:text-4xl">
             Tire suas dúvidas sobre{" "}
-            <span style={{ color: denodoRed }}>virtualização de dados</span>
+            <span style={{ color: denodoRed }}>Logical Data Management</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground md:text-lg max-w-2xl mx-auto">
-            Respostas para as perguntas mais comuns sobre a plataforma Denodo e como a virtualização de dados transforma a gestão de informações.
+            Respostas para as perguntas mais comuns sobre a plataforma Denodo e como a Logical Data Management transforma a gestão de informações.
           </p>
+
         </div>
 
         <Accordion type="single" collapsible className="space-y-3">
