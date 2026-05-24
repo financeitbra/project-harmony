@@ -13,9 +13,8 @@ const DenodoPromoModal = () => {
   useEffect(() => {
     const hasSeenModal = sessionStorage.getItem("hasSeenDenodoModal");
     if (!hasSeenModal) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 2000); // Mostra após 2 segundos
+      setIsOpen(true);
+
       return () => clearTimeout(timer);
     }
   }, []);
@@ -55,9 +54,10 @@ const DenodoPromoModal = () => {
           {/* Lado Direito - Conteúdo e Dores */}
           <div className="p-8 md:w-3/5 bg-white relative">
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-slate-900 leading-tight">
-                Resolva os desafios de dados com a <span style={{ color: denodoRed }}>Financeit & Denodo</span>
+              <DialogTitle className="text-2xl font-bold text-slate-900 leading-tight flex flex-wrap items-center gap-2">
+                Resolva os desafios de dados com a <img src="/logos/denodo.png" alt="Denodo" className="h-6 w-auto inline-block" /> <span className="text-slate-400 font-normal">&</span> <span className="text-slate-900">Financeit</span>
               </DialogTitle>
+
             </DialogHeader>
 
             <div className="mt-6 space-y-4">
