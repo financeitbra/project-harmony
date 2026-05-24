@@ -57,7 +57,7 @@ const DenodoPromoModal = () => {
           <div className="p-8 md:w-3/5 bg-white relative">
             <DialogHeader>
               <DialogTitle className="text-2xl font-bold text-slate-900 leading-tight flex flex-wrap items-center gap-x-3">
-                Resolva os desafios de dados com a <img src="/logos/denodo.png" alt="Denodo" className="h-20 w-auto inline-block object-contain" /> <span className="text-slate-400 font-normal">&</span> <span className="text-slate-900">Financeit</span>
+                Resolva os desafios de dados com a <img src="/logos/denodo.png" alt="Denodo" className="h-14 w-auto inline-block object-contain" /> <span className="text-slate-400 font-normal">&</span> <span className="text-slate-900">Financeit</span>
               </DialogTitle>
 
 
