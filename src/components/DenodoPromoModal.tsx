@@ -35,11 +35,14 @@ const DenodoPromoModal = () => {
             <div className="absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rounded-full blur-3xl opacity-20" style={{ backgroundColor: denodoRed }}></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 -ml-12 -mb-12 rounded-full blur-2xl opacity-10" style={{ backgroundColor: denodoRed }}></div>
             
-            <img 
-              src="/logos/denodo.png" 
-              alt="Denodo Logo" 
-              className="h-10 w-auto mb-6 relative z-10 brightness-0 invert"
-            />
+            <div className="h-10 w-auto mb-6 relative z-10 bg-white/10 rounded p-2 flex items-center justify-center">
+              <img 
+                src="/logos/denodo.png" 
+                alt="Denodo Logo" 
+                className="h-full w-auto brightness-0 invert"
+              />
+            </div>
+
             
             <h3 className="text-xl font-bold mb-4 relative z-10 leading-tight">
               Acelerando a Inteligência no Mercado Financeiro
@@ -53,9 +56,10 @@ const DenodoPromoModal = () => {
           {/* Lado Direito - Conteúdo e Dores */}
           <div className="p-8 md:w-3/5 bg-white relative">
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-slate-900 leading-tight flex flex-wrap items-center gap-2">
-                Resolva os desafios de dados com a <img src="/logos/denodo.png" alt="Denodo" className="h-6 w-auto inline-block" /> <span className="text-slate-400 font-normal">&</span> <span className="text-slate-900">Financeit</span>
+              <DialogTitle className="text-2xl font-bold text-slate-900 leading-tight flex flex-wrap items-center gap-x-3">
+                Resolva os desafios de dados com a <img src="/logos/denodo.png" alt="Denodo" className="h-9 w-auto inline-block object-contain" /> <span className="text-slate-400 font-normal">&</span> <span className="text-slate-900">Financeit</span>
               </DialogTitle>
+
 
             </DialogHeader>
 
