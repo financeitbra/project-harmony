@@ -35,7 +35,7 @@ const DenodoPromoModal = () => {
             <div className="absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rounded-full blur-3xl opacity-20" style={{ backgroundColor: denodoRed }}></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 -ml-12 -mb-12 rounded-full blur-2xl opacity-10" style={{ backgroundColor: denodoRed }}></div>
             
-            <div className="h-24 w-auto mb-6 relative z-10 bg-slate-100/50 rounded p-4 flex items-center justify-center">
+            <div className="h-[163px] w-auto mb-6 relative z-10 bg-slate-100/50 rounded p-4 flex items-center justify-center">
               <img 
                 src="/logos/denodo.png" 
                 alt="Denodo Logo" 
