@@ -134,8 +134,8 @@ const EstruturacaoDadosPage = () => {
               </Button>
             </div>
             <div className="rounded-xl border border-primary-foreground/10 bg-primary-foreground/5 p-8">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-accent/15">
-                <Network className="h-6 w-6 text-accent" />
+              <div className="mb-6 flex h-14 items-center justify-start rounded-lg bg-white/10 p-3">
+                <img src="/logos/denodo.png" alt="Denodo Logo" className="h-full w-auto object-contain brightness-0 invert" />
               </div>
               <h3 className="font-display text-xl font-bold">Denodo</h3>
               <p className="mt-3 text-sm leading-relaxed text-primary-foreground/70">
