@@ -8,6 +8,8 @@ import { TooltipProvider } from "./components/ui/tooltip";
 import WhatsAppButton from "./components/WhatsAppButton";
 import CookieBanner from "./components/CookieBanner";
 import AppErrorBoundary from "./components/AppErrorBoundary";
+import DenodoPromoModal from "./components/DenodoPromoModal";
+
 
 // Layout
 import PublicLayout from "./components/layout/PublicLayout";
@@ -99,6 +101,8 @@ const App = () => {
             </Suspense>
             <WhatsAppButton />
             <CookieBanner />
+            <DenodoPromoModal />
+
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>
