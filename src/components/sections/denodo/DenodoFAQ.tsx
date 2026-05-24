@@ -55,7 +55,8 @@ const faqItems = [
   },
   {
     question: "Qual o papel da Financeit na implementação da Denodo?",
-    answer: "A Financeit atua como parceira estratégica, combinando expertise em dados com conhecimento profundo da plataforma Denodo. Realizamos o diagnóstico de fontes, desenho da arquitetura de virtualização, implementação técnica, integração com ferramentas de BI e analytics, e suporte contínuo para evolução da malha de dados."
+    answer: "A Financeit atua como parceira estratégica, combinando expertise em dados com conhecimento profundo da plataforma Denodo. Realizamos o diagnóstico de fontes, desenho da arquitetura de Logical Data Management, implementação técnica, integração com ferramentas de BI e analytics, e suporte contínuo para evolução da malha de dados."
+
   },
 ];
 
