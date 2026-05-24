@@ -27,7 +27,8 @@ const solutionCategories = [
       {
         icon: Network,
         title: "Denodo",
-        description: "Virtualização de dados para acesso rápido e unificado a fontes heterogêneas.",
+        description: "Logical Data Management para acesso rápido e unificado a fontes heterogêneas.",
+
       },
       {
         icon: Receipt,

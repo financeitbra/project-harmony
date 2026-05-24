@@ -213,7 +213,7 @@ const casos: Caso[] = [
         "Planejamos a cirurgia com precisão milimétrica: o que virtualizar, o que replicar e o que governar centralmente.",
     },
     tratamento: {
-      titulo: "Virtualização de Dados com Denodo",
+      titulo: "Logical Data Management com Denodo",
       produto: "Denodo",
       intervencao: [
         "Camada lógica de dados unificada",

@@ -22,7 +22,7 @@ const DenodoPage = () => {
         <div className="relative section-padding">
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-6 inline-flex items-center rounded-full px-4 py-1.5" style={{ border: `1px solid ${denodoRed}50`, backgroundColor: `${denodoRed}18` }}>
-              <span className="text-xs font-medium tracking-wide" style={{ color: denodoRedLight }}>Virtualização de Dados com Denodo</span>
+              <span className="text-xs font-medium tracking-wide" style={{ color: denodoRedLight }}>Logical Data Management com Denodo</span>
             </div>
             <h1 className="font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
               Integrar dados não precisa significar{" "}
@@ -32,7 +32,7 @@ const DenodoPage = () => {
               Com Denodo, a Financeit ajuda empresas a criar uma camada unificada de dados — acessando informações de múltiplas fontes em tempo real, sem duplicação, sem silos e com governança.
             </p>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/50 md:text-base">
-              A virtualização de dados permite que sua empresa trate fontes dispersas como se fossem uma base integrada, com mais agilidade, menos risco e menos complexidade de infraestrutura.
+              A logical data management permite que sua empresa trate fontes dispersas como se fossem uma base integrada, com mais agilidade, menos risco e menos complexidade de infraestrutura.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="text-white hover:opacity-90" style={{ backgroundColor: denodoRed }} asChild>
@@ -85,7 +85,7 @@ const DenodoPage = () => {
               Plataforma Denodo
             </span>
             <h2 className="mt-4 font-display text-2xl font-bold md:text-3xl lg:text-4xl">
-              Virtualização de dados:{" "}
+              Logical Data Management:{" "}
               <span style={{ color: denodoRed }}>acesso unificado sem replicação.</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -123,7 +123,7 @@ const DenodoPage = () => {
                 O papel da Financeit
               </span>
               <h2 className="mt-4 font-display text-2xl font-bold md:text-3xl lg:text-4xl">
-                Virtualização de dados exige mais do que plataforma.{" "}
+                Logical data management exige mais do que plataforma.{" "}
                 <span style={{ color: denodoRed }}>Exige estratégia de dados.</span>
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">

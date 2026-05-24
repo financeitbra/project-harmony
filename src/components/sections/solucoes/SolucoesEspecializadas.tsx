@@ -14,7 +14,7 @@ const solucoes = [
   },
   {
     icon: Network,
-    title: "Virtualização e integração com Denodo",
+    title: "Logical Data Management e integração com Denodo",
     description: "Acesso integrado a dados distribuídos sem replicação, com agilidade, governança e visão unificada.",
     link: "/denodo",
     accentClass: "bg-accent/10",

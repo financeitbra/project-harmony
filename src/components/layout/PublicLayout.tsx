@@ -51,8 +51,9 @@ const PAGE_META: Record<string, PageMeta> = {
     keywords: "Qlik, Qlik Sense, Qlik Cloud, analytics",
   },
   "/denodo": {
-    title: "Denodo — Virtualização de Dados",
-    description: "Denodo with Financeit: data fabric and data virtualization to access and govern distributed information in real time.",
+    title: "Denodo — Logical Data Management",
+    description: "Denodo with Financeit: data fabric and logical data management to access and govern distributed information in real time.",
+
     keywords: "Denodo, virtualização de dados, data fabric",
   },
   "/ppov": {
