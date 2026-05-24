@@ -35,7 +35,8 @@ const solutionCategories = [
       {
         icon: Network,
         title: "Denodo",
-        description: "Virtualização de dados para acesso unificado e sem complexidade.",
+        description: "Logical Data Management para acesso unificado e sem complexidade.",
+
         path: "/denodo",
         color: "#E03127"
       },

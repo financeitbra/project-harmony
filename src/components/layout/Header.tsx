@@ -40,7 +40,8 @@ const navItems: NavItem[] = [
         label: "Denodo", 
         path: "/denodo", 
         logo: "/logos/denodo.png",
-        description: "ES - Virtualização de Dados"
+        description: "ES - Logical Data Management"
+
       },
       { 
         label: "Avalara", 
