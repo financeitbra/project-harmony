@@ -47,7 +47,7 @@ export default function AdminAuditLogs() {
         .from("audit_logs")
         .select(`
           *,
-          profiles:user_id (
+          profiles (
             full_name,
             email
           )
