@@ -14,10 +14,9 @@ const DenodoPromoModal = () => {
     const hasSeenModal = sessionStorage.getItem("hasSeenDenodoModal");
     if (!hasSeenModal) {
       setIsOpen(true);
-
-      return () => clearTimeout(timer);
     }
   }, []);
+
 
   const handleClose = () => {
     setIsOpen(false);
