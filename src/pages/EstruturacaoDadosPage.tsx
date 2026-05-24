@@ -122,7 +122,7 @@ const EstruturacaoDadosPage = () => {
           </div>
           <div className="mx-auto mt-14 grid max-w-4xl gap-6 md:grid-cols-2">
             <div className="rounded-xl border border-primary-foreground/10 bg-primary-foreground/5 p-8">
-              <div className="mb-6 flex h-20 items-center justify-start rounded-lg bg-white/10 p-3">
+              <div className="mb-6 flex h-28 items-center justify-start rounded-lg bg-white/10 p-4">
                 <img src="/logos/qlik.svg" alt="Qlik Logo" className="h-full w-auto object-contain" />
               </div>
               <h3 className="font-display text-xl font-bold">Qlik</h3>
@@ -134,7 +134,7 @@ const EstruturacaoDadosPage = () => {
               </Button>
             </div>
             <div className="rounded-xl border border-primary-foreground/10 bg-primary-foreground/5 p-8">
-              <div className="mb-6 flex h-20 items-center justify-start rounded-lg bg-white/10 p-3">
+              <div className="mb-6 flex h-28 items-center justify-start rounded-lg bg-white/10 p-4">
                 <img src="/logos/denodo.png" alt="Denodo Logo" className="h-full w-auto object-contain" />
               </div>
               <h3 className="font-display text-xl font-bold">Denodo</h3>
