@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, ArrowRight, ShieldCheck, Zap, Database, Network } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const denodoRed = "#E03127";
@@ -9,13 +9,15 @@ const denodoDark = "#2D2D2D";
 
 const DenodoPromoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
+    if (location.pathname !== "/") return;
     const hasSeenModal = sessionStorage.getItem("hasSeenDenodoModal");
     if (!hasSeenModal) {
       setIsOpen(true);
     }
-  }, []);
+  }, [location.pathname]);
 
 
   const handleClose = () => {
