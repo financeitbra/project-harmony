@@ -9,7 +9,6 @@ const denodoDark = "#2D2D2D";
 
 const DenodoPromoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     const hasSeenModal = sessionStorage.getItem("hasSeenDenodoModal");
