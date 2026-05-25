@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import DenodoFAQ from "@/components/sections/denodo/DenodoFAQ";
 
 const denodoRed = "#E03127";
-const denodoDark = "#F2F8FE";
+const denodoDark = "#F1F7FF";
 const denodoRedLight = "#F04E45";
 
 const DenodoPage = () => {
