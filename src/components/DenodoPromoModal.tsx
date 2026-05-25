@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, ArrowRight, ShieldCheck, Zap, Database, Network } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const denodoRed = "#E03127";
