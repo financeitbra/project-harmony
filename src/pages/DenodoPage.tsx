@@ -179,6 +179,11 @@ const DenodoPage = () => {
                 title: "Catálogo de dados",
                 desc: "Visibilidade sobre quais dados existem, onde estão, quem os consome e com que qualidade.",
               },
+              {
+                icon: Cloud,
+                title: "Integração multi-ambiente",
+                desc: "Conecte dados na nuvem, on-premise ou em ambientes híbridos sem replicar informações entre plataformas.",
+              },
             ].map((b) => (
               <div key={b.title} className="rounded-xl border border-border bg-card p-7 transition-all hover:shadow-sm">
                 <div
