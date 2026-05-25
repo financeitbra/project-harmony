@@ -10,6 +10,7 @@ import {
   RefreshCw,
   Target,
   Lock,
+  BookOpen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -148,7 +149,11 @@ const DenodoPage = () => {
                 desc: "Acesse todas as fontes de dados como se fossem uma só, sem replicação e sem ETL pesado.",
               },
               {
-                icon: Zap,
+                icon: BookOpen,
+                title: "Camada Semântica",
+                desc: "Organiza e simplifica dados brutos em termos de negócio, mantendo linhagem e consistência. Serve como base para preparação de IA e aplicações GenAI com dados confiáveis e contextuais.",
+              },
+              {
                 title: "Acesso em tempo real",
                 desc: "Consulte dados atualizados de múltiplas fontes sem esperar cargas batch ou pipelines de sincronização.",
               },
