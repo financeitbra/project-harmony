@@ -61,8 +61,13 @@ export default function Dashboard() {
             });
           }
         } else if (data) {
+          if (data.password_reset_required) {
+            if (isMounted) navigate("/reset-password");
+            return;
+          }
           if (isMounted) setProfile(data);
         }
+
       } catch (err: any) {
         console.error("Dashboard profile catch error:", err);
       } finally {
