@@ -50,7 +50,7 @@ const Footer = () => {
               <span className="text-[10px] font-semibold uppercase tracking-widest text-primary-foreground/30">
                 Distribuidor Qlik no Brasil
               </span>
-              <img src={logoToccato} alt="Toccato - Distribuidor Qlik" className="h-[38px] w-auto self-start hover:opacity-100 transition-opacity" />
+              <a href="https://www.toccato.com.br" target="_blank" rel="noopener noreferrer"><img src={logoToccato} alt="Toccato - Distribuidor Qlik" className="h-[38px] w-auto self-start hover:opacity-100 transition-opacity" /></a>
             </div>
 
           </div>

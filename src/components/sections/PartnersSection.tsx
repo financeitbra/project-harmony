@@ -40,11 +40,17 @@ const PartnersSection = () => {
           <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">
             Distribuidor Qlik no Brasil
           </p>
-          <img 
-            src={logoToccato} 
-            alt="Toccato - Distribuidor Qlik" 
-            className="h-12 w-auto transition-opacity hover:opacity-100"
-          />
+          <a 
+            href="https://www.toccato.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img 
+              src={logoToccato} 
+              alt="Toccato - Distribuidor Qlik" 
+              className="h-12 w-auto transition-opacity hover:opacity-100"
+            />
+          </a>
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
