@@ -154,6 +154,7 @@ const DenodoPage = () => {
                 desc: "Organiza e simplifica dados brutos em termos de negócio, mantendo linhagem e consistência. Serve como base para preparação de IA e aplicações GenAI com dados confiáveis e contextuais.",
               },
               {
+                icon: Zap,
                 title: "Acesso em tempo real",
                 desc: "Consulte dados atualizados de múltiplas fontes sem esperar cargas batch ou pipelines de sincronização.",
               },
