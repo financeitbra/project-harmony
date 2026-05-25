@@ -566,11 +566,10 @@ Deno.serve(async (req) => {
       // noop
     }
 
-    const message = error instanceof Error ? error.message : "Erro desconhecido";
-
     return new Response(
-      JSON.stringify({ status: "error", message }),
+      JSON.stringify({ status: "error", message: "Não foi possível enviar o e-mail no momento. Tente novamente." }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
 });
+
