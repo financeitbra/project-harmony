@@ -24,7 +24,7 @@ const DenodoPromoModal = () => {
         <div className="flex flex-col md:flex-row">
           {/* Lado Esquerdo - Visual Denodo */}
           <div 
-            className="relative p-8 text-slate-900 md:w-2/5 flex flex-col justify-center overflow-hidden"
+            className="relative p-6 md:p-8 text-slate-900 md:w-2/5 flex flex-col justify-center overflow-hidden"
             style={{ backgroundColor: "#F8F8FD" }}
           >
             <div className="absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rounded-full blur-3xl opacity-20" style={{ backgroundColor: denodoRed }}></div>
