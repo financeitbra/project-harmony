@@ -10,7 +10,6 @@ import {
   RefreshCw,
   Target,
   Lock,
-  BookOpen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -149,11 +148,6 @@ const DenodoPage = () => {
                 desc: "Acesse todas as fontes de dados como se fossem uma só, sem replicação e sem ETL pesado.",
               },
               {
-                icon: BookOpen,
-                title: "Camada Semântica",
-                desc: "Organiza e simplifica dados brutos em termos de negócio, mantendo linhagem e consistência. Serve como base para preparação de IA e aplicações GenAI com dados confiáveis e contextuais.",
-              },
-              {
                 icon: Zap,
                 title: "Acesso em tempo real",
                 desc: "Consulte dados atualizados de múltiplas fontes sem esperar cargas batch ou pipelines de sincronização.",
@@ -206,7 +200,7 @@ const DenodoPage = () => {
                 <span className="h-px w-6" style={{ backgroundColor: denodoRed }} />O papel da Financeit
               </span>
               <h2 className="mt-4 font-display text-2xl font-bold md:text-3xl lg:text-4xl">
-                Logical data management exige mais do que plataforma.{" "}
+                Logical Data Management exige mais do que plataforma.{" "}
                 <span style={{ color: denodoRed }}>Exige estratégia de dados.</span>
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
