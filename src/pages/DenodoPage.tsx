@@ -12,6 +12,7 @@ import {
   Lock,
   BookOpen,
   Cloud,
+  Brain,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
