@@ -32,10 +32,11 @@ router.post('/contact', async (req: Request, res: Response) => {
 
     res.json({ status: 'success', id });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Erro desconhecido';
-    res.status(500).json({ status: 'error', message });
+    console.error('Erro no endpoint /contact:', error);
+    res.status(500).json({ status: 'error', message: 'Não foi possível enviar o e-mail no momento. Tente novamente.' });
   }
 });
+
 
 router.post('/assessment', async (req: Request, res: Response) => {
   try {
