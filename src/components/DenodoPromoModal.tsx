@@ -19,18 +19,18 @@ const DenodoPromoModal = () => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-2xl overflow-hidden p-0 border-none bg-white">
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="max-w-2xl w-[calc(100%-2rem)] max-h-[90vh] overflow-y-auto p-0 border-none bg-white">
         <div className="flex flex-col md:flex-row">
           {/* Lado Esquerdo - Visual Denodo */}
           <div 
-            className="relative p-8 text-slate-900 md:w-2/5 flex flex-col justify-center overflow-hidden"
+            className="relative p-6 md:p-8 text-slate-900 md:w-2/5 flex flex-col justify-center overflow-hidden"
             style={{ backgroundColor: "#F8F8FD" }}
           >
             <div className="absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 rounded-full blur-3xl opacity-20" style={{ backgroundColor: denodoRed }}></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 -ml-12 -mb-12 rounded-full blur-2xl opacity-10" style={{ backgroundColor: denodoRed }}></div>
             
-            <div className="h-[245px] w-auto mb-6 relative z-10 bg-slate-100/50 rounded p-4 flex items-center justify-start">
+            <div className="h-32 md:h-[245px] w-auto mb-6 relative z-10 bg-slate-100/50 rounded p-4 flex items-center justify-start">
               <img 
                 src="/logos/denodo.png" 
                 alt="Denodo Logo" 
@@ -49,10 +49,10 @@ const DenodoPromoModal = () => {
           </div>
 
           {/* Lado Direito - Conteúdo e Dores */}
-          <div className="p-8 md:w-3/5 bg-white relative">
+          <div className="p-6 md:p-8 md:w-3/5 bg-white relative">
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-slate-900 leading-tight flex flex-wrap items-center gap-x-3">
-                Resolva os desafios de dados com a <img src="/logos/denodo.png" alt="Denodo" className="h-[89.6px] w-auto inline-block object-contain" /> <span className="text-slate-400 font-normal">&</span> <span className="text-slate-900">Financeit</span>
+              <DialogTitle className="text-xl md:text-2xl font-bold text-slate-900 leading-tight flex flex-wrap items-center gap-x-3">
+                Resolva os desafios de dados com a <img src="/logos/denodo.png" alt="Denodo" className="h-12 md:h-[89.6px] w-auto inline-block object-contain" /> <span className="text-slate-400 font-normal">&</span> <span className="text-slate-900">Financeit</span>
               </DialogTitle>
 
 
