@@ -149,6 +149,11 @@ const DenodoPage = () => {
                 desc: "Acesse todas as fontes de dados como se fossem uma só, sem replicação e sem ETL pesado.",
               },
               {
+                icon: BookOpen,
+                title: "Camada Semântica",
+                desc: "Organiza e simplifica dados brutos em termos de negócio, mantendo linhagem e consistência. Serve como base para preparação de IA e aplicações GenAI com dados confiáveis e contextuais.",
+              },
+              {
                 icon: Zap,
                 title: "Acesso em tempo real",
                 desc: "Consulte dados atualizados de múltiplas fontes sem esperar cargas batch ou pipelines de sincronização.",
