@@ -12,12 +12,12 @@ const DenodoPromoModal = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname !== "/") return;
     const hasSeenModal = sessionStorage.getItem("hasSeenDenodoModal");
     if (!hasSeenModal) {
       setIsOpen(true);
     }
-  }, [location.pathname]);
+  }, []);
+
 
 
   const handleClose = () => {
