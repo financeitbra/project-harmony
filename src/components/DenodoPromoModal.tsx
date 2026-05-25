@@ -19,8 +19,8 @@ const DenodoPromoModal = () => {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-2xl overflow-hidden p-0 border-none bg-white">
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="max-w-2xl w-[calc(100%-2rem)] max-h-[90vh] overflow-y-auto p-0 border-none bg-white">
         <div className="flex flex-col md:flex-row">
           {/* Lado Esquerdo - Visual Denodo */}
           <div 
