@@ -12,6 +12,7 @@ import {
   Lock,
   BookOpen,
   Cloud,
+  Brain,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -183,6 +184,11 @@ const DenodoPage = () => {
                 icon: Cloud,
                 title: "Integração multi-ambiente",
                 desc: "Conecte dados na nuvem, on-premise ou em ambientes híbridos sem replicar informações entre plataformas.",
+              },
+              {
+                icon: Brain,
+                title: "Dados prontos para IA",
+                desc: "Forneça dados contextualizados, governados e de alta qualidade para treinar modelos de IA e alimentar aplicações generativas com informações confiáveis e atualizadas.",
               },
             ].map((b) => (
               <div key={b.title} className="rounded-xl border border-border bg-card p-7 transition-all hover:shadow-sm">
