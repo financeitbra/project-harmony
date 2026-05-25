@@ -11,17 +11,11 @@ const DenodoPromoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const hasSeenModal = sessionStorage.getItem("hasSeenDenodoModal");
-    if (!hasSeenModal) {
-      setIsOpen(true);
-    }
+    setIsOpen(true);
   }, []);
-
-
 
   const handleClose = () => {
     setIsOpen(false);
-    sessionStorage.setItem("hasSeenDenodoModal", "true");
   };
 
   return (
