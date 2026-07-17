@@ -1,10 +1,25 @@
 import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-};
+const ALLOWED_ORIGINS = new Set<string>([
+  "https://financeit.com.br",
+  "https://www.financeit.com.br",
+  "https://financeit-pr1.lovable.app",
+  "http://localhost:5173",
+  "http://localhost:8080",
+]);
+
+function buildCorsHeaders(origin: string | null): Record<string, string> {
+  const isLovablePreview =
+    !!origin && /^https:\/\/[a-z0-9-]+\.lovable\.app$/i.test(origin);
+  const allowOrigin =
+    origin && (ALLOWED_ORIGINS.has(origin) || isLovablePreview) ? origin : "https://financeit.com.br";
+  return {
+    "Access-Control-Allow-Origin": allowOrigin,
+    "Vary": "Origin",
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+  };
+}
 
 interface ContactPayload {
   type: "contact";
