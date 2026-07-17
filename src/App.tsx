@@ -8,7 +8,7 @@ import { TooltipProvider } from "./components/ui/tooltip";
 import WhatsAppButton from "./components/WhatsAppButton";
 import CookieBanner from "./components/CookieBanner";
 import AppErrorBoundary from "./components/AppErrorBoundary";
-import DenodoPromoModal from "./components/DenodoPromoModal";
+import QlikPromoModal from "./components/QlikPromoModal";
 
 
 // Layout
@@ -103,7 +103,7 @@ const App = () => {
             </Suspense>
             <WhatsAppButton />
             <CookieBanner />
-            <DenodoPromoModal />
+            <QlikPromoModal />
 
           </BrowserRouter>
         </TooltipProvider>
