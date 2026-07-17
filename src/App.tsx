@@ -37,6 +37,7 @@ import AvaliacaoIAPage from "./pages/AvaliacaoIAPage";
 import AvaliacaoResultadoPage from "./pages/AvaliacaoResultadoPage";
 import DiagnosticoIAPage from "./pages/DiagnosticoIAPage";
 import PPOVPage from "./pages/PPOVPage";
+import OAuthConsent from "./pages/OAuthConsent";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -95,6 +96,7 @@ const App = () => {
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/reset-password" element={<ResetPasswordPage />} />
                   <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
               </Routes>
