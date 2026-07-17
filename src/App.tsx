@@ -103,7 +103,7 @@ const App = () => {
             </Suspense>
             <WhatsAppButton />
             <CookieBanner />
-            <DenodoPromoModal />
+            <QlikPromoModal />
 
           </BrowserRouter>
         </TooltipProvider>
