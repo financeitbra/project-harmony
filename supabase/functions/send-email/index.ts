@@ -537,6 +537,15 @@ Deno.serve(async (req) => {
       }
       if (body.nome && !isValidString(body.nome, 100)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"nome inválido"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
 
+      // Per-recipient rate limit to prevent using the endpoint as a relay
+      if (!checkEmailRateLimit(body.email)) {
+        await client.close();
+        return new Response(
+          JSON.stringify({ status: "error", message: "Muitas requisições para este e-mail. Tente novamente mais tarde." }),
+          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
+
       to = body.email;
       subject = "Seu diagnóstico de prontidão para IA — Financeit";
       html = buildAssessmentHtml(body);
