@@ -410,12 +410,13 @@ function buildAssessmentHtml(data: AssessmentPayload): string {
 }
 
 // Simple in-memory rate limiter (per-IP). Resets on cold start.
-const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const rateBuckets = new Map<string, { count: number; resetAt: number }>();
 
-// Per-email rate limit (assessment recipient) to prevent abuse across IPs
-const EMAIL_LIMIT_MAX = 3;
+// Per-email rate limit (assessment recipient) to prevent using the endpoint
+// as a Financeit-branded phishing/spam relay to arbitrary addresses.
+const EMAIL_LIMIT_MAX = 1;
 const EMAIL_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const emailBuckets = new Map<string, { count: number; resetAt: number }>();
 
