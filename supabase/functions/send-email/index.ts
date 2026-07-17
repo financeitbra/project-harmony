@@ -536,6 +536,36 @@ Deno.serve(async (req) => {
           { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
       }
+      // Cap length of each recomendacao item to avoid abusive payloads
+      if (!body.recomendacoes.every((r: unknown) => typeof r === "string" && r.length <= 500)) {
+        await client.close();
+        return new Response(
+          JSON.stringify({ status: "error", message: "recomendacoes inválidas" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
+      // Validate respostas shape and per-item length
+      if (body.respostas !== undefined) {
+        if (!Array.isArray(body.respostas) || body.respostas.length > 50) {
+          await client.close();
+          return new Response(
+            JSON.stringify({ status: "error", message: "respostas inválidas" }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+          );
+        }
+        const okRespostas = body.respostas.every((r: any) =>
+          r && typeof r === "object"
+            && typeof r.question === "string" && r.question.length <= 500
+            && typeof r.answer === "string" && r.answer.length <= 1000
+        );
+        if (!okRespostas) {
+          await client.close();
+          return new Response(
+            JSON.stringify({ status: "error", message: "respostas inválidas" }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+          );
+        }
+      }
       if (body.nome && !isValidString(body.nome, 100)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"nome inválido"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
 
       // Per-recipient rate limit to prevent using the endpoint as a relay
