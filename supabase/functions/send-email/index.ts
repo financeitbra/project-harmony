@@ -414,16 +414,29 @@ const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const rateBuckets = new Map<string, { count: number; resetAt: number }>();
 
-function checkRateLimit(ip: string): boolean {
+// Per-email rate limit (assessment recipient) to prevent abuse across IPs
+const EMAIL_LIMIT_MAX = 3;
+const EMAIL_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+const emailBuckets = new Map<string, { count: number; resetAt: number }>();
+
+function checkBucket(map: Map<string, { count: number; resetAt: number }>, key: string, max: number, windowMs: number): boolean {
   const now = Date.now();
-  const bucket = rateBuckets.get(ip);
+  const bucket = map.get(key);
   if (!bucket || bucket.resetAt < now) {
-    rateBuckets.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    map.set(key, { count: 1, resetAt: now + windowMs });
     return true;
   }
-  if (bucket.count >= RATE_LIMIT_MAX) return false;
+  if (bucket.count >= max) return false;
   bucket.count += 1;
   return true;
+}
+
+function checkRateLimit(ip: string): boolean {
+  return checkBucket(rateBuckets, ip, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
+}
+
+function checkEmailRateLimit(email: string): boolean {
+  return checkBucket(emailBuckets, email.toLowerCase(), EMAIL_LIMIT_MAX, EMAIL_LIMIT_WINDOW_MS);
 }
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -437,6 +450,8 @@ function isValidString(value: unknown, max: number): value is string {
 }
 
 Deno.serve(async (req) => {
+  const corsHeaders = buildCorsHeaders(req.headers.get("origin"));
+
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -459,13 +474,7 @@ Deno.serve(async (req) => {
   const CONTACT_TO = Deno.env.get("CONTACT_TO");
 
   if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !CONTACT_TO) {
-    console.error("Missing SMTP env vars", {
-      SMTP_HOST: Boolean(SMTP_HOST),
-      SMTP_PORT: Boolean(SMTP_PORT),
-      SMTP_USER: Boolean(SMTP_USER),
-      SMTP_PASS: Boolean(SMTP_PASS),
-      CONTACT_TO: Boolean(CONTACT_TO),
-    });
+    console.error("Missing SMTP env vars");
 
     return new Response(
       JSON.stringify({ status: "error", message: "Configuração SMTP ausente." }),
