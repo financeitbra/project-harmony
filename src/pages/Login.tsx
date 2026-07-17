@@ -26,6 +26,10 @@ export default function Login() {
 
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const nextParam = searchParams.get("next");
+  const safeNext = nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//") ? nextParam : null;
+  const postAuthTarget = safeNext ?? "/dashboard";
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("rememberedEmail");
