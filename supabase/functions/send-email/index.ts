@@ -410,12 +410,13 @@ function buildAssessmentHtml(data: AssessmentPayload): string {
 }
 
 // Simple in-memory rate limiter (per-IP). Resets on cold start.
-const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const rateBuckets = new Map<string, { count: number; resetAt: number }>();
 
-// Per-email rate limit (assessment recipient) to prevent abuse across IPs
-const EMAIL_LIMIT_MAX = 3;
+// Per-email rate limit (assessment recipient) to prevent using the endpoint
+// as a Financeit-branded phishing/spam relay to arbitrary addresses.
+const EMAIL_LIMIT_MAX = 1;
 const EMAIL_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const emailBuckets = new Map<string, { count: number; resetAt: number }>();
 
@@ -534,6 +535,36 @@ Deno.serve(async (req) => {
           JSON.stringify({ status: "error", message: "Campos inválidos: email, resultado ou recomendacoes" }),
           { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
         );
+      }
+      // Cap length of each recomendacao item to avoid abusive payloads
+      if (!body.recomendacoes.every((r: unknown) => typeof r === "string" && r.length <= 500)) {
+        await client.close();
+        return new Response(
+          JSON.stringify({ status: "error", message: "recomendacoes inválidas" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
+      // Validate respostas shape and per-item length
+      if (body.respostas !== undefined) {
+        if (!Array.isArray(body.respostas) || body.respostas.length > 50) {
+          await client.close();
+          return new Response(
+            JSON.stringify({ status: "error", message: "respostas inválidas" }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+          );
+        }
+        const okRespostas = body.respostas.every((r: any) =>
+          r && typeof r === "object"
+            && typeof r.question === "string" && r.question.length <= 500
+            && typeof r.answer === "string" && r.answer.length <= 1000
+        );
+        if (!okRespostas) {
+          await client.close();
+          return new Response(
+            JSON.stringify({ status: "error", message: "respostas inválidas" }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+          );
+        }
       }
       if (body.nome && !isValidString(body.nome, 100)) { await client.close(); return new Response(JSON.stringify({status:"error",message:"nome inválido"}),{status:400,headers:{...corsHeaders,"Content-Type":"application/json"}}); }
 
