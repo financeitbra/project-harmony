@@ -36,7 +36,7 @@ import ResetPasswordPage from "./pages/ResetPassword";
 import AvaliacaoIAPage from "./pages/AvaliacaoIAPage";
 import AvaliacaoResultadoPage from "./pages/AvaliacaoResultadoPage";
 import DiagnosticoIAPage from "./pages/DiagnosticoIAPage";
-import PPOVPage from "./pages/PPOVPage";
+import PpovPage from "./pages/PPOVPage";
 import OAuthConsent from "./pages/OAuthConsent";
 import NotFound from "./pages/NotFound";
 
@@ -83,7 +83,7 @@ const App = () => {
                   <Route path="/diagnostico-ia" element={<DiagnosticoIAPage />} />
                   <Route path="/inteligencia-negocios" element={<InteligenciaNegocioPage />} />
                   <Route path="/avalara" element={<AvalaraPage />} />
-                  <Route path="/ppov" element={<PPOVPage />} />
+                  <Route path="/ppov" element={<PpovPage />} />
                   <Route path="/qlik" element={<QlikPage />} />
                   <Route path="/denodo" element={<DenodoPage />} />
                   <Route path="/estruturacao-dados" element={<EstruturacaoDadosPage />} />
