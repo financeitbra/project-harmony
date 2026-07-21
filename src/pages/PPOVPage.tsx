@@ -38,7 +38,7 @@ const PPOVHero = () => (
     <div className="container relative z-10 py-20 md:py-28 lg:py-36">
       <div className="mx-auto max-w-4xl text-center">
         <div className="mb-6 inline-flex items-center rounded-full border border-green-accent/40 bg-green-accent/10 px-4 py-1.5">
-          <span className="text-xs font-medium tracking-wide text-green-accent">Gestão de Orçamento e Resultado com PPOV</span>
+          <span className="text-xs font-medium tracking-wide text-green-accent">Planejamento orçamentário e gestão de resultados com PPOV</span>
         </div>
 
         <h1 className="font-display text-3xl font-extrabold leading-tight tracking-tight text-primary-foreground sm:text-4xl md:text-5xl lg:text-[3.25rem]">
