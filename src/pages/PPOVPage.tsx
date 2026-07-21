@@ -181,11 +181,11 @@ const PPOVSolucoes = () => {
       <div className="container">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">
-            Mais do que organizar números, sua empresa precisa estruturar{" "}
+            Planejamento orçamentário e gestão de resultados que transformam números em{" "}
             <span className="text-green-accent">inteligência financeira confiável.</span>
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-            Com PPOV, a Financeit ajuda empresas a fortalecer uma estrutura de orçamento e resultado mais integrada, automatizada e consistente, reduzindo ruído entre áreas, acelerando análises e ampliando a confiabilidade da informação usada para decidir.
+            Com PPOV, a Financeit ajuda empresas a fortalecer uma estrutura de planejamento orçamentário e gestão de resultados mais integrada, automatizada e consistente, reduzindo ruído entre áreas, acelerando análises e ampliando a confiabilidade da informação usada para decidir.
           </p>
         </div>
 
