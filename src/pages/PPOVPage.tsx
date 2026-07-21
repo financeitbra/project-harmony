@@ -371,13 +371,13 @@ const DiferencialAbordagem = () => (
   <section className="section-padding bg-secondary/30">
     <div className="container">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">
-          Não se trata apenas de acompanhar orçamento. Trata-se de{" "}
-          <span className="text-green-accent">governar a empresa com uma base confiável.</span>
-        </h2>
-        <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-          A combinação entre Financeit e PPOV permite olhar para orçamento e resultado não como rotina isolada da área financeira, mas como infraestrutura crítica de clareza, governança e decisão. É essa leitura que transforma informação dispersa em capacidade executiva real.
-        </p>
+          <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">
+            Não se trata apenas de acompanhar orçamento. Trata-se de{" "}
+            <span className="text-green-accent">governar o planejamento orçamentário e a gestão de resultados.</span>
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+            A combinação entre Financeit e PPOV permite olhar para planejamento orçamentário e gestão de resultados não como rotina isolada da área financeira, mas como infraestrutura crítica de clareza, governança e decisão. É essa leitura que transforma informação dispersa em capacidade executiva real.
+          </p>
       </div>
 
       <div className="mx-auto mt-14 grid max-w-4xl gap-4 md:grid-cols-5">
