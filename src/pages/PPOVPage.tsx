@@ -42,14 +42,14 @@ const PPOVHero = () => (
         </div>
 
         <h1 className="font-display text-3xl font-extrabold leading-tight tracking-tight text-primary-foreground sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-          Sua operação financeira não pode continuar convivendo com{" "}
+          Planejamento orçamentário e gestão de resultados que eliminam{" "}
           <span className="bg-gradient-to-r from-green-accent to-green-accent-subtle bg-clip-text text-transparent">
             versões diferentes da verdade.
           </span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/70 md:text-lg">
-          A gestão de orçamento e resultado com PPOV ajuda sua empresa a integrar dados, automatizar processos e construir uma única fonte da verdade para decisões mais rápidas, corretas e consistentes.
+          O PPOV une planejamento orçamentário e gestão de resultados em uma única fonte da verdade: dados integrados, processos automatizados e informação confiável para decisões financeiras mais rápidas e consistentes.
         </p>
 
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-primary-foreground/50 md:text-base">
