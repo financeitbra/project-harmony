@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 /* ───────────────────────────── 1. Hero ───────────────────────────── */
-const PPOVHero = () => (
+const PpovHero = () => (
   <section className="relative overflow-hidden bg-navy-gradient">
     <div className="absolute inset-0 bg-grid-pattern opacity-[0.04]" />
     <div className="absolute inset-0">
@@ -38,7 +38,7 @@ const PPOVHero = () => (
     <div className="container relative z-10 py-20 md:py-28 lg:py-36">
       <div className="mx-auto max-w-4xl text-center">
         <div className="mb-6 inline-flex items-center rounded-full border border-green-accent/40 bg-green-accent/10 px-4 py-1.5">
-          <span className="text-xs font-medium tracking-wide text-green-accent">Planejamento orçamentário e gestão de resultados com PPOV</span>
+          <span className="text-xs font-medium tracking-wide text-green-accent">Planejamento orçamentário e gestão de resultados com P-POV</span>
         </div>
 
         <h1 className="font-display text-3xl font-extrabold leading-tight tracking-tight text-primary-foreground sm:text-4xl md:text-5xl lg:text-[3.25rem]">
@@ -49,7 +49,7 @@ const PPOVHero = () => (
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/70 md:text-lg">
-          O PPOV une planejamento orçamentário e gestão de resultados em uma única fonte da verdade: dados integrados, processos automatizados e informação confiável para decisões financeiras mais rápidas e consistentes.
+          O P-POV une planejamento orçamentário e gestão de resultados em uma única fonte da verdade: dados integrados, processos automatizados e informação confiável para decisões financeiras mais rápidas e consistentes.
         </p>
 
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-primary-foreground/50 md:text-base">
@@ -165,8 +165,8 @@ const FonteVerdade = () => (
   </section>
 );
 
-/* ──── 4. O que a PPOV ajuda a estruturar ──── */
-const PPOVSolucoes = () => {
+/* ──── 4. O que a P-POV ajuda a estruturar ──── */
+const PpovSolucoes = () => {
   const blocos = [
     { icon: Target, title: "Planejamento orçamentário integrado", desc: "Mais alinhamento entre premissas, metas e acompanhamento, com menos dependência de bases dispersas." },
     { icon: BarChart3, title: "Acompanhamento de realizado versus orçamento", desc: "Mais clareza para comparar desempenho e identificar desvios com agilidade e consistência." },
@@ -185,7 +185,7 @@ const PPOVSolucoes = () => {
             <span className="text-green-accent">inteligência financeira confiável.</span>
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-            Com PPOV, a Financeit ajuda empresas a fortalecer uma estrutura de planejamento orçamentário e gestão de resultados mais integrada, automatizada e consistente, reduzindo ruído entre áreas, acelerando análises e ampliando a confiabilidade da informação usada para decidir.
+            Com P-POV, a Financeit ajuda empresas a fortalecer uma estrutura de planejamento orçamentário e gestão de resultados mais integrada, automatizada e consistente, reduzindo ruído entre áreas, acelerando análises e ampliando a confiabilidade da informação usada para decidir.
           </p>
         </div>
 
@@ -268,7 +268,7 @@ const PapelFinanceit = () => (
               <span className="text-green-accent">capacidade de gestão.</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-              A Financeit atua para conectar a capacidade da PPOV à realidade financeira e operacional de cada empresa. Isso significa traduzir solução em uso prático, aderente ao contexto, com mais clareza, direção e impacto na rotina de decisão.
+              A Financeit atua para conectar a capacidade da P-POV à realidade financeira e operacional de cada empresa. Isso significa traduzir solução em uso prático, aderente ao contexto, com mais clareza, direção e impacto na rotina de decisão.
             </p>
           </div>
 
@@ -376,7 +376,7 @@ const DiferencialAbordagem = () => (
             <span className="text-green-accent">governar o planejamento orçamentário e a gestão de resultados.</span>
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-            A combinação entre Financeit e PPOV permite olhar para planejamento orçamentário e gestão de resultados não como rotina isolada da área financeira, mas como infraestrutura crítica de clareza, governança e decisão. É essa leitura que transforma informação dispersa em capacidade executiva real.
+            A combinação entre Financeit e P-POV permite olhar para planejamento orçamentário e gestão de resultados não como rotina isolada da área financeira, mas como infraestrutura crítica de clareza, governança e decisão. É essa leitura que transforma informação dispersa em capacidade executiva real.
           </p>
       </div>
 
@@ -402,7 +402,7 @@ const DiferencialAbordagem = () => (
 );
 
 /* ──── 10. CTA final ──── */
-const PPOVCTAFinal = () => (
+const PpovCtaFinal = () => (
   <section className="relative overflow-hidden bg-navy-gradient">
     <div className="absolute inset-0 bg-grid-pattern opacity-[0.04]" />
     <div className="absolute inset-0">
@@ -418,7 +418,7 @@ const PPOVCTAFinal = () => (
             </span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/70 md:text-lg">
-            Com planejamento orçamentário e gestão de resultados com PPOV e o direcionamento da Financeit, sua empresa pode avançar para uma operação financeira mais integrada, automatizada e confiável — com uma única fonte da verdade para sustentar decisões rápidas, corretas e consistentes.
+            Com planejamento orçamentário e gestão de resultados com P-POV e o direcionamento da Financeit, sua empresa pode avançar para uma operação financeira mais integrada, automatizada e confiável — com uma única fonte da verdade para sustentar decisões rápidas, corretas e consistentes.
           </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -448,20 +448,20 @@ const PPOVCTAFinal = () => (
 /* ──────────────── Page ──────────────── */
 import PpovFAQ from "@/components/sections/ppov/PpovFAQ";
 
-const PPOVPage = () => (
+const PpovPage = () => (
   <>
-    <PPOVHero />
+    <PpovHero />
     <PerguntaLideranca />
     <FonteVerdade />
-    <PPOVSolucoes />
+    <PpovSolucoes />
     <CustoFragmentacao />
     <PapelFinanceit />
     <ParaEmpresas />
     <OQueMuda />
     <DiferencialAbordagem />
     <PpovFAQ />
-    <PPOVCTAFinal />
+    <PpovCtaFinal />
   </>
 );
 
-export default PPOVPage;
+export default PpovPage;
