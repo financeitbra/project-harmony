@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 /* ───────────────────────────── 1. Hero ───────────────────────────── */
-const P-POVHero = () => (
+const PpovHero = () => (
   <section className="relative overflow-hidden bg-navy-gradient">
     <div className="absolute inset-0 bg-grid-pattern opacity-[0.04]" />
     <div className="absolute inset-0">
@@ -166,7 +166,7 @@ const FonteVerdade = () => (
 );
 
 /* ──── 4. O que a P-POV ajuda a estruturar ──── */
-const P-POVSolucoes = () => {
+const PpovSolucoes = () => {
   const blocos = [
     { icon: Target, title: "Planejamento orçamentário integrado", desc: "Mais alinhamento entre premissas, metas e acompanhamento, com menos dependência de bases dispersas." },
     { icon: BarChart3, title: "Acompanhamento de realizado versus orçamento", desc: "Mais clareza para comparar desempenho e identificar desvios com agilidade e consistência." },
@@ -402,7 +402,7 @@ const DiferencialAbordagem = () => (
 );
 
 /* ──── 10. CTA final ──── */
-const P-POVCTAFinal = () => (
+const PpovCtaFinal = () => (
   <section className="relative overflow-hidden bg-navy-gradient">
     <div className="absolute inset-0 bg-grid-pattern opacity-[0.04]" />
     <div className="absolute inset-0">
@@ -448,20 +448,20 @@ const P-POVCTAFinal = () => (
 /* ──────────────── Page ──────────────── */
 import PpovFAQ from "@/components/sections/ppov/PpovFAQ";
 
-const P-POVPage = () => (
+const PpovPage = () => (
   <>
-    <P-POVHero />
+    <PpovHero />
     <PerguntaLideranca />
     <FonteVerdade />
-    <P-POVSolucoes />
+    <PpovSolucoes />
     <CustoFragmentacao />
     <PapelFinanceit />
     <ParaEmpresas />
     <OQueMuda />
     <DiferencialAbordagem />
     <PpovFAQ />
-    <P-POVCTAFinal />
+    <PpovCtaFinal />
   </>
 );
 
-export default P-POVPage;
+export default PpovPage;
