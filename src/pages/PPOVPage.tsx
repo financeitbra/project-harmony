@@ -411,15 +411,15 @@ const PPOVCTAFinal = () => (
 
     <div className="container relative z-10 py-20 md:py-28">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="font-display text-2xl font-bold text-primary-foreground md:text-3xl lg:text-4xl">
-          A questão não é mais se sua empresa precisa de mais dados. É se ela já consegue{" "}
-          <span className="bg-gradient-to-r from-green-accent to-green-accent-subtle bg-clip-text text-transparent">
-            confiar plenamente nos dados que usa para decidir.
-          </span>
-        </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/70 md:text-lg">
-          Com a gestão de orçamento e resultado com PPOV e o direcionamento da Financeit, sua empresa pode avançar para uma operação financeira mais integrada, automatizada e confiável — com uma única fonte da verdade para sustentar decisões rápidas, corretas e consistentes.
-        </p>
+          <h2 className="font-display text-2xl font-bold text-primary-foreground md:text-3xl lg:text-4xl">
+            A questão não é mais se sua empresa precisa de mais dados. É se ela já consegue{" "}
+            <span className="bg-gradient-to-r from-green-accent to-green-accent-subtle bg-clip-text text-transparent">
+              confiar no planejamento orçamentário e na gestão de resultados que usa para decidir.
+            </span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/70 md:text-lg">
+            Com planejamento orçamentário e gestão de resultados com PPOV e o direcionamento da Financeit, sua empresa pode avançar para uma operação financeira mais integrada, automatizada e confiável — com uma única fonte da verdade para sustentar decisões rápidas, corretas e consistentes.
+          </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button size="lg" className="bg-green-accent text-white hover:bg-green-accent/90" asChild>
