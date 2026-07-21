@@ -98,10 +98,10 @@ const PpovFAQ = () => {
           </span>
           <h2 className="mt-4 font-display text-2xl font-bold md:text-3xl lg:text-4xl">
             Tire suas dúvidas sobre{" "}
-            <span style={{ color: ppovTeal }}>gestão integrada de orçamento e resultado</span>
+            <span style={{ color: ppovTeal }}>planejamento orçamentário e gestão de resultados</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground md:text-lg max-w-2xl mx-auto">
-            Respostas para as perguntas mais comuns sobre como o PPOV ajuda empresas a consolidar uma única fonte da verdade financeira, com mais velocidade, confiança e consistência.
+            Respostas para as perguntas mais comuns sobre como o PPOV ajuda empresas a consolidar planejamento orçamentário e gestão de resultados em uma única fonte da verdade financeira, com mais velocidade, confiança e consistência.
           </p>
         </div>
 

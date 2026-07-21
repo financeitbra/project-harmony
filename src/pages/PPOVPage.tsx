@@ -38,18 +38,18 @@ const PPOVHero = () => (
     <div className="container relative z-10 py-20 md:py-28 lg:py-36">
       <div className="mx-auto max-w-4xl text-center">
         <div className="mb-6 inline-flex items-center rounded-full border border-green-accent/40 bg-green-accent/10 px-4 py-1.5">
-          <span className="text-xs font-medium tracking-wide text-green-accent">Gestão de Orçamento e Resultado com PPOV</span>
+          <span className="text-xs font-medium tracking-wide text-green-accent">Planejamento orçamentário e gestão de resultados com PPOV</span>
         </div>
 
         <h1 className="font-display text-3xl font-extrabold leading-tight tracking-tight text-primary-foreground sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-          Sua operação financeira não pode continuar convivendo com{" "}
+          Planejamento orçamentário e gestão de resultados que eliminam{" "}
           <span className="bg-gradient-to-r from-green-accent to-green-accent-subtle bg-clip-text text-transparent">
             versões diferentes da verdade.
           </span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/70 md:text-lg">
-          A gestão de orçamento e resultado com PPOV ajuda sua empresa a integrar dados, automatizar processos e construir uma única fonte da verdade para decisões mais rápidas, corretas e consistentes.
+          O PPOV une planejamento orçamentário e gestão de resultados em uma única fonte da verdade: dados integrados, processos automatizados e informação confiável para decisões financeiras mais rápidas e consistentes.
         </p>
 
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-primary-foreground/50 md:text-base">
@@ -181,11 +181,11 @@ const PPOVSolucoes = () => {
       <div className="container">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">
-            Mais do que organizar números, sua empresa precisa estruturar{" "}
+            Planejamento orçamentário e gestão de resultados que transformam números em{" "}
             <span className="text-green-accent">inteligência financeira confiável.</span>
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-            Com PPOV, a Financeit ajuda empresas a fortalecer uma estrutura de orçamento e resultado mais integrada, automatizada e consistente, reduzindo ruído entre áreas, acelerando análises e ampliando a confiabilidade da informação usada para decidir.
+            Com PPOV, a Financeit ajuda empresas a fortalecer uma estrutura de planejamento orçamentário e gestão de resultados mais integrada, automatizada e consistente, reduzindo ruído entre áreas, acelerando análises e ampliando a confiabilidade da informação usada para decidir.
           </p>
         </div>
 
@@ -371,13 +371,13 @@ const DiferencialAbordagem = () => (
   <section className="section-padding bg-secondary/30">
     <div className="container">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">
-          Não se trata apenas de acompanhar orçamento. Trata-se de{" "}
-          <span className="text-green-accent">governar a empresa com uma base confiável.</span>
-        </h2>
-        <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-          A combinação entre Financeit e PPOV permite olhar para orçamento e resultado não como rotina isolada da área financeira, mas como infraestrutura crítica de clareza, governança e decisão. É essa leitura que transforma informação dispersa em capacidade executiva real.
-        </p>
+          <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">
+            Não se trata apenas de acompanhar orçamento. Trata-se de{" "}
+            <span className="text-green-accent">governar o planejamento orçamentário e a gestão de resultados.</span>
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">
+            A combinação entre Financeit e PPOV permite olhar para planejamento orçamentário e gestão de resultados não como rotina isolada da área financeira, mas como infraestrutura crítica de clareza, governança e decisão. É essa leitura que transforma informação dispersa em capacidade executiva real.
+          </p>
       </div>
 
       <div className="mx-auto mt-14 grid max-w-4xl gap-4 md:grid-cols-5">
@@ -411,15 +411,15 @@ const PPOVCTAFinal = () => (
 
     <div className="container relative z-10 py-20 md:py-28">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="font-display text-2xl font-bold text-primary-foreground md:text-3xl lg:text-4xl">
-          A questão não é mais se sua empresa precisa de mais dados. É se ela já consegue{" "}
-          <span className="bg-gradient-to-r from-green-accent to-green-accent-subtle bg-clip-text text-transparent">
-            confiar plenamente nos dados que usa para decidir.
-          </span>
-        </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/70 md:text-lg">
-          Com a gestão de orçamento e resultado com PPOV e o direcionamento da Financeit, sua empresa pode avançar para uma operação financeira mais integrada, automatizada e confiável — com uma única fonte da verdade para sustentar decisões rápidas, corretas e consistentes.
-        </p>
+          <h2 className="font-display text-2xl font-bold text-primary-foreground md:text-3xl lg:text-4xl">
+            A questão não é mais se sua empresa precisa de mais dados. É se ela já consegue{" "}
+            <span className="bg-gradient-to-r from-green-accent to-green-accent-subtle bg-clip-text text-transparent">
+              confiar no planejamento orçamentário e na gestão de resultados que usa para decidir.
+            </span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/70 md:text-lg">
+            Com planejamento orçamentário e gestão de resultados com PPOV e o direcionamento da Financeit, sua empresa pode avançar para uma operação financeira mais integrada, automatizada e confiável — com uma única fonte da verdade para sustentar decisões rápidas, corretas e consistentes.
+          </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button size="lg" className="bg-green-accent text-white hover:bg-green-accent/90" asChild>

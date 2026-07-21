@@ -57,9 +57,9 @@ const PAGE_META: Record<string, PageMeta> = {
     keywords: "Denodo, virtualização de dados, data fabric",
   },
   "/ppov": {
-    title: "PPOV — Prova de Valor com a Financeit",
-    description: "Prova de valor (PPOV) Financeit: validação prática de tecnologia e caso de uso antes do investimento em escala.",
-    keywords: "PPOV, prova de valor, POC, validação",
+    title: "Planejamento Orçamentário e Gestão de Resultados — PPOV",
+    description: "Planejamento orçamentário e gestão de resultados com PPOV: integre orçamento, realizado e projeções em uma única fonte da verdade para decisões financeiras mais rápidas e confiáveis.",
+    keywords: "planejamento orçamentário, gestão de resultados, PPOV, orçamento empresarial, acompanhamento de resultado",
   },
   "/hunting-info": {
     title: "Hunting de Talentos — Financeit",
